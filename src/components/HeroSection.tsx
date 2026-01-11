@@ -22,7 +22,7 @@ const HeroSection = () => {
 
   return (
     <section className="px-8 pb-8 md:px-16 lg:px-24">
-      <div className="relative w-full overflow-hidden rounded-[2rem]">
+      <div className="relative w-full overflow-hidden rounded-[81px]" style={{ aspectRatio: '1843 / 963' }}>
         {/* Background Image */}
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
