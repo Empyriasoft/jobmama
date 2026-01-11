@@ -4,13 +4,19 @@ import heroImage from "@/assets/hero-mother-child.jpg";
 
 const HeroSection = () => {
   useEffect(() => {
-    const link = document.createElement("link");
-    link.href = "https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap";
-    link.rel = "stylesheet";
-    document.head.appendChild(link);
+    const googleSansLink = document.createElement("link");
+    googleSansLink.href = "https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap";
+    googleSansLink.rel = "stylesheet";
+    document.head.appendChild(googleSansLink);
+
+    const interLink = document.createElement("link");
+    interLink.href = "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap";
+    interLink.rel = "stylesheet";
+    document.head.appendChild(interLink);
 
     return () => {
-      document.head.removeChild(link);
+      document.head.removeChild(googleSansLink);
+      document.head.removeChild(interLink);
     };
   }, []);
 
@@ -36,7 +42,10 @@ const HeroSection = () => {
               Empowering mothers that make our world better
             </h1>
             
-            <p className="mb-10 max-w-md text-base leading-relaxed text-hero/80 md:text-lg">
+            <p 
+              className="mb-10 max-w-md text-base leading-relaxed text-hero/80 md:text-lg"
+              style={{ fontFamily: "'Inter', sans-serif" }}
+            >
               Empowering mothers to confidently shape their professional future.
             </p>
             
