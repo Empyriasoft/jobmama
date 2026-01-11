@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import logo from "@/assets/logo.svg";
 
 const Header = () => {
   const navItems = ["Home", "Our Services", "Our Approach"];
@@ -7,8 +8,8 @@ const Header = () => {
     <header className="w-full px-8 py-6 md:px-16 lg:px-24">
       <div className="mx-auto flex max-w-7xl items-center justify-between">
         {/* Logo */}
-        <a href="/" className="text-2xl font-bold tracking-tight text-foreground">
-          Job<span className="font-normal italic">Mama</span>
+        <a href="/">
+          <img src={logo} alt="JobMama" className="h-8" />
         </a>
 
         {/* Navigation */}
