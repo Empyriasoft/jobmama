@@ -18,7 +18,8 @@ const Header = () => {
             <a
               key={item}
               href="#"
-              className="text-[22px] font-medium text-foreground transition-colors hover:text-muted-foreground"
+              className="text-[22px] font-light text-foreground transition-colors hover:text-muted-foreground"
+              style={{ fontFamily: "'Zalando Sans', sans-serif" }}
             >
               {item}
             </a>
