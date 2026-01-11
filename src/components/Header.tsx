@@ -24,7 +24,7 @@ const Header = () => {
               {item}
             </a>
           ))}
-          <Button variant="cta" size="cta">
+          <Button variant="cta" size="cta" className="text-[22px] px-8 py-4">
             Get in Touch
           </Button>
         </nav>
