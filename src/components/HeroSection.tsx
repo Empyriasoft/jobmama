@@ -44,7 +44,7 @@ const HeroSection = () => {
             
             <p 
               className="mb-10 max-w-md text-base leading-relaxed text-hero/80 md:text-lg"
-              style={{ fontFamily: "'Inter', sans-serif" }}
+              style={{ fontFamily: "'Inter', sans-serif", fontWeight: 500 }}
             >
               Empowering mothers to confidently shape their professional future.
             </p>
