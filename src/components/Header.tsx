@@ -5,7 +5,7 @@ const Header = () => {
   const navItems = ["Home", "Our Services", "Our Approach"];
 
   return (
-    <header className="w-full px-8 py-6 md:px-16 lg:px-24">
+    <header className="w-full pl-8 pr-[119px] py-6 md:pl-16 lg:pl-24">
       <div className="flex w-full items-center justify-between">
         {/* Logo */}
         <a href="/">
@@ -24,7 +24,7 @@ const Header = () => {
               {item}
             </a>
           ))}
-          <Button variant="cta" size="cta" className="text-[22px] w-[181px] h-[66px]">
+          <Button variant="cta" size="cta" className="text-[22px] w-[181px] h-[66px] font-light" style={{ fontFamily: "'Zalando Sans', sans-serif" }}>
             Get in Touch
           </Button>
         </nav>
