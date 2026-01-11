@@ -27,7 +27,7 @@ const HeroSection = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-foreground/50 via-foreground/30 to-transparent" />
         
         {/* Content */}
-        <div className="relative z-10 flex h-full flex-col justify-end pb-[65px] pl-[85px]">
+        <div className="relative z-10 flex h-full flex-col justify-end pb-[65px] pl-8 md:pl-16 lg:pl-24">
           <div className="max-w-2xl">
             <h1 style={{
             fontFamily: "'Google Sans', sans-serif"
