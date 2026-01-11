@@ -18,7 +18,7 @@ const Header = () => {
             <a
               key={item}
               href="#"
-              className="text-sm font-medium text-foreground transition-colors hover:text-muted-foreground"
+              className="text-[22px] font-medium text-foreground transition-colors hover:text-muted-foreground"
             >
               {item}
             </a>
