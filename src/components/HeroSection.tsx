@@ -32,18 +32,18 @@ const HeroSection = () => {
             <h1 style={{
             fontFamily: "'Google Sans', sans-serif"
           }} className="mb-6 text-4xl font-bold leading-[1.1] tracking-tight text-hero md:text-5xl lg:text-8xl">
-              Empowering mothers that make our world better
+              Back to Work, Bold & Confident
             </h1>
             
             <p style={{
             fontFamily: "'Inter', sans-serif",
             fontWeight: 500
           }} className="mb-10 max-w-md text-base leading-relaxed text-hero/80 font-light md:text-xl">
-              Empowering mothers to confidently shape their professional future.
+              Restart your career with one-to-one coaching, CV makeover, free workshops and more!
             </p>
             
             <Button variant="hero" size="hero">
-              Learn More
+              Book Now
             </Button>
           </div>
         </div>
