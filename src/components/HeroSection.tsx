@@ -21,8 +21,8 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section className="px-4 pb-8 md:px-8 lg:px-16">
-      <div className="relative mx-auto max-w-7xl overflow-hidden rounded-[2rem]">
+    <section className="w-full">
+      <div className="relative w-full overflow-hidden">
         {/* Background Image */}
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
