@@ -6,7 +6,7 @@ const Header = () => {
 
   return (
     <header className="w-full px-8 py-6 md:px-16 lg:px-24">
-      <div className="mx-auto flex max-w-7xl items-center justify-between">
+      <div className="flex w-full items-center justify-between">
         {/* Logo */}
         <a href="/">
           <img src={logo} alt="JobMama" className="h-8" />
