@@ -21,7 +21,7 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section className="px-4 pb-8 md:px-8 lg:px-16">
+    <section className="px-8 pb-8 md:px-16 lg:px-24">
       <div className="relative mx-auto max-w-7xl overflow-hidden rounded-[2rem]">
         {/* Background Image */}
         <div 
