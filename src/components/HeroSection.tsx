@@ -32,7 +32,7 @@ const HeroSection = () => {
             <h1 style={{
             fontFamily: "'Google Sans', sans-serif"
           }} className="mb-[48px] text-4xl font-bold leading-[1.1] tracking-tight text-hero md:text-5xl lg:text-8xl">
-              Back to Work, Bold & Confident
+              Back to Work, Bold &<br />Confident
             </h1>
             
             <p style={{
