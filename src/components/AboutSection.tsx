@@ -92,21 +92,20 @@ const AboutSection = () => {
             className="relative overflow-hidden rounded-[32px] h-[950px] w-full lg:w-[1097px] bg-cover bg-center bg-no-repeat flex flex-col justify-center"
             style={{ backgroundImage: `url(${aboutCardBg})` }}
           >
-            {/* Content positioned from bottom */}
-            <div className="absolute bottom-[311px] left-[95px] right-[95px]">
-              <h3
-                style={{ fontFamily: "'Google Sans', sans-serif", fontSize: '75.88px', letterSpacing: '-0.04em' }}
-                className="mb-[20px] font-medium leading-[1.1] text-primary-foreground"
-              >
-                {aboutContent[activeValue].title}
-              </h3>
-              <p
-                style={{ fontFamily: "'Inter', sans-serif" }}
-                className="max-w-[500px] text-[16px] leading-[1.6] text-primary-foreground/90 font-normal"
-              >
-                {aboutContent[activeValue].description}
-              </p>
-            </div>
+            {/* Title positioned from bottom */}
+            <h3
+              style={{ fontFamily: "'Google Sans', sans-serif", fontSize: '75.88px', letterSpacing: '-0.04em' }}
+              className="absolute bottom-[311px] left-[95px] right-[95px] font-medium leading-[1.1] text-primary-foreground"
+            >
+              {aboutContent[activeValue].title}
+            </h3>
+            {/* Description positioned from bottom */}
+            <p
+              style={{ fontFamily: "'Inter', sans-serif" }}
+              className="absolute bottom-[108px] left-[95px] max-w-[500px] text-[16px] leading-[1.6] text-primary-foreground/90 font-normal"
+            >
+              {aboutContent[activeValue].description}
+            </p>
           </div>
         </div>
       </div>
