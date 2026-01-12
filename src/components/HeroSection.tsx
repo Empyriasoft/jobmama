@@ -21,7 +21,8 @@ const HeroSection = () => {
   return (
     <section className="w-full px-4 pb-4 pt-8 sm:px-6 sm:pb-6 sm:pt-12 md:px-16 md:pb-8 md:pt-[119px] lg:px-24">
       <div 
-        className="relative w-full overflow-hidden rounded-[24px] sm:rounded-[40px] md:rounded-[60px] lg:rounded-[81px] min-h-[500px] sm:min-h-[400px] md:min-h-0 md:aspect-[1843/963]"
+        className="relative w-full overflow-hidden rounded-[24px] sm:rounded-[40px] md:rounded-[60px] lg:rounded-[81px]" 
+        style={{ aspectRatio: '1843 / 963' }}
       >
         {/* Background Image */}
         <div 
