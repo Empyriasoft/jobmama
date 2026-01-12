@@ -33,7 +33,7 @@ const HeroSection = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-foreground/70 via-foreground/40 to-transparent sm:from-foreground/50 sm:via-foreground/30" />
         
         {/* Content */}
-        <div className="absolute inset-0 z-10 flex flex-col justify-end p-4 sm:p-6 md:pb-[65px] md:pl-16 lg:pl-24">
+        <div className="relative z-10 flex h-full flex-col justify-end p-4 sm:p-6 md:pb-[65px] md:pl-16 lg:pl-24">
           <div className="max-w-2xl">
             <h1 
               style={{ fontFamily: "'Google Sans', sans-serif" }} 
