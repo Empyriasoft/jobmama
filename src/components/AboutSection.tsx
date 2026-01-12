@@ -54,6 +54,12 @@ const AboutSection = () => {
       setIsAnimating(false);
     }, 150);
   };
+
+  const handleCardClick = () => {
+    const currentIndex = values.findIndex(v => v.key === activeValue);
+    const nextIndex = (currentIndex + 1) % values.length;
+    handleValueChange(values[nextIndex].key);
+  };
   return <section className="w-full px-4 pt-[80px] pb-[60px] md:px-8 lg:px-24 lg:pt-[251px] lg:pb-[100px]">
       {/* Section Title */}
       <h2 style={{
@@ -107,7 +113,10 @@ const AboutSection = () => {
 
         {/* Right Column - Content Card */}
         <div className="flex-1 lg:max-w-[1097px]">
-          <div className="relative overflow-hidden rounded-[24px] lg:rounded-[32px] h-[500px] lg:h-[950px] w-full lg:w-[1097px] bg-cover bg-center bg-no-repeat" style={{
+          <div 
+            onClick={handleCardClick}
+            className="relative overflow-hidden rounded-[24px] lg:rounded-[32px] h-[500px] lg:h-[950px] w-full lg:w-[1097px] bg-cover bg-center bg-no-repeat cursor-pointer" 
+            style={{
           backgroundImage: `url(${aboutCardBg})`
         }}>
             {/* Content container positioned from bottom */}
