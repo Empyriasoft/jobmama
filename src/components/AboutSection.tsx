@@ -61,8 +61,7 @@ const AboutSection = () => {
               onClick={() => setActiveValue(value.key)}
               className="group relative text-left"
               style={{
-                marginBottom: activeValue === value.key ? '279px' : '113px',
-                ...(index === values.length - 1 && { marginBottom: 0 })
+                marginBottom: index === values.length - 1 ? 0 : '113px'
               }}
             >
               <span
