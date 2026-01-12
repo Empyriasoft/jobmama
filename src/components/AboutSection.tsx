@@ -101,8 +101,8 @@ const AboutSection = () => {
             </h3>
             {/* Description positioned from bottom */}
             <p
-              style={{ fontFamily: "'Inter', sans-serif" }}
-              className="absolute bottom-[108px] left-[95px] max-w-[500px] text-[16px] leading-[1.6] text-foreground/90 font-normal"
+              style={{ fontFamily: "'Inter', sans-serif", fontSize: '24px', letterSpacing: '-0.04em' }}
+              className="absolute bottom-[108px] left-[95px] max-w-[500px] leading-[1.6] text-foreground/90 font-light"
             >
               {aboutContent[activeValue].description}
             </p>
