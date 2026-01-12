@@ -69,7 +69,29 @@ const AboutSection = () => {
       </h2>
 
       {/* Card and Navigation Layout */}
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col items-center lg:flex-row lg:justify-center lg:items-stretch lg:gap-16">
+        {/* Desktop Navigation - left side of card */}
+        <div className="hidden lg:flex lg:flex-col lg:justify-end lg:gap-6 lg:pb-8">
+          {values.map((value) => {
+            const isActive = activeValue === value.key;
+            return (
+              <button 
+                key={value.key} 
+                onClick={() => handleValueChange(value.key)} 
+                className="group relative text-left"
+              >
+                <span style={{
+                  fontFamily: "'Google Sans', sans-serif"
+                }} className="text-[40px] font-normal leading-[1.2] text-foreground">
+                  {value.label}
+                </span>
+                {/* Blue indicator line - only shown for selected item */}
+                <div className={`absolute -bottom-2 left-0 h-[3px] w-full bg-primary transition-all duration-300 ${isActive ? "opacity-100" : "opacity-0"}`} />
+              </button>
+            );
+          })}
+        </div>
+
         {/* Content Card */}
         <div className="w-full lg:max-w-[1097px]">
           <div 
@@ -112,28 +134,6 @@ const AboutSection = () => {
               <div className={`absolute bottom-0 left-0 h-[3px] w-full bg-primary transition-all duration-300 ${activeValue === value.key ? "opacity-100" : "opacity-0"}`} />
             </button>
           ))}
-        </div>
-
-        {/* Desktop Navigation - below card */}
-        <div className="hidden lg:flex justify-center gap-16 mt-8">
-          {values.map((value) => {
-            const isActive = activeValue === value.key;
-            return (
-              <button 
-                key={value.key} 
-                onClick={() => handleValueChange(value.key)} 
-                className="group relative text-left"
-              >
-                <span style={{
-                  fontFamily: "'Google Sans', sans-serif"
-                }} className="text-[40px] font-normal leading-[1.2] text-foreground">
-                  {value.label}
-                </span>
-                {/* Blue indicator line - only shown for selected item */}
-                <div className={`absolute -bottom-4 left-0 h-[3px] w-full bg-primary transition-all duration-300 ${isActive ? "opacity-100" : "opacity-0"}`} />
-              </button>
-            );
-          })}
         </div>
       </div>
     </section>;
