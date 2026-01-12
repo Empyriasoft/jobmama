@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import aboutCardBg from "@/assets/about-card-bg.png";
 
 type ValueKey = "empathy" | "determination" | "change" | "confidence";
@@ -40,6 +40,21 @@ const values: { key: ValueKey; label: string }[] = [
 
 const AboutSection = () => {
   const [activeValue, setActiveValue] = useState<ValueKey>("empathy");
+  const [isAnimating, setIsAnimating] = useState(false);
+  const [displayedValue, setDisplayedValue] = useState<ValueKey>("empathy");
+
+  const handleValueChange = (newValue: ValueKey) => {
+    if (newValue === activeValue) return;
+    
+    setIsAnimating(true);
+    setActiveValue(newValue);
+    
+    // After fade out, update displayed content and fade in
+    setTimeout(() => {
+      setDisplayedValue(newValue);
+      setIsAnimating(false);
+    }, 150);
+  };
 
   return (
     <section className="w-full px-4 pt-[80px] pb-[60px] md:px-8 lg:px-24 lg:pt-[251px] lg:pb-[100px]">
@@ -56,7 +71,7 @@ const AboutSection = () => {
         {values.map((value) => (
           <button
             key={value.key}
-            onClick={() => setActiveValue(value.key)}
+            onClick={() => handleValueChange(value.key)}
             className="relative whitespace-nowrap pb-3 transition-colors duration-200"
             style={{ fontFamily: "'Google Sans', sans-serif" }}
           >
@@ -90,7 +105,7 @@ const AboutSection = () => {
             return (
               <div key={value.key}>
                 <button
-                  onClick={() => setActiveValue(value.key)}
+                  onClick={() => handleValueChange(value.key)}
                   className="group relative text-left"
                 >
                   <span
@@ -127,18 +142,24 @@ const AboutSection = () => {
             style={{ backgroundImage: `url(${aboutCardBg})` }}
           >
             {/* Content container positioned from bottom */}
-            <div className="absolute bottom-6 left-6 right-6 lg:bottom-[108px] lg:left-[95px] lg:right-[95px] flex flex-col gap-4 lg:gap-[36px]">
+            <div 
+              className={`absolute bottom-6 left-6 right-6 lg:bottom-[108px] lg:left-[95px] lg:right-[95px] flex flex-col gap-4 lg:gap-[36px] transition-all duration-300 ease-out ${
+                isAnimating 
+                  ? "opacity-0 translate-y-4" 
+                  : "opacity-100 translate-y-0"
+              }`}
+            >
               <h3
                 style={{ fontFamily: "'Google Sans', sans-serif", letterSpacing: '-0.04em' }}
                 className="font-medium leading-[1.1] text-foreground text-[28px] lg:text-[75.88px]"
               >
-                {aboutContent[activeValue].title}
+                {aboutContent[displayedValue].title}
               </h3>
               <p
                 style={{ fontFamily: "'Inter', sans-serif", letterSpacing: '-0.04em' }}
                 className="max-w-[500px] leading-[1.6] text-foreground/90 font-light text-[14px] lg:text-[24px]"
               >
-                {aboutContent[activeValue].description}
+                {aboutContent[displayedValue].description}
               </p>
             </div>
           </div>
