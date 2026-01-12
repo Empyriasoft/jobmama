@@ -89,23 +89,24 @@ const AboutSection = () => {
         {/* Right Column - Content Card */}
         <div className="flex-1 lg:max-w-[1097px]">
           <div 
-            className="relative overflow-hidden rounded-[32px] h-[950px] w-full lg:w-[1097px] bg-cover bg-center bg-no-repeat flex flex-col justify-center"
+            className="relative overflow-hidden rounded-[32px] h-[950px] w-full lg:w-[1097px] bg-cover bg-center bg-no-repeat"
             style={{ backgroundImage: `url(${aboutCardBg})` }}
           >
-            {/* Title positioned from bottom */}
-            <h3
-              style={{ fontFamily: "'Google Sans', sans-serif", fontSize: '75.88px', letterSpacing: '-0.04em' }}
-              className="absolute bottom-[259px] left-[95px] right-[95px] font-medium leading-[1.1] text-foreground"
-            >
-              {aboutContent[activeValue].title}
-            </h3>
-            {/* Description positioned from bottom */}
-            <p
-              style={{ fontFamily: "'Inter', sans-serif", fontSize: '24px', letterSpacing: '-0.04em' }}
-              className="absolute bottom-[108px] left-[95px] max-w-[500px] leading-[1.6] text-foreground/90 font-light"
-            >
-              {aboutContent[activeValue].description}
-            </p>
+            {/* Content container positioned from bottom */}
+            <div className="absolute bottom-[108px] left-[95px] right-[95px] flex flex-col gap-[36px]">
+              <h3
+                style={{ fontFamily: "'Google Sans', sans-serif", fontSize: '75.88px', letterSpacing: '-0.04em' }}
+                className="font-medium leading-[1.1] text-foreground"
+              >
+                {aboutContent[activeValue].title}
+              </h3>
+              <p
+                style={{ fontFamily: "'Inter', sans-serif", fontSize: '24px', letterSpacing: '-0.04em' }}
+                className="max-w-[500px] leading-[1.6] text-foreground/90 font-light"
+              >
+                {aboutContent[activeValue].description}
+              </p>
+            </div>
           </div>
         </div>
       </div>
