@@ -67,7 +67,7 @@ const AboutSection = () => {
         {values.map(value => <button key={value.key} onClick={() => handleValueChange(value.key)} className="relative whitespace-nowrap pb-3 transition-colors duration-200" style={{
         fontFamily: "'Google Sans', sans-serif"
       }}>
-            <span className="text-lg font-normal text-foreground">
+            <span className="text-sm font-normal text-foreground">
               {value.label}
             </span>
             {/* Active underline indicator */}
