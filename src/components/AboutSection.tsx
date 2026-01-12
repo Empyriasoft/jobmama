@@ -81,60 +81,54 @@ const AboutSection = () => {
           </button>)}
       </div>
 
-      {/* Two Column Layout */}
-      <div className="flex flex-col lg:flex-row lg:gap-[412px]">
-        {/* Left Column - Desktop Navigation - hidden below lg, centered vertically */}
-        <div className="hidden lg:flex flex-col justify-center lg:w-[340px] lg:h-[950px]">
-          {values.map((value, index) => {
-          const isActive = activeValue === value.key;
-          const isLast = index === values.length - 1;
-          return <div key={value.key}>
-                <button onClick={() => handleValueChange(value.key)} className="group relative text-left">
-                  <span style={{
-                fontFamily: "'Google Sans', sans-serif"
-              }} className="text-[40px] font-normal leading-[1.2] text-foreground">
-                    {value.label}
-                  </span>
-                </button>
-
-                {/* Blue indicator line - only shown for selected item */}
-                {isActive && <div className="h-[3px] w-[60px] bg-primary transition-all duration-300" style={{
-              marginTop: '113px',
-              marginBottom: isLast ? '0' : '113px'
-            }} />}
-
-                {/* Spacing for non-selected items */}
-                {!isActive && !isLast && <div style={{
-              height: '113px'
-            }} />}
-              </div>;
-        })}
-        </div>
-
-        {/* Right Column - Content Card */}
-        <div className="flex-1 lg:max-w-[1097px]">
+      {/* Card and Navigation Layout */}
+      <div className="flex flex-col items-center">
+        {/* Content Card */}
+        <div className="w-full lg:max-w-[1097px]">
           <div 
             onClick={handleCardClick}
             className="relative overflow-hidden rounded-[24px] lg:rounded-[32px] h-[500px] lg:h-[950px] w-full lg:w-[1097px] bg-cover bg-center bg-no-repeat cursor-pointer" 
             style={{
-          backgroundImage: `url(${aboutCardBg})`
-        }}>
+              backgroundImage: `url(${aboutCardBg})`
+            }}>
             {/* Content container positioned from bottom */}
             <div className={`absolute bottom-6 left-6 right-6 lg:bottom-[108px] lg:left-[95px] lg:right-[95px] flex flex-col gap-4 lg:gap-[36px] transition-all duration-300 ease-out ${isAnimating ? "opacity-0 translate-y-4" : "opacity-100 translate-y-0"}`}>
               <h3 style={{
-              fontFamily: "'Google Sans', sans-serif",
-              letterSpacing: '-0.04em'
-            }} className="font-medium leading-[1.1] text-foreground text-[28px] lg:text-[75.88px]">
+                fontFamily: "'Google Sans', sans-serif",
+                letterSpacing: '-0.04em'
+              }} className="font-medium leading-[1.1] text-foreground text-[28px] lg:text-[75.88px]">
                 {aboutContent[displayedValue].title}
               </h3>
               <p style={{
-              fontFamily: "'Inter', sans-serif",
-              letterSpacing: '-0.04em'
-            }} className="max-w-[500px] leading-[1.6] text-foreground/90 font-light text-[14px] lg:text-[24px]">
+                fontFamily: "'Inter', sans-serif",
+                letterSpacing: '-0.04em'
+              }} className="max-w-[500px] leading-[1.6] text-foreground/90 font-light text-[14px] lg:text-[24px]">
                 {aboutContent[displayedValue].description}
               </p>
             </div>
           </div>
+        </div>
+
+        {/* Desktop Navigation - below card */}
+        <div className="hidden lg:flex justify-center gap-16 mt-16">
+          {values.map((value) => {
+            const isActive = activeValue === value.key;
+            return (
+              <button 
+                key={value.key} 
+                onClick={() => handleValueChange(value.key)} 
+                className="group relative text-left"
+              >
+                <span style={{
+                  fontFamily: "'Google Sans', sans-serif"
+                }} className="text-[40px] font-normal leading-[1.2] text-foreground">
+                  {value.label}
+                </span>
+                {/* Blue indicator line - only shown for selected item */}
+                <div className={`absolute -bottom-4 left-0 h-[3px] w-full bg-primary transition-all duration-300 ${isActive ? "opacity-100" : "opacity-0"}`} />
+              </button>
+            );
+          })}
         </div>
       </div>
     </section>;
