@@ -10,7 +10,7 @@ interface AboutContent {
 
 const aboutContent: Record<ValueKey, AboutContent> = {
   empathy: {
-    title: "Understanding Your Unique Journey",
+    title: "Understanding Your Unique ",
     description:
       "We believe every mother's path back to work is different. Our approach centers on truly listening to your needs, fears, and aspirations. We're here to support you without judgment, celebrating your strengths while helping you overcome challenges.",
   },
