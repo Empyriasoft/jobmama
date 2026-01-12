@@ -75,13 +75,7 @@ const AboutSection = () => {
             className="relative whitespace-nowrap pb-3 transition-colors duration-200"
             style={{ fontFamily: "'Google Sans', sans-serif" }}
           >
-            <span
-              className={`text-lg font-normal ${
-                activeValue === value.key
-                  ? "text-foreground"
-                  : "text-muted-foreground/50"
-              }`}
-            >
+            <span className="text-lg font-normal text-foreground">
               {value.label}
             </span>
             {/* Active underline indicator */}
@@ -96,8 +90,8 @@ const AboutSection = () => {
 
       {/* Two Column Layout */}
       <div className="flex flex-col lg:flex-row lg:gap-[412px]">
-        {/* Left Column - Desktop Navigation - hidden below lg */}
-        <div className="hidden lg:flex flex-col lg:w-[340px]">
+        {/* Left Column - Desktop Navigation - hidden below lg, centered vertically */}
+        <div className="hidden lg:flex flex-col justify-center lg:w-[340px] lg:h-[950px]">
           {values.map((value, index) => {
             const isActive = activeValue === value.key;
             const isLast = index === values.length - 1;
@@ -110,11 +104,7 @@ const AboutSection = () => {
                 >
                   <span
                     style={{ fontFamily: "'Google Sans', sans-serif" }}
-                    className={`text-[40px] font-normal leading-[1.2] transition-colors duration-200 ${
-                      isActive
-                        ? "text-foreground"
-                        : "text-muted-foreground/50 hover:text-muted-foreground"
-                    }`}
+                    className="text-[40px] font-normal leading-[1.2] text-foreground"
                   >
                     {value.label}
                   </span>
