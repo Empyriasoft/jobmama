@@ -39,7 +39,7 @@ const values: { key: ValueKey; label: string }[] = [
 ];
 
 const AboutSection = () => {
-  const [activeValue, setActiveValue] = useState<ValueKey>("determination");
+  const [activeValue, setActiveValue] = useState<ValueKey>("empathy");
 
   return (
     <section className="w-full px-8 py-[100px] md:px-16 lg:px-24">
@@ -53,8 +53,8 @@ const AboutSection = () => {
 
       {/* Two Column Layout */}
       <div className="flex flex-col gap-12 lg:flex-row lg:gap-[100px]">
-        {/* Left Column - Navigation */}
-        <div className="flex flex-col gap-[10px] lg:w-[340px]">
+        {/* Left Column - Navigation - matches card height */}
+        <div className="flex flex-col justify-between lg:w-[340px] lg:h-[950px]">
           {values.map((value) => (
             <button
               key={value.key}
@@ -84,9 +84,9 @@ const AboutSection = () => {
         </div>
 
         {/* Right Column - Content Card */}
-        <div className="flex-1">
+        <div className="flex-1 lg:max-w-[1097px]">
           <div 
-            className="relative overflow-hidden rounded-[32px] min-h-[500px] bg-cover bg-center bg-no-repeat flex flex-col justify-center"
+            className="relative overflow-hidden rounded-[32px] h-[950px] w-full lg:w-[1097px] bg-cover bg-center bg-no-repeat flex flex-col justify-center"
             style={{ backgroundImage: `url(${aboutCardBg})` }}
           >
             {/* Content positioned in the middle */}
