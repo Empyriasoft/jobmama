@@ -95,14 +95,14 @@ const AboutSection = () => {
             {/* Title positioned from bottom */}
             <h3
               style={{ fontFamily: "'Google Sans', sans-serif", fontSize: '75.88px', letterSpacing: '-0.04em' }}
-              className="absolute bottom-[260px] left-[95px] right-[95px] font-medium leading-[1.1] text-primary-foreground"
+              className="absolute bottom-[260px] left-[95px] right-[95px] font-medium leading-[1.1] text-foreground"
             >
               {aboutContent[activeValue].title}
             </h3>
             {/* Description positioned from bottom */}
             <p
               style={{ fontFamily: "'Inter', sans-serif" }}
-              className="absolute bottom-[108px] left-[95px] max-w-[500px] text-[16px] leading-[1.6] text-primary-foreground/90 font-normal"
+              className="absolute bottom-[108px] left-[95px] max-w-[500px] text-[16px] leading-[1.6] text-foreground/90 font-normal"
             >
               {aboutContent[activeValue].description}
             </p>
