@@ -2,10 +2,14 @@ import { Button } from "@/components/ui/button";
 import logo from "@/assets/logo.svg";
 
 const Header = () => {
-  const navItems = ["Home", "Our Services", "Our Approach"];
+  const navItems = [
+    { label: "Home", href: "/" },
+    { label: "Our Services", href: "#services" },
+    { label: "Our Approach", href: "#approach" },
+  ];
 
   return (
-    <header className="w-full pl-8 pr-[119px] py-6 md:pl-16 lg:pl-24">
+    <header className="w-full px-8 py-6 md:px-16 lg:pl-24 lg:pr-[119px]">
       <div className="flex w-full items-center justify-between">
         {/* Logo */}
         <a href="/">
@@ -16,12 +20,12 @@ const Header = () => {
         <nav className="hidden items-center gap-10 md:flex">
           {navItems.map((item) => (
             <a
-              key={item}
-              href="#"
+              key={item.label}
+              href={item.href}
               className="text-[22px] font-light text-foreground transition-colors hover:text-muted-foreground"
               style={{ fontFamily: "'Zalando Sans', sans-serif" }}
             >
-              {item}
+              {item.label}
             </a>
           ))}
           <Button variant="cta" size="cta" className="text-[22px] w-[181px] h-[66px] font-light" style={{ fontFamily: "'Zalando Sans', sans-serif" }}>
