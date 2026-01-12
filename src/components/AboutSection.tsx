@@ -97,7 +97,7 @@ const AboutSection = () => {
         </div>
 
         {/* Mobile Navigation - below card */}
-        <div className="flex lg:hidden justify-center mt-8 gap-[10px]">
+        <div className="flex lg:hidden justify-center mt-4 gap-[10px]">
           {values.map(value => (
             <button 
               key={value.key} 
@@ -115,7 +115,7 @@ const AboutSection = () => {
         </div>
 
         {/* Desktop Navigation - below card */}
-        <div className="hidden lg:flex justify-center gap-16 mt-16">
+        <div className="hidden lg:flex justify-center gap-16 mt-8">
           {values.map((value) => {
             const isActive = activeValue === value.key;
             return (
