@@ -86,14 +86,14 @@ const AboutSection = () => {
         {/* Right Column - Content Card */}
         <div className="flex-1">
           <div 
-            className="relative overflow-hidden rounded-[32px] min-h-[400px] bg-cover bg-center bg-no-repeat"
+            className="relative overflow-hidden rounded-[32px] min-h-[500px] bg-cover bg-center bg-no-repeat flex flex-col justify-center"
             style={{ backgroundImage: `url(${aboutCardBg})` }}
           >
-            {/* Content positioned at bottom */}
-            <div className="absolute bottom-0 left-0 right-0 p-[50px]">
+            {/* Content positioned in the middle */}
+            <div className="p-[50px]">
               <h3
-                style={{ fontFamily: "'Google Sans', sans-serif" }}
-                className="mb-[20px] text-[28px] font-bold leading-[1.3] text-primary-foreground"
+                style={{ fontFamily: "'Google Sans', sans-serif", fontSize: '127.87px' }}
+                className="mb-[20px] font-bold leading-[1.1] text-primary-foreground"
               >
                 {aboutContent[activeValue].title}
               </h3>
