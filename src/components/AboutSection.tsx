@@ -71,7 +71,7 @@ const AboutSection = () => {
       {/* Card and Navigation Layout */}
       <div className="flex flex-col items-center lg:flex-row lg:justify-center lg:items-stretch lg:gap-16">
         {/* Desktop Navigation - left side of card */}
-        <div className="hidden lg:flex lg:flex-col lg:justify-end lg:gap-6 lg:pb-8">
+        <div className="hidden lg:flex lg:flex-col lg:justify-center lg:gap-6 lg:h-[950px]">
           {values.map((value) => {
             const isActive = activeValue === value.key;
             return (
