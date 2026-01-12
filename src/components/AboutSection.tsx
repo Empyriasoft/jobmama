@@ -68,19 +68,6 @@ const AboutSection = () => {
         About JobMama
       </h2>
 
-      {/* Mobile: Horizontal Tabs - visible below lg */}
-      <div className="flex lg:hidden justify-center mb-8 pb-2 gap-[10px]">
-        {values.map(value => <button key={value.key} onClick={() => handleValueChange(value.key)} className="relative whitespace-nowrap pb-3 transition-colors duration-200" style={{
-        fontFamily: "'Google Sans', sans-serif"
-      }}>
-            <span className="text-sm font-bold text-foreground">
-              {value.label}
-            </span>
-            {/* Active underline indicator */}
-            <div className={`absolute bottom-0 left-0 h-[3px] w-full bg-primary transition-all duration-300 ${activeValue === value.key ? "opacity-100" : "opacity-0"}`} />
-          </button>)}
-      </div>
-
       {/* Card and Navigation Layout */}
       <div className="flex flex-col items-center">
         {/* Content Card */}
@@ -107,6 +94,24 @@ const AboutSection = () => {
               </p>
             </div>
           </div>
+        </div>
+
+        {/* Mobile Navigation - below card */}
+        <div className="flex lg:hidden justify-center mt-8 gap-[10px]">
+          {values.map(value => (
+            <button 
+              key={value.key} 
+              onClick={() => handleValueChange(value.key)} 
+              className="relative whitespace-nowrap pb-3 transition-colors duration-200" 
+              style={{ fontFamily: "'Google Sans', sans-serif" }}
+            >
+              <span className="text-sm font-bold text-foreground">
+                {value.label}
+              </span>
+              {/* Active underline indicator */}
+              <div className={`absolute bottom-0 left-0 h-[3px] w-full bg-primary transition-all duration-300 ${activeValue === value.key ? "opacity-100" : "opacity-0"}`} />
+            </button>
+          ))}
         </div>
 
         {/* Desktop Navigation - below card */}
