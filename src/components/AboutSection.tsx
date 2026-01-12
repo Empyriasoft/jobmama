@@ -42,11 +42,11 @@ const AboutSection = () => {
   const [activeValue, setActiveValue] = useState<ValueKey>("empathy");
 
   return (
-    <section className="w-full px-8 py-[100px] md:px-16 lg:px-24">
+    <section className="w-full px-8 pt-[251px] pb-[100px] md:px-16 lg:px-24">
       {/* Section Title */}
       <h2
         style={{ fontFamily: "'Google Sans', sans-serif", fontSize: '128.7px', color: '#0D141C' }}
-        className="mb-[80px] font-medium text-center"
+        className="mb-[196px] font-medium text-center"
       >
         About JobMama
       </h2>
