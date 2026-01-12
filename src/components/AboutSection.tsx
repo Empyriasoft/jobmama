@@ -52,14 +52,18 @@ const AboutSection = () => {
       </h2>
 
       {/* Two Column Layout */}
-      <div className="flex flex-col gap-12 lg:flex-row lg:gap-[100px]">
+      <div className="flex flex-col gap-12 lg:flex-row lg:gap-[412px]">
         {/* Left Column - Navigation - matches card height */}
-        <div className="flex flex-col justify-between lg:w-[340px] lg:h-[950px]">
-          {values.map((value) => (
+        <div className="flex flex-col lg:w-[340px] lg:h-[950px]">
+          {values.map((value, index) => (
             <button
               key={value.key}
               onClick={() => setActiveValue(value.key)}
-              className="group relative text-left py-[10px]"
+              className="group relative text-left"
+              style={{
+                marginBottom: activeValue === value.key ? '279px' : '113px',
+                ...(index === values.length - 1 && { marginBottom: 0 })
+              }}
             >
               <span
                 style={{ fontFamily: "'Google Sans', sans-serif" }}
@@ -73,7 +77,7 @@ const AboutSection = () => {
               </span>
               {/* Active Indicator Line */}
               <div
-                className={`mt-[10px] h-[3px] w-[60px] bg-primary transition-all duration-300 ${
+                className={`mt-[113px] h-[3px] w-[60px] bg-primary transition-all duration-300 ${
                   activeValue === value.key
                     ? "opacity-100"
                     : "opacity-0"
