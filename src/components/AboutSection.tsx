@@ -92,11 +92,11 @@ const AboutSection = () => {
             className="relative overflow-hidden rounded-[32px] h-[950px] w-full lg:w-[1097px] bg-cover bg-center bg-no-repeat flex flex-col justify-center"
             style={{ backgroundImage: `url(${aboutCardBg})` }}
           >
-            {/* Content positioned in the middle */}
-            <div className="p-[50px]">
+            {/* Content positioned from bottom */}
+            <div className="absolute bottom-[311px] left-[95px] right-[95px]">
               <h3
-                style={{ fontFamily: "'Google Sans', sans-serif", fontSize: '127.87px' }}
-                className="mb-[20px] font-bold leading-[1.1] text-primary-foreground"
+                style={{ fontFamily: "'Google Sans', sans-serif", fontSize: '75.88px', letterSpacing: '-0.04em' }}
+                className="mb-[20px] font-medium leading-[1.1] text-primary-foreground"
               >
                 {aboutContent[activeValue].title}
               </h3>
