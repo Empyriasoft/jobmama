@@ -63,7 +63,7 @@ const AboutSection = () => {
       </h2>
 
       {/* Mobile: Horizontal Tabs - visible below lg */}
-      <div className="flex lg:hidden overflow-x-auto mb-8 pb-2 scrollbar-hide gap-[10px]">
+      <div className="flex lg:hidden justify-center mb-8 pb-2 gap-[10px]">
         {values.map(value => <button key={value.key} onClick={() => handleValueChange(value.key)} className="relative whitespace-nowrap pb-3 transition-colors duration-200" style={{
         fontFamily: "'Google Sans', sans-serif"
       }}>
