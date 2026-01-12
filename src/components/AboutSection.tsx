@@ -95,7 +95,7 @@ const AboutSection = () => {
             {/* Title positioned from bottom */}
             <h3
               style={{ fontFamily: "'Google Sans', sans-serif", fontSize: '75.88px', letterSpacing: '-0.04em' }}
-              className="absolute bottom-[260px] left-[95px] right-[95px] font-medium leading-[1.1] text-foreground"
+              className="absolute bottom-[300px] left-[95px] right-[95px] font-medium leading-[1.1] text-foreground"
             >
               {aboutContent[activeValue].title}
             </h3>
