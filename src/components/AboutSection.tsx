@@ -55,35 +55,43 @@ const AboutSection = () => {
       <div className="flex flex-col gap-12 lg:flex-row lg:gap-[412px]">
         {/* Left Column - Navigation - matches card height */}
         <div className="flex flex-col lg:w-[340px] lg:h-[950px]">
-          {values.map((value, index) => (
-            <button
-              key={value.key}
-              onClick={() => setActiveValue(value.key)}
-              className="group relative text-left"
-              style={{
-                marginBottom: index === values.length - 1 ? 0 : '113px'
-              }}
-            >
-              <span
-                style={{ fontFamily: "'Google Sans', sans-serif" }}
-                className={`text-[40px] font-normal leading-[1.2] transition-colors duration-200 ${
-                  activeValue === value.key
-                    ? "text-foreground"
-                    : "text-muted-foreground/50 hover:text-muted-foreground"
-                }`}
-              >
-                {value.label}
-              </span>
-              {/* Active Indicator Line */}
-              <div
-                className={`mt-[113px] h-[3px] w-[60px] bg-primary transition-all duration-300 ${
-                  activeValue === value.key
-                    ? "opacity-100"
-                    : "opacity-0"
-                }`}
-              />
-            </button>
-          ))}
+          {values.map((value, index) => {
+            const isActive = activeValue === value.key;
+            const isLast = index === values.length - 1;
+            
+            return (
+              <div key={value.key}>
+                <button
+                  onClick={() => setActiveValue(value.key)}
+                  className="group relative text-left"
+                >
+                  <span
+                    style={{ fontFamily: "'Google Sans', sans-serif" }}
+                    className={`text-[40px] font-normal leading-[1.2] transition-colors duration-200 ${
+                      isActive
+                        ? "text-foreground"
+                        : "text-muted-foreground/50 hover:text-muted-foreground"
+                    }`}
+                  >
+                    {value.label}
+                  </span>
+                </button>
+                
+                {/* Blue indicator line - only shown for selected item */}
+                {isActive && (
+                  <div 
+                    className="h-[3px] w-[60px] bg-primary transition-all duration-300"
+                    style={{ marginTop: '113px', marginBottom: isLast ? '0' : '113px' }}
+                  />
+                )}
+                
+                {/* Spacing for non-selected items */}
+                {!isActive && !isLast && (
+                  <div style={{ height: '113px' }} />
+                )}
+              </div>
+            );
+          })}
         </div>
 
         {/* Right Column - Content Card */}
