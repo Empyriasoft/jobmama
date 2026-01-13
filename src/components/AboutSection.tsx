@@ -54,7 +54,7 @@ const AboutSection = () => {
       {/* Two Column Layout */}
       <div className="flex flex-col gap-12 lg:flex-row lg:gap-[412px]">
         {/* Left Column - Navigation - matches card height */}
-        <div className="flex flex-col lg:w-[340px] lg:h-[950px]">
+        <div className="flex flex-col justify-center lg:w-[340px] lg:h-[950px]">
           {values.map((value, index) => {
             const isActive = activeValue === value.key;
             const isLast = index === values.length - 1;
