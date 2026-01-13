@@ -101,7 +101,10 @@ const AboutSection = () => {
             style={{ backgroundImage: `url(${aboutCardBg})` }}
           >
             {/* Content container positioned from bottom */}
-            <div className="absolute bottom-[108px] left-[95px] right-[95px] flex flex-col gap-[36px]">
+            <div 
+              key={activeValue}
+              className="absolute bottom-[108px] left-[95px] right-[95px] flex flex-col gap-[36px] animate-fade-in"
+            >
               <h3
                 style={{ fontFamily: "'Google Sans', sans-serif", fontSize: '75.88px', letterSpacing: '-0.04em' }}
                 className="font-medium leading-[1.1] text-foreground"
