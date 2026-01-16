@@ -5,7 +5,7 @@ const Header = () => {
   const navItems = ["Home", "Our Services", "Our Approach"];
 
   return (
-    <header className="w-full pl-8 pr-[119px] py-6 md:pl-16 lg:pl-24">
+    <header className="w-full px-5 py-6 md:px-8 lg:px-24">
       <div className="flex w-full items-center justify-between">
         {/* Logo */}
         <a href="/">
