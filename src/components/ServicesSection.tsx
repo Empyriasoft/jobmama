@@ -46,6 +46,19 @@ const serviceTiers: ServiceTier[] = [
       "1-on-1 mentorship",
     ],
   },
+  {
+    title: "Enterprise",
+    price: "Custom",
+    period: "",
+    features: [
+      "Everything in Premium",
+      "Dedicated account manager",
+      "Custom integrations",
+      "Team onboarding",
+      "Priority 24/7 support",
+      "Bulk hiring solutions",
+    ],
+  },
 ];
 
 const ServicesSection = () => {
