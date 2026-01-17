@@ -59,7 +59,7 @@ const AboutSection = () => {
       </h2>
 
       {/* Two Column Layout - reversed on mobile so card appears first */}
-      <div className="flex flex-col-reverse gap-8 lg:flex-row lg:gap-[412px]">
+      <div className="flex flex-col-reverse gap-8 lg:flex-row lg:gap-16">
         {/* Tabs - appears BELOW card on mobile, LEFT on desktop */}
         <div className="flex flex-row flex-wrap justify-center gap-4 lg:flex-col lg:justify-center lg:w-[340px] lg:h-[950px]">
           {values.map((value, index) => {
@@ -101,9 +101,9 @@ const AboutSection = () => {
         </div>
 
         {/* Card - appears FIRST on mobile, RIGHT on desktop */}
-        <div className="flex-1 lg:max-w-[1097px]">
+        <div className="flex-1">
           <div 
-            className="relative overflow-hidden rounded-[20px] lg:rounded-[32px] h-[400px] md:h-[600px] lg:h-[950px] w-full lg:w-[1097px] bg-cover bg-center bg-no-repeat cursor-pointer lg:cursor-default"
+            className="relative overflow-hidden rounded-[20px] lg:rounded-[32px] h-[400px] md:h-[600px] lg:h-[950px] w-full bg-cover bg-center bg-no-repeat cursor-pointer lg:cursor-default"
             style={{ backgroundImage: `url(${aboutCardBg})` }}
             onClick={handleCardClick}
           >
