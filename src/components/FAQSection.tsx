@@ -1,3 +1,5 @@
+import decorativeShape from "@/assets/faq-decorative-shape.png";
+
 const NumberBadge = ({ number }: { number: string }) => (
   <div className="inline-flex items-center justify-center px-4 py-2 border-2 border-[#0D141C] rounded-full">
     <span className="font-inter font-medium text-xl md:text-2xl lg:text-[38px] text-[#0D141C]">
@@ -47,20 +49,13 @@ const FAQSection = () => {
 
   return (
     <section className="relative bg-[#87dda8] py-16 md:py-24 lg:py-32 px-6 md:px-12 lg:px-[100px] overflow-hidden">
-      {/* Decorative SVG Shape */}
-      <svg
-        className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/4 w-[400px] md:w-[600px] lg:w-[800px] h-auto opacity-60"
-        viewBox="0 0 800 800"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
+      {/* Decorative Shape */}
+      <img
+        src={decorativeShape}
+        alt=""
+        className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/4 w-[400px] md:w-[600px] lg:w-[800px] h-auto opacity-60 pointer-events-none"
         style={{ transform: 'translateY(-50%) translateX(25%) rotate(105deg)' }}
-      >
-        <path
-          d="M400 0C620.914 0 800 179.086 800 400C800 620.914 620.914 800 400 800C179.086 800 0 620.914 0 400C0 179.086 179.086 0 400 0Z"
-          fill="white"
-          fillOpacity="0.3"
-        />
-      </svg>
+      />
 
       <div className="relative z-10 flex flex-col lg:flex-row gap-12 lg:gap-24">
         {/* Title Section */}
