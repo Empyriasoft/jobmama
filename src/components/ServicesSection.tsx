@@ -73,7 +73,7 @@ const ServicesSection = () => {
       </h2>
 
       {/* Cards Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-[1400px] mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 max-w-[1600px] mx-auto">
         {serviceTiers.map((tier) => (
           <ServiceCard
             key={tier.title}
