@@ -53,8 +53,7 @@ const FAQSection = () => {
       <img
         src={decorativeShape}
         alt=""
-        className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/4 w-[400px] md:w-[600px] lg:w-[800px] h-auto opacity-60 pointer-events-none"
-        style={{ transform: 'translateY(-50%) translateX(25%) rotate(105deg)' }}
+        className="absolute bottom-0 left-0 w-[300px] md:w-[450px] lg:w-[600px] h-auto pointer-events-none"
       />
 
       <div className="relative z-10 flex flex-col lg:flex-row gap-12 lg:gap-24">
