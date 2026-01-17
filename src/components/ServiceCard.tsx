@@ -7,9 +7,15 @@ interface ServiceCardProps {
   period: string;
   features: string[];
   isPopular?: boolean;
+  bookingUrl?: string;
 }
 
-const ServiceCard = ({ title, price, period, features, isPopular = false }: ServiceCardProps) => {
+const ServiceCard = ({ title, price, period, features, isPopular = false, bookingUrl }: ServiceCardProps) => {
+  const handleBookClick = () => {
+    if (bookingUrl) {
+      window.open(bookingUrl, '_blank', 'noopener,noreferrer');
+    }
+  };
   return (
     <div 
       className="relative flex flex-col p-6 md:p-8 rounded-[40px] transition-transform duration-300 hover:scale-105"
@@ -75,6 +81,7 @@ const ServiceCard = ({ title, price, period, features, isPopular = false }: Serv
 
       {/* CTA Button */}
       <Button
+        onClick={handleBookClick}
         className="w-full rounded-full py-3 text-base font-medium transition-colors duration-200"
         style={{ 
           backgroundColor: '#FFFFFF', 

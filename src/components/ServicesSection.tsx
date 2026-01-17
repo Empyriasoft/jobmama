@@ -6,6 +6,7 @@ interface ServiceTier {
   period: string;
   features: string[];
   isPopular?: boolean;
+  bookingUrl: string;
 }
 
 const serviceTiers: ServiceTier[] = [
@@ -19,6 +20,7 @@ const serviceTiers: ServiceTier[] = [
       "Email support",
       "Career resource library",
     ],
+    bookingUrl: "https://calendly.com/a-novakov89/basic-consultation",
   },
   {
     title: "Standard",
@@ -32,6 +34,7 @@ const serviceTiers: ServiceTier[] = [
       "Priority email support",
     ],
     isPopular: true,
+    bookingUrl: "https://calendly.com/a-novakov89/standard-consultation",
   },
   {
     title: "Premium",
@@ -45,6 +48,7 @@ const serviceTiers: ServiceTier[] = [
       "Direct recruiter connections",
       "1-on-1 mentorship",
     ],
+    bookingUrl: "https://calendly.com/a-novakov89/premium-consultation",
   },
   {
     title: "Enterprise",
@@ -58,6 +62,7 @@ const serviceTiers: ServiceTier[] = [
       "Priority 24/7 support",
       "Bulk hiring solutions",
     ],
+    bookingUrl: "https://calendly.com/a-novakov89/enterprise-consultation",
   },
 ];
 
@@ -82,6 +87,7 @@ const ServicesSection = () => {
             period={tier.period}
             features={tier.features}
             isPopular={tier.isPopular}
+            bookingUrl={tier.bookingUrl}
           />
         ))}
       </div>
