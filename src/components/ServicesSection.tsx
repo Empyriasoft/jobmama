@@ -20,7 +20,7 @@ const serviceTiers: ServiceTier[] = [
       "Email support",
       "Career resource library",
     ],
-    bookingUrl: "https://calendly.com/a-novakov89/basic-consultation",
+    bookingUrl: "https://calendly.com/a-novakov89/30min",
   },
   {
     title: "Standard",
@@ -34,7 +34,7 @@ const serviceTiers: ServiceTier[] = [
       "Priority email support",
     ],
     isPopular: true,
-    bookingUrl: "https://calendly.com/a-novakov89/standard-consultation",
+    bookingUrl: "https://calendly.com/a-novakov89/30min",
   },
   {
     title: "Premium",
@@ -48,7 +48,7 @@ const serviceTiers: ServiceTier[] = [
       "Direct recruiter connections",
       "1-on-1 mentorship",
     ],
-    bookingUrl: "https://calendly.com/a-novakov89/premium-consultation",
+    bookingUrl: "https://calendly.com/a-novakov89/30min",
   },
   {
     title: "Enterprise",
@@ -62,7 +62,7 @@ const serviceTiers: ServiceTier[] = [
       "Priority 24/7 support",
       "Bulk hiring solutions",
     ],
-    bookingUrl: "https://calendly.com/a-novakov89/enterprise-consultation",
+    bookingUrl: "https://calendly.com/a-novakov89/30min",
   },
 ];
 
