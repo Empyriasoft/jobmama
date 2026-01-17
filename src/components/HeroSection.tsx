@@ -19,7 +19,7 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section className="w-full px-4 pb-4 pt-8 sm:px-6 sm:pb-6 sm:pt-12 md:px-16 md:pb-8 md:pt-[119px] lg:px-24">
+    <section className="w-full px-4 pb-4 pt-8 sm:px-6 sm:pb-6 sm:pt-12 md:px-16 md:pb-8 md:pt-[119px] lg:px-[100px]">
       <div 
         className="relative w-full overflow-hidden rounded-[24px] sm:rounded-[40px] md:rounded-[60px] lg:rounded-[81px] aspect-[3/4] sm:aspect-[4/3] md:aspect-[16/9] lg:aspect-[1843/963]"
       >
