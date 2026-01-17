@@ -53,6 +53,7 @@ const HeroSection = () => {
               variant="hero" 
               size="hero" 
               className="text-sm px-4 py-2 sm:text-base sm:px-6 sm:py-3 md:text-lg md:px-8 md:py-4"
+              onClick={() => window.open('https://calendly.com/a-novakov89/30min', '_blank', 'noopener,noreferrer')}
             >
               Book Now
             </Button>
