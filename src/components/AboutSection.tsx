@@ -133,13 +133,13 @@ const AboutSection = () => {
             >
               <h3
                 style={{ fontFamily: "'Google Sans', sans-serif", letterSpacing: '-0.04em' }}
-                className="text-[24px] md:text-[40px] lg:text-[75.88px] font-medium leading-[1.1] text-foreground"
+                className="text-[24px] md:text-[40px] lg:text-[75.88px] font-medium leading-[1.1] text-white drop-shadow-md"
               >
                 {values.find(v => v.key === activeValue)?.label}
               </h3>
               <p
                 style={{ fontFamily: "'Inter', sans-serif", letterSpacing: '-0.04em' }}
-                className="text-[14px] md:text-[16px] lg:text-[24px] max-w-[500px] leading-[1.5] lg:leading-[1.6] text-foreground/90 font-light"
+                className="text-[14px] md:text-[16px] lg:text-[24px] max-w-[500px] lg:max-w-[600px] leading-[1.5] lg:leading-[1.6] text-white/90 font-light drop-shadow-sm"
               >
                 {aboutContent[activeValue].description}
               </p>
