@@ -74,7 +74,7 @@ const AboutSection = () => {
                 >
                   <span
                     style={{ fontFamily: "'Google Sans', sans-serif" }}
-                    className={`text-[14px] md:text-[24px] lg:text-[40px] font-normal leading-[1.2] transition-colors duration-200 ${
+                    className={`text-[14px] md:text-[24px] lg:text-[40px] font-bold md:font-normal leading-[1.2] transition-colors duration-200 ${
                       isActive
                         ? "text-foreground"
                         : "text-muted-foreground/50 hover:text-muted-foreground"
