@@ -40,15 +40,23 @@ const values: { key: ValueKey; label: string }[] = [
 
 const AboutSection = () => {
   const [activeValue, setActiveValue] = useState<ValueKey>("empathy");
+  const [tiltX, setTiltX] = useState<number>(0);
+  const [isSwiping, setIsSwiping] = useState<boolean>(false);
   const touchStartX = useRef<number>(0);
   const touchEndX = useRef<number>(0);
 
   const handleTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.touches[0].clientX;
+    touchEndX.current = e.touches[0].clientX;
+    setIsSwiping(true);
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
     touchEndX.current = e.touches[0].clientX;
+    const diff = touchEndX.current - touchStartX.current;
+    // Limit tilt to ±8 degrees for a subtle effect
+    const tilt = Math.max(-8, Math.min(8, diff / 20));
+    setTiltX(tilt);
   };
 
   const handleTouchEnd = () => {
@@ -65,6 +73,10 @@ const AboutSection = () => {
         setActiveValue(values[currentIndex - 1].key);
       }
     }
+    
+    // Reset tilt with animation
+    setTiltX(0);
+    setIsSwiping(false);
   };
 
   // Handle card tap to cycle through values (mobile)
@@ -130,7 +142,11 @@ const AboutSection = () => {
         <div className="flex-1">
           <div 
             className="relative overflow-hidden rounded-[20px] lg:rounded-[32px] h-[400px] md:h-[600px] lg:h-[950px] w-full bg-cover bg-center bg-no-repeat cursor-pointer lg:cursor-default animate-[pulse-hint_2s_ease-in-out_1] lg:animate-none"
-            style={{ backgroundImage: `url(${aboutCardBg})` }}
+            style={{ 
+              backgroundImage: `url(${aboutCardBg})`,
+              transform: `perspective(1000px) rotateY(${tiltX}deg) scale(${isSwiping ? 0.98 : 1})`,
+              transition: isSwiping ? 'none' : 'transform 0.3s ease-out'
+            }}
             onClick={handleCardClick}
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
