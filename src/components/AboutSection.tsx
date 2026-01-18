@@ -131,19 +131,11 @@ const AboutSection = () => {
               key={activeValue}
               className="absolute bottom-12 left-5 right-5 md:bottom-[70px] md:left-12 md:right-12 lg:bottom-[108px] lg:left-[95px] lg:right-[95px] flex flex-col gap-2 md:gap-4 lg:gap-[36px] animate-fade-in"
             >
-              {/* Value label as headline - mobile only */}
-              <span
-                style={{ fontFamily: "'Google Sans', sans-serif" }}
-                className="text-[12px] md:text-[14px] font-medium uppercase tracking-widest text-primary lg:hidden"
-              >
-                {values.find(v => v.key === activeValue)?.label}
-              </span>
-              
               <h3
                 style={{ fontFamily: "'Google Sans', sans-serif", letterSpacing: '-0.04em' }}
-                className="text-[22px] md:text-[40px] lg:text-[75.88px] font-medium leading-[1.1] text-foreground"
+                className="text-[24px] md:text-[40px] lg:text-[75.88px] font-medium leading-[1.1] text-foreground"
               >
-                {aboutContent[activeValue].title}
+                {values.find(v => v.key === activeValue)?.label}
               </h3>
               <p
                 style={{ fontFamily: "'Inter', sans-serif", letterSpacing: '-0.04em' }}
