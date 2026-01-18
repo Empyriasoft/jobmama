@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import aboutCardBg from "@/assets/about-card-bg.png";
 
 type ValueKey = "empathy" | "determination" | "change" | "confidence";
@@ -40,6 +40,32 @@ const values: { key: ValueKey; label: string }[] = [
 
 const AboutSection = () => {
   const [activeValue, setActiveValue] = useState<ValueKey>("empathy");
+  const touchStartX = useRef<number>(0);
+  const touchEndX = useRef<number>(0);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    touchEndX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    const swipeThreshold = 50;
+    const diff = touchStartX.current - touchEndX.current;
+
+    if (Math.abs(diff) > swipeThreshold) {
+      const currentIndex = values.findIndex(v => v.key === activeValue);
+      if (diff > 0 && currentIndex < values.length - 1) {
+        // Swipe left - next
+        setActiveValue(values[currentIndex + 1].key);
+      } else if (diff < 0 && currentIndex > 0) {
+        // Swipe right - previous
+        setActiveValue(values[currentIndex - 1].key);
+      }
+    }
+  };
 
   // Handle card tap to cycle through values (mobile)
   const handleCardClick = () => {
@@ -106,6 +132,9 @@ const AboutSection = () => {
             className="relative overflow-hidden rounded-[20px] lg:rounded-[32px] h-[400px] md:h-[600px] lg:h-[950px] w-full bg-cover bg-center bg-no-repeat cursor-pointer lg:cursor-default animate-[pulse-hint_2s_ease-in-out_1] lg:animate-none"
             style={{ backgroundImage: `url(${aboutCardBg})` }}
             onClick={handleCardClick}
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
           >
             {/* Dot pagination - mobile only */}
             <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 lg:hidden">
