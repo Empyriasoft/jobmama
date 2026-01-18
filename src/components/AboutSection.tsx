@@ -103,7 +103,7 @@ const AboutSection = () => {
         {/* Card - appears FIRST on mobile, RIGHT on desktop */}
         <div className="flex-1">
           <div 
-            className="relative overflow-hidden rounded-[20px] lg:rounded-[32px] h-[400px] md:h-[600px] lg:h-[950px] w-full bg-cover bg-center bg-no-repeat cursor-pointer lg:cursor-default"
+            className="relative overflow-hidden rounded-[20px] lg:rounded-[32px] h-[400px] md:h-[600px] lg:h-[950px] w-full bg-cover bg-center bg-no-repeat cursor-pointer lg:cursor-default animate-[pulse-hint_2s_ease-in-out_1] lg:animate-none"
             style={{ backgroundImage: `url(${aboutCardBg})` }}
             onClick={handleCardClick}
           >
