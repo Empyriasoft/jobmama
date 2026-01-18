@@ -10,24 +10,24 @@ interface AboutContent {
 
 const aboutContent: Record<ValueKey, AboutContent> = {
   empathy: {
-    title: "Understanding Your Unique ",
+    title: "The Heart Behind the Brand",
     description:
-      "We believe every mother's path back to work is different. Our approach centers on truly listening to your needs, fears, and aspirations. We're here to support you without judgment, celebrating your strengths while helping you overcome challenges.",
+      "JobMama was born out of real-world experience. After a sixteen-month maternity leave, our founder faced a challenge all too common: a layoff. Beyond being a mother who has 'been there,' she is a seasoned HR professional who knows exactly what employers are looking for. JobMama is where expert professional insight meets true maternal empathy.",
   },
   determination: {
-    title: "How To Prepare For Your First Interview",
+    title: "The Purpose",
     description:
-      "Duis sed iaculis lectus. Integer sit amet malesuada magna. Aenean scelerisque tellus vitae quam sodales blandit. Cras luctus arcu et justo finibus mollis. Donec rhoncus nisl sed sem viverra.",
+      "For many mothers, the end of maternity leave isn't a simple return—it's a forced career pivot. Nearly 50% of women report being unable to return to their previous roles. JobMama is a human resources consultancy dedicated to helping mothers transition back into the workforce. We believe a career break for motherhood should be a pause, not a full stop.",
   },
   change: {
-    title: "Embracing New Opportunities",
+    title: "Our Vision & Mission",
     description:
-      "Change can feel overwhelming, especially after a career break. We help you see change as an opportunity for growth. Whether you're pivoting to a new field or returning to your previous role, we'll guide you through every step of the transition.",
+      "Our mission is to empower women to rebuild their professional confidence, modernize their job search skills, and secure fulfilling employment. We envision a labor market where mothers are valued for their resilience and expertise, and where professional reintegration is a seamless, empowering experience.",
   },
   confidence: {
-    title: "Building Unshakeable Self-Belief",
+    title: "The Solution",
     description:
-      "Confidence isn't about being perfect—it's about knowing your worth. Through our coaching sessions, we help you rediscover your professional identity and build the self-assurance needed to thrive in interviews and beyond.",
+      "A holistic path to your career relaunch. Empathetic coaching to overcome confidence gaps, expert HR-led career services to make you the top candidate, and measurable results turning your transition into a career launchpad. We offer a specialized bridge back to professional life.",
   },
 };
 
