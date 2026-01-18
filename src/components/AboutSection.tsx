@@ -58,23 +58,23 @@ const AboutSection = () => {
         About JobMama
       </h2>
 
-      {/* Two Column Layout - reversed on mobile so card appears first */}
-      <div className="flex flex-col-reverse gap-8 lg:flex-row lg:gap-16">
-        {/* Tabs - appears BELOW card on mobile, LEFT on desktop */}
-        <div className="flex flex-row flex-wrap justify-center gap-4 lg:flex-col lg:justify-center lg:w-[340px] lg:h-[950px]">
+      {/* Two Column Layout */}
+      <div className="flex flex-col lg:flex-row lg:gap-16">
+        {/* Tabs - HIDDEN on mobile, shown on LEFT on desktop */}
+        <div className="hidden lg:flex lg:flex-col lg:justify-center lg:w-[340px] lg:h-[950px]">
           {values.map((value, index) => {
             const isActive = activeValue === value.key;
             const isLast = index === values.length - 1;
             
             return (
-              <div key={value.key} className="flex flex-col items-center lg:items-start">
+              <div key={value.key} className="flex flex-col items-start">
                 <button
                   onClick={() => setActiveValue(value.key)}
                   className="group relative text-left"
                 >
                   <span
                     style={{ fontFamily: "'Google Sans', sans-serif" }}
-                    className={`text-[14px] md:text-[24px] lg:text-[40px] font-bold md:font-normal leading-[1.2] transition-colors duration-200 ${
+                    className={`text-[40px] font-normal leading-[1.2] transition-colors duration-200 ${
                       isActive
                         ? "text-foreground"
                         : "text-muted-foreground/50 hover:text-muted-foreground"
@@ -87,34 +87,61 @@ const AboutSection = () => {
                 {/* Blue indicator line - only shown for selected item */}
                 {isActive && (
                   <div 
-                    className="h-[3px] w-[30px] lg:w-[60px] bg-primary transition-all duration-300 mt-2 lg:mt-[113px] lg:mb-[113px]"
+                    className="h-[3px] w-[60px] bg-primary transition-all duration-300 mt-[113px] mb-[113px]"
                   />
                 )}
                 
-                {/* Spacing for non-selected items - only on desktop */}
+                {/* Spacing for non-selected items */}
                 {!isActive && !isLast && (
-                  <div className="hidden lg:block" style={{ height: '113px' }} />
+                  <div style={{ height: '113px' }} />
                 )}
               </div>
             );
           })}
         </div>
 
-        {/* Card - appears FIRST on mobile, RIGHT on desktop */}
+        {/* Card */}
         <div className="flex-1">
           <div 
             className="relative overflow-hidden rounded-[20px] lg:rounded-[32px] h-[400px] md:h-[600px] lg:h-[950px] w-full bg-cover bg-center bg-no-repeat cursor-pointer lg:cursor-default animate-[pulse-hint_2s_ease-in-out_1] lg:animate-none"
             style={{ backgroundImage: `url(${aboutCardBg})` }}
             onClick={handleCardClick}
           >
+            {/* Dot pagination - mobile only */}
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 lg:hidden">
+              {values.map((value) => (
+                <button
+                  key={value.key}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setActiveValue(value.key);
+                  }}
+                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                    activeValue === value.key
+                      ? "bg-primary w-6"
+                      : "bg-foreground/30 hover:bg-foreground/50"
+                  }`}
+                  aria-label={`Go to ${value.label}`}
+                />
+              ))}
+            </div>
+
             {/* Content container positioned from bottom */}
             <div 
               key={activeValue}
-              className="absolute bottom-8 left-5 right-5 md:bottom-[70px] md:left-12 md:right-12 lg:bottom-[108px] lg:left-[95px] lg:right-[95px] flex flex-col gap-3 md:gap-6 lg:gap-[36px] animate-fade-in"
+              className="absolute bottom-12 left-5 right-5 md:bottom-[70px] md:left-12 md:right-12 lg:bottom-[108px] lg:left-[95px] lg:right-[95px] flex flex-col gap-2 md:gap-4 lg:gap-[36px] animate-fade-in"
             >
+              {/* Value label as headline - mobile only */}
+              <span
+                style={{ fontFamily: "'Google Sans', sans-serif" }}
+                className="text-[12px] md:text-[14px] font-medium uppercase tracking-widest text-primary lg:hidden"
+              >
+                {values.find(v => v.key === activeValue)?.label}
+              </span>
+              
               <h3
                 style={{ fontFamily: "'Google Sans', sans-serif", letterSpacing: '-0.04em' }}
-                className="text-[24px] md:text-[40px] lg:text-[75.88px] font-medium leading-[1.1] text-foreground"
+                className="text-[22px] md:text-[40px] lg:text-[75.88px] font-medium leading-[1.1] text-foreground"
               >
                 {aboutContent[activeValue].title}
               </h3>
