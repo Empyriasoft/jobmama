@@ -79,12 +79,6 @@ const AboutSection = () => {
     setIsSwiping(false);
   };
 
-  // Handle card tap to cycle through values (mobile)
-  const handleCardClick = () => {
-    const currentIndex = values.findIndex(v => v.key === activeValue);
-    const nextIndex = (currentIndex + 1) % values.length;
-    setActiveValue(values[nextIndex].key);
-  };
 
   return (
     <section className="w-full px-5 pt-20 pb-16 md:px-8 md:pt-[150px] md:pb-20 lg:px-[100px] lg:pt-[251px] lg:pb-[100px]">
@@ -141,13 +135,13 @@ const AboutSection = () => {
         {/* Card */}
         <div className="flex-1">
           <div 
-            className="relative overflow-hidden rounded-[20px] lg:rounded-[32px] h-[400px] md:h-[600px] lg:h-[950px] w-full bg-cover bg-center bg-no-repeat cursor-pointer lg:cursor-default animate-[pulse-hint_2s_ease-in-out_1] lg:animate-none"
+            className="relative overflow-hidden rounded-[20px] lg:rounded-[32px] h-[400px] md:h-[600px] lg:h-[950px] w-full bg-cover bg-center bg-no-repeat cursor-default animate-[pulse-hint_2s_ease-in-out_1] lg:animate-none"
             style={{ 
               backgroundImage: `url(${aboutCardBg})`,
               transform: `perspective(1000px) rotateY(${tiltX}deg) scale(${isSwiping ? 0.98 : 1})`,
               transition: isSwiping ? 'none' : 'transform 0.3s ease-out'
             }}
-            onClick={handleCardClick}
+            
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
