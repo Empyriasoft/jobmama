@@ -12,7 +12,7 @@ const aboutContent: Record<ValueKey, AboutContent> = {
   empathy: {
     title: "The Heart Behind the Brand",
     description:
-      "JobMama was born out of real-world experience. After a sixteen-month maternity leave, our founder faced a challenge all too common: a layoff. Beyond being a mother who has 'been there,' she is a seasoned HR professional who knows exactly what employers are looking for. JobMama is where expert professional insight meets true maternal empathy.",
+      "JobMama was born out of real-world experience. After a sixteen-month maternity leave, our founder faced a challenge all too common in Bulgaria: a layoff. Navigating the job market with a young child who was constantly sick, she experienced the \"confidence gap\" and the deep-seated insecurity of whether she could still be competitive in a fast-paced market.\n\nBut there is a second side to her story. Beyond being a mother who has \"been there,\" she is a seasoned HR professional who has spent years on the other side of the hiring table. Having reviewed thousands of CVs and approved hundreds of hires, she knows exactly what employers are looking for and how to position a candidate for success. JobMama is where this expert professional lens meets true maternal empathy.",
   },
   determination: {
     title: "The Purpose",
