@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import aboutCardBg from "@/assets/about-card-bg.png";
+import aboutBlobImage from "@/assets/about-blob-image.png";
 
 type ValueKey = "empathy" | "determination" | "change" | "confidence";
 
@@ -132,12 +132,12 @@ const AboutSection = () => {
           })}
         </div>
 
-        {/* Card */}
+        {/* Card - New Figma Design */}
         <div className="flex-1">
           <div 
-            className="relative overflow-hidden rounded-[20px] lg:rounded-[32px] h-[400px] md:h-[600px] lg:h-[950px] w-full bg-cover bg-center bg-no-repeat cursor-default animate-[pulse-hint_2s_ease-in-out_1] lg:animate-none"
+            className="relative overflow-hidden rounded-[40px] lg:rounded-[80px] h-[500px] md:h-[700px] lg:h-[950px] w-full cursor-default animate-[pulse-hint_2s_ease-in-out_1] lg:animate-none"
             style={{ 
-              backgroundImage: `url(${aboutCardBg})`,
+              backgroundColor: '#ececec',
               transform: `perspective(1000px) rotateY(${tiltX}deg) scale(${isSwiping ? 0.98 : 1})`,
               transition: isSwiping ? 'none' : 'transform 0.3s ease-out'
             }}
@@ -146,6 +146,13 @@ const AboutSection = () => {
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
           >
+            {/* Blob-shaped mother-child image */}
+            <img 
+              src={aboutBlobImage}
+              alt="Mother and child"
+              className="absolute w-[200px] h-[113px] md:w-[400px] md:h-[226px] lg:w-[671px] lg:h-[379px] left-4 top-6 md:left-8 md:top-10 lg:left-[44px] lg:top-[49px] object-contain"
+            />
+
             {/* Dot pagination - mobile only */}
             <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 lg:hidden">
               {values.map((value) => (
@@ -170,15 +177,16 @@ const AboutSection = () => {
               key={activeValue}
               className="absolute bottom-12 left-5 right-5 md:bottom-[70px] md:left-12 md:right-12 lg:bottom-[108px] lg:left-[95px] lg:right-[95px] flex flex-col gap-2 md:gap-4 lg:gap-[36px] animate-fade-in"
             >
+              {/* Main heading - "I'm a new mother. Now What?" style */}
               <h3
-                style={{ fontFamily: "'Google Sans', sans-serif", letterSpacing: '-0.04em' }}
-                className="text-[24px] md:text-[40px] lg:text-[75.88px] font-medium leading-[1.1] text-foreground"
+                style={{ fontFamily: "'Google Sans', sans-serif", letterSpacing: '-0.04em', color: '#000000' }}
+                className="text-[28px] md:text-[48px] lg:text-[75.88px] font-medium leading-[1.1]"
               >
                 {aboutContent[activeValue].title}
               </h3>
               <p
-                style={{ fontFamily: "'Inter', sans-serif", letterSpacing: '-0.04em' }}
-                className="text-[14px] md:text-[16px] lg:text-[24px] max-w-[500px] lg:max-w-[600px] leading-[1.5] lg:leading-[1.6] text-foreground/90 font-light"
+                style={{ fontFamily: "'Inter', sans-serif", letterSpacing: '-0.04em', color: '#000000' }}
+                className="text-[14px] md:text-[18px] lg:text-[24px] max-w-[500px] lg:max-w-[600px] leading-[1.5] lg:leading-[1.6] font-light opacity-90"
               >
                 {aboutContent[activeValue].description}
               </p>
