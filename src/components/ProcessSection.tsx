@@ -22,7 +22,7 @@ const FAQItem = ({ number, question, description }: FAQItemProps) => (
         {question}
       </h3>
     </div>
-    <p className="font-inter text-base md:text-lg lg:text-xl text-[#0D141C]/80 leading-relaxed pl-0 md:pl-[72px] lg:pl-[100px]">
+    <p className="font-inter text-base md:text-lg lg:text-xl text-[#0D141C]/80 leading-relaxed">
       {description}
     </p>
   </div>
