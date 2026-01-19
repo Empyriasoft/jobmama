@@ -186,7 +186,7 @@ const AboutSection = () => {
               </h3>
               <p
                 style={{ fontFamily: "'Inter', sans-serif", letterSpacing: '-0.04em', color: '#000000' }}
-                className="text-[14px] md:text-[18px] lg:text-[24px] max-w-[500px] lg:max-w-[600px] leading-[1.5] lg:leading-[1.6] font-light opacity-90"
+                className="text-[14px] md:text-[18px] lg:text-[24px] leading-[1.5] lg:leading-[1.6] font-light opacity-90"
               >
                 {aboutContent[activeValue].description}
               </p>
