@@ -32,10 +32,10 @@ const aboutContent: Record<ValueKey, AboutContent> = {
 };
 
 const values: { key: ValueKey; label: string }[] = [
-  { key: "empathy", label: "Empathy" },
-  { key: "determination", label: "Determination" },
-  { key: "change", label: "Change" },
-  { key: "confidence", label: "Confidence" },
+  { key: "empathy", label: "The Heart Behind the Brand" },
+  { key: "determination", label: "The Purpose" },
+  { key: "change", label: "Our Vision & Mission" },
+  { key: "confidence", label: "The Solution" },
 ];
 
 const AboutSection = () => {
