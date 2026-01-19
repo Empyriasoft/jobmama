@@ -56,22 +56,21 @@ const ProcessSection = () => {
         className="absolute bottom-0 left-0 w-[300px] md:w-[450px] lg:w-[600px] h-auto pointer-events-none"
       />
 
-      <div className="relative z-10 flex flex-col gap-12 lg:gap-16">
-        {/* Header Section */}
-        <div className="flex flex-col gap-4 md:gap-6">
+      <div className="relative z-10 flex flex-col lg:flex-row gap-12 lg:gap-24">
+        {/* Title Section */}
+        <div className="lg:w-1/3 flex flex-col gap-4">
           <h2 className="font-google-sans text-4xl md:text-6xl lg:text-[128px] text-[#0D141C] leading-none">
-            Our Process
+            Our
+            <br />
+            Process
           </h2>
-          <h3 className="font-google-sans font-medium text-2xl md:text-4xl lg:text-[58px] text-[#0D141C] leading-tight">
-            Our 3-Step Comeback Process
-          </h3>
-          <p className="font-inter text-base md:text-lg lg:text-xl text-[#0D141C]/80 leading-relaxed max-w-4xl">
+          <p className="font-inter text-base md:text-lg lg:text-xl text-[#0D141C]/80 leading-relaxed">
             We know that every mother's situation is unique, but the journey back to professional fulfillment follows a simple, proven path to success. At JobMama, we guide you through three transformative stages:
           </p>
         </div>
 
         {/* Process Steps */}
-        <div className="flex flex-col gap-12 md:gap-16 lg:gap-20">
+        <div className="lg:w-2/3 flex flex-col gap-12 md:gap-16 lg:gap-20">
           {steps.map((step) => (
             <FAQItem
               key={step.number}
