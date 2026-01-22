@@ -19,14 +19,14 @@ const ServiceCard = ({ title, price, period, features, isPopular = false, bookin
   return (
     <div 
       className="relative flex flex-col p-6 md:p-8 rounded-[40px] transition-transform duration-300 hover:scale-105"
-      style={{ backgroundColor: '#ececec' }}
+      style={{ backgroundColor: '#00CEFF' }}
     >
       {/* Popular Badge */}
       {isPopular && (
         <div 
           className="absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-medium"
           style={{ 
-            backgroundColor: '#00CEFF', 
+            backgroundColor: '#ececec', 
             color: '#0D141C',
             fontFamily: "'Google Sans', sans-serif"
           }}
@@ -65,7 +65,7 @@ const ServiceCard = ({ title, price, period, features, isPopular = false, bookin
           <li key={index} className="flex items-start gap-3">
             <div 
               className="flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center mt-0.5"
-              style={{ backgroundColor: '#00CEFF' }}
+              style={{ backgroundColor: '#ececec' }}
             >
               <Check className="w-3 h-3" style={{ color: '#0D141C' }} />
             </div>
@@ -89,7 +89,7 @@ const ServiceCard = ({ title, price, period, features, isPopular = false, bookin
           fontFamily: "'Google Sans', sans-serif"
         }}
         onMouseEnter={(e) => {
-          e.currentTarget.style.backgroundColor = '#00CEFF';
+          e.currentTarget.style.backgroundColor = '#ececec';
         }}
         onMouseLeave={(e) => {
           e.currentTarget.style.backgroundColor = '#FFFFFF';
