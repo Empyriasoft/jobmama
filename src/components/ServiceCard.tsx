@@ -95,7 +95,7 @@ const ServiceCard = ({ title, price, period, features, isPopular = false, bookin
           e.currentTarget.style.backgroundColor = '#FFFFFF';
         }}
       >
-        Get Started
+        Book
       </Button>
     </div>
   );

@@ -8,29 +8,48 @@ interface ServiceTier {
   bookingUrl: string;
 }
 const serviceTiers: ServiceTier[] = [{
-  title: "Basic",
-  price: "$49",
-  period: "/month",
-  features: ["Resume review & feedback", "Access to job board", "Email support", "Career resource library"],
+  title: "01. Essential Starter",
+  price: "",
+  period: "",
+  features: [
+    "1-on-1 coaching session: To define your goals, uncover your unique strengths, and address your concerns.",
+    "Personalized action plan: A clear, step-by-step guide tailored to your successful journey back to being a working mom.",
+    "Complete resume overhaul: Modern formatting and a fresh perspective on your professional experience.",
+    "Optimized CV: Industry-specific keywords to ensure your expertise is immediately visible to employers."
+  ],
   bookingUrl: "https://calendly.com/a-novakov89/30min"
 }, {
-  title: "Standard",
-  price: "$99",
-  period: "/month",
-  features: ["Everything in Basic", "2 coaching sessions/month", "Interview preparation", "LinkedIn profile optimization", "Priority email support"],
+  title: "02. Signature 4-Step Transformation Package",
+  price: "",
+  period: "",
+  features: [
+    "Career Mapping & Goal Setting: Align Your Expertise with Your Current Life Goals.",
+    "High-Impact CV Overhaul: A total resume transformation that bridges career gaps and showcases your potential to recruiters.",
+    "LinkedIn Profile Booster: A full digital makeover and headline optimization.",
+    "Strategic Market Navigation: Master the hunt by learning how to find the right companies."
+  ],
   isPopular: true,
   bookingUrl: "https://calendly.com/a-novakov89/30min"
 }, {
-  title: "Premium",
-  price: "$199",
-  period: "/month",
-  features: ["Everything in Standard", "Unlimited coaching sessions", "Personalized job search strategy", "Salary negotiation support", "Direct recruiter connections", "1-on-1 mentorship"],
+  title: "03. Success Package: Total Confidence",
+  price: "",
+  period: "",
+  features: [
+    "Interview Mastery: A 1-on-1 mock interview to practice key questions and refine your professional pitch. Learn what to watch for during the meeting and how to spot \"green\" and \"red\" flags in a future employer.",
+    "Maternity Gap Strategy: Learn how to address your career break with poise and confidence.",
+    "Job Offer Evaluation: Expert help to review your contract or offer, identifying essential flexibility needs and terms.",
+    "Salary & Benefit Negotiation: A personalized strategy to help you state and negotiate your desired compensation and the social benefits."
+  ],
   bookingUrl: "https://calendly.com/a-novakov89/30min"
 }, {
-  title: "Enterprise",
-  price: "Custom",
+  title: "04. Corporate Solutions & HR Partnerships",
+  price: "",
   period: "",
-  features: ["Everything in Premium", "Dedicated account manager", "Custom integrations", "Team onboarding", "Priority 24/7 support", "Bulk hiring solutions"],
+  features: [
+    "Integration Workshops: A collaborative session gathering returning employees and their team leads to align on business duties and the current state of work. We facilitate updates on business activities and assess the evolving skillset of the returner to ensure a productive re-entry.",
+    "Parental Return-to-Work Coaching: A series of 5 structured online sessions focusing on the emotional and professional transition of the employee. We cover HR policies, business updates, and consult on the employee's motivation and specific needs during their return.",
+    "Targeted Talent Acquisition: Promote your company's culture by posting \"mom-friendly\" job advertisements directly in our dedicated Facebook and LinkedIn community groups to reach qualified, resilient professionals."
+  ],
   bookingUrl: "https://calendly.com/a-novakov89/30min"
 }];
 const ServicesSection = () => {
