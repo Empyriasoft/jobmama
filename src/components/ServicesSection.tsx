@@ -17,8 +17,8 @@ interface ServiceTier {
 const serviceTiers: ServiceTier[] = [
   {
     title: "01. Essential Starter",
-    price: "",
-    period: "",
+    price: "€199",
+    period: "one-time",
     features: [
       {
         heading: "1-on-1 coaching session",
@@ -41,8 +41,8 @@ const serviceTiers: ServiceTier[] = [
   },
   {
     title: "02. Signature 4-Step Transformation Package",
-    price: "",
-    period: "",
+    price: "€399",
+    period: "one-time",
     features: [
       {
         heading: "Career Mapping & Goal Setting",
@@ -66,8 +66,8 @@ const serviceTiers: ServiceTier[] = [
   },
   {
     title: "03. Success Package: Total Confidence",
-    price: "",
-    period: "",
+    price: "€599",
+    period: "one-time",
     features: [
       {
         heading: "Interview Mastery",
@@ -90,8 +90,8 @@ const serviceTiers: ServiceTier[] = [
   },
   {
     title: "04. Corporate Solutions & HR Partnerships",
-    price: "",
-    period: "",
+    price: "Custom",
+    period: "contact us",
     features: [
       {
         heading: "Integration Workshops",
