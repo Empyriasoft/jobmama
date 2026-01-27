@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { Check, Info } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -24,6 +25,16 @@ interface ServiceCardProps {
 
 const FeatureItem = ({ feature }: { feature: ServiceFeature }) => {
   const isMobile = useIsMobile();
+  const [isOpen, setIsOpen] = useState(false);
+  
+  // Close tooltip on scroll
+  useEffect(() => {
+    if (!isOpen) return;
+    
+    const handleScroll = () => setIsOpen(false);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [isOpen]);
   
   const triggerContent = (
     <span 
@@ -46,7 +57,7 @@ const FeatureItem = ({ feature }: { feature: ServiceFeature }) => {
 
   if (isMobile) {
     return (
-      <Popover>
+      <Popover open={isOpen} onOpenChange={setIsOpen}>
         <PopoverTrigger asChild>
           {triggerContent}
         </PopoverTrigger>
@@ -63,7 +74,7 @@ const FeatureItem = ({ feature }: { feature: ServiceFeature }) => {
   }
 
   return (
-    <HoverCard openDelay={100} closeDelay={100}>
+    <HoverCard open={isOpen} onOpenChange={setIsOpen} openDelay={100} closeDelay={100}>
       <HoverCardTrigger asChild>
         {triggerContent}
       </HoverCardTrigger>
