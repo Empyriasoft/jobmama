@@ -168,7 +168,7 @@ const ServiceCard = ({ title, price, period, features, isPopular = false, bookin
           e.currentTarget.style.backgroundColor = '#FFFFFF';
         }}
       >
-        Book
+        Schedule Call
       </Button>
     </div>
   );
