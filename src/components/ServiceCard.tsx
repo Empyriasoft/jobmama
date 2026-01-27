@@ -146,12 +146,7 @@ const ServiceCard = ({ title, price, period, features, isPopular = false, bookin
       <ul className="flex flex-col gap-3 mb-8 flex-1">
         {features.map((feature, index) => (
           <li key={index} className="flex items-start gap-3">
-            <div 
-              className="flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center mt-0.5"
-              style={{ backgroundColor: '#ececec' }}
-            >
-              <Check className="w-3 h-3" style={{ color: '#0D141C' }} />
-            </div>
+            <Check className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#0D141C' }} />
             <FeatureItem feature={feature} />
           </li>
         ))}
