@@ -1,5 +1,12 @@
 import { useState, useRef } from "react";
 import aboutBlobImage from "@/assets/about-blob-image.png";
+import { useIsMobile } from "@/hooks/use-mobile";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel";
+import { Badge } from "@/components/ui/badge";
 
 type ValueKey = "empathy" | "determination" | "change" | "confidence";
 
@@ -38,48 +45,146 @@ const values: { key: ValueKey; label: string }[] = [
   { key: "confidence", label: "The Solution" },
 ];
 
-const AboutSection = () => {
-  const [activeValue, setActiveValue] = useState<ValueKey>("empathy");
+// Mobile Card Component
+const MobileAboutCard = ({ value }: { value: { key: ValueKey; label: string } }) => {
+  const [expanded, setExpanded] = useState(false);
+  const content = aboutContent[value.key];
+  
+  return (
+    <div 
+      className="relative overflow-hidden rounded-[24px] h-[480px] w-full"
+      style={{ backgroundColor: 'hsl(192 100% 50%)' }} // Brand blue #00CEFF
+    >
+      {/* ABOUT US Badge */}
+      <Badge 
+        variant="secondary"
+        className="absolute top-4 left-4 bg-foreground text-background text-[10px] font-semibold tracking-wider px-3 py-1"
+      >
+        ABOUT US
+      </Badge>
+
+      {/* Blob-shaped mother-child image */}
+      <img 
+        src={aboutBlobImage}
+        alt="Mother and child"
+        className="absolute w-[160px] h-[90px] right-4 top-4 object-contain"
+      />
+
+      {/* Content container */}
+      <div className="absolute bottom-0 left-0 right-0 p-5 flex flex-col gap-3">
+        {/* Title */}
+        <h3
+          style={{ fontFamily: "'Google Sans', sans-serif", letterSpacing: '-0.04em' }}
+          className="text-[24px] font-medium leading-[1.1] text-foreground"
+        >
+          {content.title}
+        </h3>
+        
+        {/* Description - truncated or full */}
+        <p
+          style={{ fontFamily: "'Inter', sans-serif", letterSpacing: '-0.02em' }}
+          className={`text-[14px] leading-[1.5] font-light text-foreground/90 ${
+            expanded ? '' : 'line-clamp-4'
+          }`}
+        >
+          {content.description}
+        </p>
+
+        {/* Read more link */}
+        <button
+          onClick={() => setExpanded(!expanded)}
+          className="flex items-center gap-1 text-foreground font-medium text-[14px] mt-1 self-start hover:opacity-80 transition-opacity"
+          style={{ fontFamily: "'Inter', sans-serif" }}
+        >
+          {expanded ? 'Show less' : 'Read more'} 
+          <span className="text-lg">{expanded ? '↑' : '→'}</span>
+        </button>
+      </div>
+    </div>
+  );
+};
+
+// Desktop Card Component (existing design)
+const DesktopAboutCard = ({ activeValue }: { activeValue: ValueKey }) => {
   const [tiltX, setTiltX] = useState<number>(0);
   const [isSwiping, setIsSwiping] = useState<boolean>(false);
-  const touchStartX = useRef<number>(0);
-  const touchEndX = useRef<number>(0);
 
-  const handleTouchStart = (e: React.TouchEvent) => {
-    touchStartX.current = e.touches[0].clientX;
-    touchEndX.current = e.touches[0].clientX;
-    setIsSwiping(true);
-  };
+  return (
+    <div 
+      className="relative overflow-hidden rounded-[40px] lg:rounded-[80px] h-[500px] md:h-[700px] lg:h-[950px] w-full cursor-default"
+      style={{ 
+        backgroundColor: '#ececec',
+        transform: `perspective(1000px) rotateY(${tiltX}deg) scale(${isSwiping ? 0.98 : 1})`,
+        transition: isSwiping ? 'none' : 'transform 0.3s ease-out'
+      }}
+    >
+      {/* Blob-shaped mother-child image */}
+      <img 
+        src={aboutBlobImage}
+        alt="Mother and child"
+        className="absolute w-[400px] h-[226px] lg:w-[671px] lg:h-[379px] left-8 top-10 lg:left-[44px] lg:top-[49px] object-contain"
+      />
 
-  const handleTouchMove = (e: React.TouchEvent) => {
-    touchEndX.current = e.touches[0].clientX;
-    const diff = touchEndX.current - touchStartX.current;
-    // Limit tilt to ±8 degrees for a subtle effect
-    const tilt = Math.max(-8, Math.min(8, diff / 20));
-    setTiltX(tilt);
-  };
+      {/* Content container positioned from bottom */}
+      <div 
+        key={activeValue}
+        className="absolute bottom-[70px] left-12 right-12 lg:bottom-[108px] lg:left-[95px] lg:right-[95px] flex flex-col gap-4 lg:gap-[36px] animate-fade-in"
+      >
+        {/* Main heading */}
+        <h3
+          style={{ fontFamily: "'Google Sans', sans-serif", letterSpacing: '-0.04em', color: '#000000' }}
+          className="text-[48px] lg:text-[75.88px] font-medium leading-[1.1]"
+        >
+          {aboutContent[activeValue].title}
+        </h3>
+        <p
+          style={{ fontFamily: "'Inter', sans-serif", letterSpacing: '-0.04em', color: '#000000' }}
+          className="text-[18px] lg:text-[24px] leading-[1.5] lg:leading-[1.6] font-light opacity-90"
+        >
+          {aboutContent[activeValue].description}
+        </p>
+      </div>
+    </div>
+  );
+};
 
-  const handleTouchEnd = () => {
-    const swipeThreshold = 50;
-    const diff = touchStartX.current - touchEndX.current;
+const AboutSection = () => {
+  const [activeValue, setActiveValue] = useState<ValueKey>("empathy");
+  const isMobile = useIsMobile();
 
-    if (Math.abs(diff) > swipeThreshold) {
-      const currentIndex = values.findIndex(v => v.key === activeValue);
-      if (diff > 0 && currentIndex < values.length - 1) {
-        // Swipe left - next
-        setActiveValue(values[currentIndex + 1].key);
-      } else if (diff < 0 && currentIndex > 0) {
-        // Swipe right - previous
-        setActiveValue(values[currentIndex - 1].key);
-      }
-    }
-    
-    // Reset tilt with animation
-    setTiltX(0);
-    setIsSwiping(false);
-  };
+  // Mobile: Carousel Layout
+  if (isMobile) {
+    return (
+      <section className="w-full px-4 pt-16 pb-12">
+        {/* Section Title */}
+        <h2
+          style={{ fontFamily: "'Google Sans', sans-serif", color: '#0D141C' }}
+          className="text-[36px] mb-8 font-medium text-center"
+        >
+          About JobMama
+        </h2>
 
+        {/* Carousel */}
+        <Carousel
+          opts={{
+            align: "start",
+            containScroll: "trimSnaps",
+          }}
+          className="w-full"
+        >
+          <CarouselContent className="-ml-3">
+            {values.map((value) => (
+              <CarouselItem key={value.key} className="pl-3 basis-[85%]">
+                <MobileAboutCard value={value} />
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+        </Carousel>
+      </section>
+    );
+  }
 
+  // Desktop: Original Layout (unchanged)
   return (
     <section className="w-full px-5 pt-20 pb-16 md:px-8 md:pt-[150px] md:pb-20 lg:px-[100px] lg:pt-[251px] lg:pb-[100px]">
       {/* Section Title */}
@@ -92,7 +197,7 @@ const AboutSection = () => {
 
       {/* Two Column Layout */}
       <div className="flex flex-col lg:flex-row lg:gap-16">
-        {/* Tabs - HIDDEN on mobile, shown on LEFT on desktop */}
+        {/* Tabs - shown on LEFT on desktop */}
         <div className="hidden lg:flex lg:flex-col lg:justify-center lg:w-[340px] lg:h-[950px]">
           {values.map((value, index) => {
             const isActive = activeValue === value.key;
@@ -132,66 +237,9 @@ const AboutSection = () => {
           })}
         </div>
 
-        {/* Card - New Figma Design */}
+        {/* Card */}
         <div className="flex-1">
-          <div 
-            className="relative overflow-hidden rounded-[40px] lg:rounded-[80px] h-[500px] md:h-[700px] lg:h-[950px] w-full cursor-default animate-[pulse-hint_2s_ease-in-out_1] lg:animate-none"
-            style={{ 
-              backgroundColor: '#ececec',
-              transform: `perspective(1000px) rotateY(${tiltX}deg) scale(${isSwiping ? 0.98 : 1})`,
-              transition: isSwiping ? 'none' : 'transform 0.3s ease-out'
-            }}
-            
-            onTouchStart={handleTouchStart}
-            onTouchMove={handleTouchMove}
-            onTouchEnd={handleTouchEnd}
-          >
-            {/* Blob-shaped mother-child image */}
-            <img 
-              src={aboutBlobImage}
-              alt="Mother and child"
-              className="absolute w-[200px] h-[113px] md:w-[400px] md:h-[226px] lg:w-[671px] lg:h-[379px] left-4 top-6 md:left-8 md:top-10 lg:left-[44px] lg:top-[49px] object-contain"
-            />
-
-            {/* Dot pagination - mobile only */}
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 lg:hidden">
-              {values.map((value) => (
-                <button
-                  key={value.key}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setActiveValue(value.key);
-                  }}
-                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                    activeValue === value.key
-                      ? "bg-primary w-6"
-                      : "bg-foreground/30 hover:bg-foreground/50"
-                  }`}
-                  aria-label={`Go to ${value.label}`}
-                />
-              ))}
-            </div>
-
-            {/* Content container positioned from bottom */}
-            <div 
-              key={activeValue}
-              className="absolute bottom-12 left-5 right-5 md:bottom-[70px] md:left-12 md:right-12 lg:bottom-[108px] lg:left-[95px] lg:right-[95px] flex flex-col gap-2 md:gap-4 lg:gap-[36px] animate-fade-in"
-            >
-              {/* Main heading - "I'm a new mother. Now What?" style */}
-              <h3
-                style={{ fontFamily: "'Google Sans', sans-serif", letterSpacing: '-0.04em', color: '#000000' }}
-                className="text-[28px] md:text-[48px] lg:text-[75.88px] font-medium leading-[1.1]"
-              >
-                {aboutContent[activeValue].title}
-              </h3>
-              <p
-                style={{ fontFamily: "'Inter', sans-serif", letterSpacing: '-0.04em', color: '#000000' }}
-                className="text-[14px] md:text-[18px] lg:text-[24px] leading-[1.5] lg:leading-[1.6] font-light opacity-90"
-              >
-                {aboutContent[activeValue].description}
-              </p>
-            </div>
-          </div>
+          <DesktopAboutCard activeValue={activeValue} />
         </div>
       </div>
     </section>
