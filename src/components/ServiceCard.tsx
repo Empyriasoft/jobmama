@@ -128,7 +128,7 @@ const ServiceCard = ({ title, price, period, features, isPopular = false, bookin
       {(price || period) && (
         <div className="mb-6">
           <span 
-            style={{ fontFamily: "'Google Sans', sans-serif", color: '#22C55E' }}
+            style={{ fontFamily: "'Google Sans', sans-serif", color: '#0D141C' }}
             className="text-3xl md:text-4xl font-medium"
           >
             {price}
@@ -146,7 +146,7 @@ const ServiceCard = ({ title, price, period, features, isPopular = false, bookin
       <ul className="flex flex-col gap-3 mb-8 flex-1">
         {features.map((feature, index) => (
           <li key={index} className="flex items-start gap-3">
-            <Check className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#22C55E' }} />
+            <Check className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#0D141C' }} />
             <FeatureItem feature={feature} />
           </li>
         ))}
