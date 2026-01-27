@@ -5,6 +5,12 @@ import {
   HoverCardContent,
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import { useIsMobile } from "@/hooks/use-mobile";
 import type { ServiceFeature } from "@/components/ServicesSection";
 
 interface ServiceCardProps {
@@ -16,6 +22,63 @@ interface ServiceCardProps {
   bookingUrl?: string;
 }
 
+const FeatureItem = ({ feature }: { feature: ServiceFeature }) => {
+  const isMobile = useIsMobile();
+  
+  const triggerContent = (
+    <span 
+      style={{ fontFamily: "'Inter', sans-serif", color: '#0D141C' }}
+      className="text-sm md:text-base cursor-pointer hover:underline underline-offset-2 inline-flex items-center gap-1.5"
+    >
+      {feature.heading}
+      <Info className="w-3.5 h-3.5 opacity-60" />
+    </span>
+  );
+
+  const popoverContent = (
+    <p 
+      style={{ fontFamily: "'Inter', sans-serif" }}
+      className="text-sm leading-relaxed"
+    >
+      {feature.description}
+    </p>
+  );
+
+  if (isMobile) {
+    return (
+      <Popover>
+        <PopoverTrigger asChild>
+          {triggerContent}
+        </PopoverTrigger>
+        <PopoverContent 
+          className="w-72 p-4 rounded-2xl border-0 shadow-lg"
+          style={{ backgroundColor: '#ececec', color: '#0D141C' }}
+          side="top"
+          sideOffset={8}
+        >
+          {popoverContent}
+        </PopoverContent>
+      </Popover>
+    );
+  }
+
+  return (
+    <HoverCard openDelay={100} closeDelay={100}>
+      <HoverCardTrigger asChild>
+        {triggerContent}
+      </HoverCardTrigger>
+      <HoverCardContent 
+        className="w-72 p-4 rounded-2xl border-0 shadow-lg"
+        style={{ backgroundColor: '#ececec', color: '#0D141C' }}
+        side="top"
+        sideOffset={8}
+      >
+        {popoverContent}
+      </HoverCardContent>
+    </HoverCard>
+  );
+};
+
 const ServiceCard = ({ title, price, period, features, isPopular = false, bookingUrl }: ServiceCardProps) => {
   const handleBookClick = () => {
     if (bookingUrl) {
@@ -24,7 +87,7 @@ const ServiceCard = ({ title, price, period, features, isPopular = false, bookin
   };
 
   return (
-    <div 
+    <div
       className="relative flex flex-col p-6 md:p-8 rounded-[40px] transition-transform duration-300 hover:scale-105"
       style={{ backgroundColor: '#00CEFF' }}
     >
@@ -78,30 +141,7 @@ const ServiceCard = ({ title, price, period, features, isPopular = false, bookin
             >
               <Check className="w-3 h-3" style={{ color: '#0D141C' }} />
             </div>
-            <HoverCard openDelay={100} closeDelay={100}>
-              <HoverCardTrigger asChild>
-                <span 
-                  style={{ fontFamily: "'Inter', sans-serif", color: '#0D141C' }}
-                  className="text-sm md:text-base cursor-pointer hover:underline underline-offset-2 inline-flex items-center gap-1.5"
-                >
-                  {feature.heading}
-                  <Info className="w-3.5 h-3.5 opacity-60" />
-                </span>
-              </HoverCardTrigger>
-              <HoverCardContent 
-                className="w-72 p-4 rounded-2xl border-0 shadow-lg"
-                style={{ backgroundColor: '#ececec', color: '#0D141C' }}
-                side="top"
-                sideOffset={8}
-              >
-                <p 
-                  style={{ fontFamily: "'Inter', sans-serif" }}
-                  className="text-sm leading-relaxed"
-                >
-                  {feature.description}
-                </p>
-              </HoverCardContent>
-            </HoverCard>
+            <FeatureItem feature={feature} />
           </li>
         ))}
       </ul>
