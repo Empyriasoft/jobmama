@@ -1,97 +1,78 @@
 
-# Mobile-Only Carousel Redesign for About Section
+# Mobile Expand-on-Touch for Service Card Features
 
 ## Summary
-Add a horizontal carousel with sweav.works-inspired card styling **only on mobile devices**. Desktop will remain completely unchanged with the current sidebar tabs and single card layout. Cards will use your brand colors (blue #00CEFF and gray #ececec).
+Change the feature bullet points in service cards to expand inline on mobile instead of showing a floating popover tooltip. Desktop behavior (hover card) will remain unchanged.
 
-## What Changes (Mobile Only)
+## Current vs New Behavior
 
-### Current Mobile View
-- Single gray card with swipe gestures
-- Dot pagination at bottom
-- Content changes within the same card
+### Current (Mobile)
+- Tap feature heading → floating popover appears above
+- Popover can be accidentally dismissed
+- Feels disconnected from the content
 
-### New Mobile View (sweav.works style)
+### New (Mobile)
+- Tap feature heading → description expands directly below the heading
+- Tap again to collapse
+- Smooth accordion-style animation
+- More natural touch interaction
+
 ```text
-   +----- visible area -----+
-   |  +----------------+ +--|
-   |  | ABOUT US       | |  | <- peek of next card
-   |  |                | |  |
-   |  | [blob image]   | |  |
-   |  |                | |  |
-   |  | "The Heart     | |  |
-   |  |  Behind..."    | |  |
-   |  |                | |  |
-   |  | Read more ->   | |  |
-   |  +----------------+ +--|
-   +------------------------+
+BEFORE (Popover):                    AFTER (Inline Expand):
+                                     
+  +------------------+               ✓ 1-on-1 coaching session
+  | Description here |               
+  +------------------+               ✓ Personalized action plan ▼
+        ↑                              A clear, step-by-step guide
+  ✓ Feature heading                    tailored to your journey...
+                                     
+                                     ✓ Complete resume overhaul
 ```
 
-### Design Elements
-- **"ABOUT US" label**: Small pill/badge at top-left of each card
-- **Horizontal carousel**: Cards peek from the right edge (~85% width visible)
-- **Brand blue background** (#00CEFF) for cards
-- **"Read more" link**: At bottom of each card (optional - can scroll to show full content)
-- **Smooth swipe navigation**: Using Embla Carousel
-
-## What Stays the Same (Desktop)
-- Sidebar tab navigation on the left
-- Single gray card (#ececec) on the right
-- Blob image positioning
-- All existing styling and animations
+## What Stays the Same
+- Desktop: HoverCard on mouse hover (no changes)
+- Visual styling: fonts, colors, check icons
+- Card layout and structure
 
 ---
 
-## Technical Implementation
+## Technical Details
 
-### Step 1: Add `useIsMobile` Hook
-Import the existing `useIsMobile` hook from `src/hooks/use-mobile.tsx` to detect screen size.
+### Changes to `src/components/ServiceCard.tsx`
 
-### Step 2: Conditional Rendering
-- **Mobile (< 768px)**: Render the new Embla Carousel with styled cards
-- **Desktop (>= 768px)**: Keep existing layout exactly as-is
+**1. Update the `FeatureItem` component for mobile:**
+- Replace `Popover` with a simple toggle state
+- When tapped, show description directly below the heading
+- Add smooth height animation using CSS transitions
+- Keep the Info icon but change to a chevron that rotates on expand
 
-### Step 3: Mobile Carousel Structure
+**2. Mobile feature item structure:**
 ```text
-<Carousel>
-  <CarouselContent>
-    {values.map(value => (
-      <CarouselItem key={value.key}>
-        <MobileAboutCard
-          label="ABOUT US"
-          title={value.title}
-          description={value.description}
-          blobImage={aboutBlobImage}
-        />
-      </CarouselItem>
-    ))}
-  </CarouselContent>
-</Carousel>
+<div>
+  <button onClick={toggle}>
+    <span>Feature heading</span>
+    <ChevronDown className={rotateOnOpen} />
+  </button>
+  {isExpanded && (
+    <div className="animate-accordion-down">
+      <p>Description text...</p>
+    </div>
+  )}
+</div>
 ```
 
-### Step 4: Mobile Card Styling
-- Background: Brand blue (#00CEFF)
-- Border radius: 24px (slightly smaller for carousel cards)
-- "ABOUT US" pill badge: White text on darker blue or black background
-- Title: Black text, Google Sans font
-- Description: Black text, Inter font (truncated with "Read more" link)
-- Card width: ~85% of viewport to show peek of next card
+**3. Animation:**
+- Use existing `animate-accordion-down` keyframe from tailwind config
+- Smooth expand/collapse transition
 
-### Step 5: Carousel Configuration
-- `align: "start"` - Cards align to left
-- `containScroll: "trimSnaps"` - Clean edge snapping
-- Gap between cards: 16px
-
----
-
-## File Changes
+### Files to Modify
 
 | File | Changes |
 |------|---------|
-| `src/components/AboutSection.tsx` | Add useIsMobile hook, conditional rendering for mobile carousel vs desktop layout, new mobile card component |
+| `src/components/ServiceCard.tsx` | Update `FeatureItem` component to use inline expand on mobile instead of Popover |
 
 ## Visual Result
 
-**Mobile**: Swipeable horizontal carousel with blue cards, each showing "ABOUT US" label, blob image, title, description preview, and "Read more" link. Next card peeks from the right.
+**Mobile**: Tapping a feature heading expands/collapses the description directly below it with a smooth animation. The chevron icon rotates to indicate open/closed state.
 
-**Desktop**: No changes - same sidebar tabs with single gray card.
+**Desktop**: No change - hover still shows the floating card tooltip.
