@@ -18,36 +18,42 @@ interface ServiceCardProps {
   bookingUrl?: string;
 }
 
-const FeatureItem = ({ feature }: { feature: ServiceFeature }) => {
+interface FeatureItemProps {
+  feature: ServiceFeature;
+  isExpanded?: boolean;
+  onToggle?: () => void;
+}
+
+const FeatureItem = ({ feature, isExpanded = false, onToggle }: FeatureItemProps) => {
   const isMobile = useIsMobile();
-  const [isOpen, setIsOpen] = useState(false);
+  const [isHoverOpen, setIsHoverOpen] = useState(false);
   
   // Close tooltip on scroll (desktop only)
   useEffect(() => {
-    if (!isOpen || isMobile) return;
+    if (!isHoverOpen || isMobile) return;
     
-    const handleScroll = () => setIsOpen(false);
+    const handleScroll = () => setIsHoverOpen(false);
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [isOpen, isMobile]);
+  }, [isHoverOpen, isMobile]);
 
   // Mobile: inline expand/collapse
   if (isMobile) {
     return (
       <div className="flex-1">
         <button
-          onClick={() => setIsOpen(!isOpen)}
+          onClick={onToggle}
           style={{ fontFamily: "'Inter', sans-serif", color: '#0D141C' }}
           className="text-sm cursor-pointer inline-flex items-center gap-1.5 text-left"
         >
           {feature.heading}
           <ChevronDown 
-            className={`w-3.5 h-3.5 opacity-60 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} 
+            className={`w-3.5 h-3.5 opacity-60 transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`} 
           />
         </button>
         <div
           className={`overflow-hidden transition-all duration-200 ease-out ${
-            isOpen ? 'max-h-40 opacity-100 mt-2' : 'max-h-0 opacity-0'
+            isExpanded ? 'max-h-40 opacity-100 mt-2' : 'max-h-0 opacity-0'
           }`}
         >
           <p 
@@ -73,7 +79,7 @@ const FeatureItem = ({ feature }: { feature: ServiceFeature }) => {
   );
 
   return (
-    <HoverCard open={isOpen} onOpenChange={setIsOpen} openDelay={100} closeDelay={100}>
+    <HoverCard open={isHoverOpen} onOpenChange={setIsHoverOpen} openDelay={100} closeDelay={100}>
       <HoverCardTrigger asChild>
         {triggerContent}
       </HoverCardTrigger>
@@ -95,6 +101,12 @@ const FeatureItem = ({ feature }: { feature: ServiceFeature }) => {
 };
 
 const ServiceCard = ({ title, price, period, features, isPopular = false, bookingUrl }: ServiceCardProps) => {
+  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+
+  const handleToggleFeature = (index: number) => {
+    setExpandedIndex(expandedIndex === index ? null : index);
+  };
+
   const handleBookClick = () => {
     if (bookingUrl) {
       window.open(bookingUrl, '_blank', 'noopener,noreferrer');
@@ -151,7 +163,11 @@ const ServiceCard = ({ title, price, period, features, isPopular = false, bookin
         {features.map((feature, index) => (
           <li key={index} className="flex items-start gap-3">
             <Check className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#0D141C' }} />
-            <FeatureItem feature={feature} />
+            <FeatureItem 
+              feature={feature} 
+              isExpanded={expandedIndex === index}
+              onToggle={() => handleToggleFeature(index)}
+            />
           </li>
         ))}
       </ul>
