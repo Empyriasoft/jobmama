@@ -1,16 +1,11 @@
 import { useState, useEffect } from "react";
-import { Check, Info } from "lucide-react";
+import { Check, Info, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   HoverCard,
   HoverCardContent,
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
 import { useIsMobile } from "@/hooks/use-mobile";
 import type { ServiceFeature } from "@/components/ServicesSection";
 
@@ -27,15 +22,46 @@ const FeatureItem = ({ feature }: { feature: ServiceFeature }) => {
   const isMobile = useIsMobile();
   const [isOpen, setIsOpen] = useState(false);
   
-  // Close tooltip on scroll
+  // Close tooltip on scroll (desktop only)
   useEffect(() => {
-    if (!isOpen) return;
+    if (!isOpen || isMobile) return;
     
     const handleScroll = () => setIsOpen(false);
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [isOpen]);
-  
+  }, [isOpen, isMobile]);
+
+  // Mobile: inline expand/collapse
+  if (isMobile) {
+    return (
+      <div className="flex-1">
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          style={{ fontFamily: "'Inter', sans-serif", color: '#0D141C' }}
+          className="text-sm cursor-pointer inline-flex items-center gap-1.5 text-left"
+        >
+          {feature.heading}
+          <ChevronDown 
+            className={`w-3.5 h-3.5 opacity-60 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} 
+          />
+        </button>
+        <div
+          className={`overflow-hidden transition-all duration-200 ease-out ${
+            isOpen ? 'max-h-40 opacity-100 mt-2' : 'max-h-0 opacity-0'
+          }`}
+        >
+          <p 
+            style={{ fontFamily: "'Inter', sans-serif", color: '#0D141C' }}
+            className="text-sm leading-relaxed opacity-80 pl-0"
+          >
+            {feature.description}
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  // Desktop: hover card tooltip
   const triggerContent = (
     <span 
       style={{ fontFamily: "'Inter', sans-serif", color: '#0D141C' }}
@@ -45,33 +71,6 @@ const FeatureItem = ({ feature }: { feature: ServiceFeature }) => {
       <Info className="w-3.5 h-3.5 opacity-60" />
     </span>
   );
-
-  const popoverContent = (
-    <p 
-      style={{ fontFamily: "'Inter', sans-serif" }}
-      className="text-sm leading-relaxed"
-    >
-      {feature.description}
-    </p>
-  );
-
-  if (isMobile) {
-    return (
-      <Popover open={isOpen} onOpenChange={setIsOpen}>
-        <PopoverTrigger asChild>
-          {triggerContent}
-        </PopoverTrigger>
-        <PopoverContent 
-          className="w-72 p-4 rounded-2xl border-0 shadow-lg"
-          style={{ backgroundColor: '#ececec', color: '#0D141C' }}
-          side="top"
-          sideOffset={8}
-        >
-          {popoverContent}
-        </PopoverContent>
-      </Popover>
-    );
-  }
 
   return (
     <HoverCard open={isOpen} onOpenChange={setIsOpen} openDelay={100} closeDelay={100}>
@@ -84,7 +83,12 @@ const FeatureItem = ({ feature }: { feature: ServiceFeature }) => {
         side="top"
         sideOffset={8}
       >
-        {popoverContent}
+        <p 
+          style={{ fontFamily: "'Inter', sans-serif" }}
+          className="text-sm leading-relaxed"
+        >
+          {feature.description}
+        </p>
       </HoverCardContent>
     </HoverCard>
   );
