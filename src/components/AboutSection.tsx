@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import aboutBlobImage from "@/assets/about-blob-image.png";
+import aboutHeartImage from "@/assets/about-heart-image.png";
 import aboutPurposeImage from "@/assets/about-purpose-image.png";
 import aboutVisionImage from "@/assets/about-vision-image.png";
 import aboutSolutionImage from "@/assets/about-solution-image.png";
@@ -14,7 +14,7 @@ import { Badge } from "@/components/ui/badge";
 type ValueKey = "empathy" | "determination" | "change" | "confidence";
 
 const valueImages: Record<ValueKey, string> = {
-  empathy: aboutBlobImage,
+  empathy: aboutHeartImage,
   determination: aboutPurposeImage,
   change: aboutVisionImage,
   confidence: aboutSolutionImage,
