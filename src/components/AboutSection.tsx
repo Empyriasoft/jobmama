@@ -69,7 +69,7 @@ const MobileAboutCard = ({ value }: { value: { key: ValueKey; label: string } })
       <img 
         src={valueImages[value.key]}
         alt="Mother and child"
-        className="absolute w-[200px] h-[113px] right-2 top-8 object-contain"
+        className="absolute w-[200px] h-[113px] right-0 top-8 object-contain"
       />
 
       {/* Content container */}
