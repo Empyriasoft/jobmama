@@ -63,7 +63,7 @@ const MobileAboutCard = ({ value }: { value: { key: ValueKey; label: string } })
   return (
     <div 
       className="relative overflow-hidden rounded-[24px] h-[480px] w-full"
-      style={{ backgroundColor: 'hsl(192 100% 50%)' }} // Brand blue #00CEFF
+      style={{ backgroundColor: '#ececec' }} // Light gray to match desktop
     >
       {/* Blob-shaped mother-child image */}
       <img 
