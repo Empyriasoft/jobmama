@@ -57,13 +57,8 @@ const ProcessSection = () => {
       />
 
       <div className="relative z-10 flex flex-col lg:flex-row gap-12 lg:gap-24">
-        {/* Title Section */}
+        {/* Intro Text Section */}
         <div className="lg:w-1/3 flex flex-col gap-4">
-          <h2 className="font-google-sans text-4xl md:text-6xl lg:text-[128px] text-[#0D141C] leading-none">
-            Our
-            <br />
-            Process
-          </h2>
           <p className="font-inter text-base md:text-lg lg:text-xl text-[#0D141C]/80 leading-relaxed">
             We know that every mother's situation is unique, but the journey back to professional fulfillment follows a simple, proven path to success. At JobMama, we guide you through three transformative stages:
           </p>
