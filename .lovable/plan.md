@@ -1,39 +1,53 @@
 
-## Testimonials Image Row Update
+
+## Mobile About Cards Improvements
 
 ### Summary
-Update the testimonials section image row to have a fixed container size of 1198x392px with perfectly round images at specific sizes decreasing from the center.
+Make two changes to the mobile About section cards: remove the "ABOUT US" badge and improve the image sizing/positioning.
 
-### Changes
+### Changes to Make
 
-**Container dimensions:**
-- Width: 1198px (max-width for desktop)
-- Height: 392px
+**File: `src/components/AboutSection.tsx`**
 
-**Image sizes (based on position from center):**
-| Position | Size |
-|----------|------|
-| Center (index 3) | 392x392 |
-| Distance 1 (index 2, 4) | 284x284 |
-| Distance 2 (index 1, 5) | 191x191 |
-| Distance 3 (index 0, 6) | 140x140 |
+**1. Remove the "ABOUT US" Badge**
+Delete the Badge component from the MobileAboutCard (lines 68-74):
+```tsx
+{/* ABOUT US Badge - REMOVE THIS */}
+<Badge 
+  variant="secondary"
+  className="absolute top-4 left-4 bg-foreground text-background text-[10px] font-semibold tracking-wider px-3 py-1"
+>
+  ABOUT US
+</Badge>
+```
 
-**Shape:**
-- Remove blob/polygon clip paths
-- Use `border-radius: 50%` for perfectly round circles
+**2. Fit the Image Better**
+Update the image styling to be larger and better positioned:
+- Increase image size from 160x90px to approximately 180-200px width
+- Adjust positioning to fit naturally in the top-right area
+- Keep `object-contain` to preserve the blob/organic shape
 
----
+Current image styling (line 77-81):
+```tsx
+<img 
+  src={valueImages[value.key]}
+  alt="Mother and child"
+  className="absolute w-[160px] h-[90px] right-4 top-4 object-contain"
+/>
+```
 
-### Technical Details
+New image styling:
+```tsx
+<img 
+  src={valueImages[value.key]}
+  alt="Mother and child"
+  className="absolute w-[200px] h-[113px] right-2 top-8 object-contain"
+/>
+```
 
-**File to modify:** `src/components/TestimonialsSection.tsx`
+### Technical Notes
 
-1. Remove the `blobClipPaths` array entirely
-2. Replace size calculation logic with a size map based on distance from center:
-   ```typescript
-   const sizeMap = [140, 191, 284, 392, 284, 191, 140];
-   ```
-3. Set container to `max-w-[1198px] h-[392px]` with `items-center`
-4. Change image container from `clipPath` to `rounded-full` for circular shape
-5. Calculate appropriate overlap margins to fit images within the 1198px width
-6. Add responsive scaling for mobile devices
+- The Badge import can remain in the file (used elsewhere on desktop) but the component call will be removed from the mobile card
+- Image dimensions maintain the original aspect ratio (~16:9) while being larger
+- Position adjusted slightly for better visual balance without the badge
+
