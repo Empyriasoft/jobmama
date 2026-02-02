@@ -1,30 +1,50 @@
 
-
-## Fix Horizontal Scrollbar on Mobile
+## Fix White Stripe on Mobile About Cards
 
 ### Problem
-The horizontal scrollbar appears because the mobile About section carousel uses negative margins (`-ml-3`) that extend beyond the section container. While the carousel's inner wrapper has `overflow-hidden`, the section itself doesn't, causing content to overflow horizontally.
+The mobile carousel cards show a white stripe on the partially visible card (as shown in the screenshot with red arrows). This happens because:
+- `CarouselContent` uses `-ml-3` (negative margin)
+- `CarouselItem` uses `pl-3` (padding-left) to create gaps between cards
+- The padding area shows the white page background through the gap
 
 ### Solution
-Add `overflow-hidden` to the mobile About section container to prevent the carousel's negative margins from causing page-level horizontal scroll.
+Change the gap approach from padding-based to margin-based gap on the card itself, which will keep the card background consistent without showing white stripes.
 
 ### Changes to Make
 
 **File: `src/components/AboutSection.tsx`**
 
-Update the mobile section container (line 160):
+Update the CarouselItem (line 179) to remove padding and add margin to the card:
 
+Current:
 ```tsx
-// Current
-<section className="w-full px-4 pt-16 pb-12">
-
-// Updated
-<section className="w-full px-4 pt-16 pb-12 overflow-hidden">
+<CarouselItem key={value.key} className="pl-3 basis-[85%]">
+  <MobileAboutCard value={value} />
+</CarouselItem>
 ```
 
-### Technical Notes
+Updated:
+```tsx
+<CarouselItem key={value.key} className="basis-[85%]">
+  <div className="pr-3">
+    <MobileAboutCard value={value} />
+  </div>
+</CarouselItem>
+```
 
-- The Embla carousel uses negative margins on `CarouselContent` and positive padding on `CarouselItem` to create proper spacing between slides
-- The carousel's viewport (`div` with `overflow-hidden` in `carousel.tsx` line 139) handles clipping the slides, but the negative margin still affects the parent layout
-- Adding `overflow-hidden` to the section container clips any content that extends beyond its bounds, preventing horizontal page scroll
+Also update CarouselContent (line 177) to remove the negative margin:
 
+Current:
+```tsx
+<CarouselContent className="-ml-3">
+```
+
+Updated:
+```tsx
+<CarouselContent className="">
+```
+
+### Why This Works
+- Removing the negative margin and left padding eliminates the gap that was showing the white background
+- Using `pr-3` (padding-right) on an inner wrapper creates the visual gap between cards without exposing the page background
+- The card backgrounds extend edge-to-edge within their container, preventing any white stripe from appearing
