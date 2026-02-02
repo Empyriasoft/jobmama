@@ -1,5 +1,6 @@
 import { useState, useRef } from "react";
 import aboutBlobImage from "@/assets/about-blob-image.png";
+import aboutPurposeImage from "@/assets/about-purpose-image.png";
 import { useIsMobile } from "@/hooks/use-mobile";
 import {
   Carousel,
@@ -9,6 +10,13 @@ import {
 import { Badge } from "@/components/ui/badge";
 
 type ValueKey = "empathy" | "determination" | "change" | "confidence";
+
+const valueImages: Record<ValueKey, string> = {
+  empathy: aboutBlobImage,
+  determination: aboutPurposeImage,
+  change: aboutBlobImage,
+  confidence: aboutBlobImage,
+};
 
 interface AboutContent {
   title: string;
@@ -65,7 +73,7 @@ const MobileAboutCard = ({ value }: { value: { key: ValueKey; label: string } })
 
       {/* Blob-shaped mother-child image */}
       <img 
-        src={aboutBlobImage}
+        src={valueImages[value.key]}
         alt="Mother and child"
         className="absolute w-[160px] h-[90px] right-4 top-4 object-contain"
       />
@@ -120,7 +128,7 @@ const DesktopAboutCard = ({ activeValue }: { activeValue: ValueKey }) => {
     >
       {/* Blob-shaped mother-child image */}
       <img 
-        src={aboutBlobImage}
+        src={valueImages[activeValue]}
         alt="Mother and child"
         className="absolute w-[400px] h-[226px] lg:w-[671px] lg:h-[379px] left-8 top-10 lg:left-[44px] lg:top-[49px] object-contain"
       />
