@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import aboutBlobImage from "@/assets/about-blob-image.png";
 import aboutPurposeImage from "@/assets/about-purpose-image.png";
+import aboutVisionImage from "@/assets/about-vision-image.png";
 import { useIsMobile } from "@/hooks/use-mobile";
 import {
   Carousel,
@@ -14,7 +15,7 @@ type ValueKey = "empathy" | "determination" | "change" | "confidence";
 const valueImages: Record<ValueKey, string> = {
   empathy: aboutBlobImage,
   determination: aboutPurposeImage,
-  change: aboutBlobImage,
+  change: aboutVisionImage,
   confidence: aboutBlobImage,
 };
 
