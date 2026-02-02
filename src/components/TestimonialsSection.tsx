@@ -2,62 +2,59 @@ import { useIsMobile } from "@/hooks/use-mobile";
 
 // Placeholder testimonial data - replace with real data/images later
 const testimonials = [
-  { id: 1, name: "Sarah M.", image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=200&h=200&fit=crop&crop=face" },
-  { id: 2, name: "Emily R.", image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop&crop=face" },
-  { id: 3, name: "Jessica L.", image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&h=200&fit=crop&crop=face" },
-  { id: 4, name: "Amanda K.", image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=200&h=200&fit=crop&crop=face" },
-  { id: 5, name: "Rachel T.", image: "https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=200&h=200&fit=crop&crop=face" },
-  { id: 6, name: "Nicole P.", image: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=200&h=200&fit=crop&crop=face" },
-  { id: 7, name: "Michelle D.", image: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=200&h=200&fit=crop&crop=face" },
+  { id: 1, name: "Sarah M.", image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=400&h=400&fit=crop&crop=face" },
+  { id: 2, name: "Emily R.", image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop&crop=face" },
+  { id: 3, name: "Jessica L.", image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=400&fit=crop&crop=face" },
+  { id: 4, name: "Amanda K.", image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400&h=400&fit=crop&crop=face" },
+  { id: 5, name: "Rachel T.", image: "https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=400&h=400&fit=crop&crop=face" },
+  { id: 6, name: "Nicole P.", image: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=400&h=400&fit=crop&crop=face" },
+  { id: 7, name: "Michelle D.", image: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=400&h=400&fit=crop&crop=face" },
 ];
 
-// Blob clip paths for organic shapes
-const blobClipPaths = [
-  "polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)",
-  "ellipse(50% 45% at 50% 50%)",
-  "polygon(25% 5%, 75% 5%, 95% 50%, 75% 95%, 25% 95%, 5% 50%)",
-  "ellipse(48% 50% at 50% 50%)",
-  "polygon(20% 0%, 80% 0%, 100% 35%, 100% 65%, 80% 100%, 20% 100%, 0% 65%, 0% 35%)",
-  "ellipse(50% 48% at 50% 50%)",
-  "polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)",
-];
+// Size map based on position: [0, 1, 2, 3(center), 4, 5, 6]
+const sizeMap = [140, 191, 284, 392, 284, 191, 140];
+const mobileSizeMap = [50, 68, 102, 140, 102, 68, 50];
 
 const TestimonialsSection = () => {
   const isMobile = useIsMobile();
+  
+  // Calculate total width and overlap needed
+  const sizes = isMobile ? mobileSizeMap : sizeMap;
+  const totalImageWidth = sizes.reduce((a, b) => a + b, 0); // 1622 for desktop
+  const containerWidth = isMobile ? 428 : 1198;
+  const overlapTotal = totalImageWidth - containerWidth;
+  const overlapPerGap = overlapTotal / (testimonials.length - 1); // Divide among 6 gaps
 
   return (
     <section className="w-full px-5 md:px-8 lg:px-[100px] pt-16 md:pt-24 lg:pt-32 pb-16 md:pb-24 lg:pb-32">
-      {/* Overlapping blob images */}
+      {/* Overlapping round images */}
       <div className="flex justify-center items-center mb-12 md:mb-16 lg:mb-20">
-        <div className="flex items-center justify-center relative">
+        <div 
+          className="flex items-center justify-center"
+          style={{ 
+            maxWidth: containerWidth,
+            height: isMobile ? 140 : 392,
+          }}
+        >
           {testimonials.map((testimonial, index) => {
-            // Calculate sizes - center image is larger
-            const isCenter = index === Math.floor(testimonials.length / 2);
-            const distanceFromCenter = Math.abs(index - Math.floor(testimonials.length / 2));
-            
-            // Size variations
-            const baseSize = isMobile ? 60 : 120;
-            const centerSize = isMobile ? 100 : 200;
-            const size = isCenter ? centerSize : baseSize - (distanceFromCenter * (isMobile ? 5 : 10));
-            
-            // Overlap offset
-            const overlap = isMobile ? -15 : -30;
+            const size = sizes[index];
+            const isCenter = index === 3;
+            const distanceFromCenter = Math.abs(index - 3);
             
             return (
               <div
                 key={testimonial.id}
-                className="relative transition-transform duration-300 hover:scale-110 hover:z-10"
+                className="relative transition-transform duration-300 hover:scale-110 hover:z-20 flex-shrink-0"
                 style={{
-                  marginLeft: index === 0 ? 0 : overlap,
-                  zIndex: isCenter ? 10 : 5 - distanceFromCenter,
+                  marginLeft: index === 0 ? 0 : -overlapPerGap,
+                  zIndex: isCenter ? 10 : 7 - distanceFromCenter,
                 }}
               >
                 <div
-                  className="overflow-hidden bg-muted"
+                  className="rounded-full overflow-hidden bg-muted"
                   style={{
                     width: size,
                     height: size,
-                    clipPath: blobClipPaths[index % blobClipPaths.length],
                   }}
                 >
                   <img
