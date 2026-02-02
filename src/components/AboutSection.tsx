@@ -174,10 +174,12 @@ const AboutSection = () => {
           }}
           className="w-full"
         >
-          <CarouselContent className="-ml-3">
+          <CarouselContent className="">
             {values.map((value) => (
-              <CarouselItem key={value.key} className="pl-3 basis-[85%]">
-                <MobileAboutCard value={value} />
+              <CarouselItem key={value.key} className="basis-[85%]">
+                <div className="pr-3">
+                  <MobileAboutCard value={value} />
+                </div>
               </CarouselItem>
             ))}
           </CarouselContent>
