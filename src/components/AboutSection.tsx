@@ -65,19 +65,11 @@ const MobileAboutCard = ({ value }: { value: { key: ValueKey; label: string } })
       className="relative overflow-hidden rounded-[24px] h-[480px] w-full"
       style={{ backgroundColor: 'hsl(192 100% 50%)' }} // Brand blue #00CEFF
     >
-      {/* ABOUT US Badge */}
-      <Badge 
-        variant="secondary"
-        className="absolute top-4 left-4 bg-foreground text-background text-[10px] font-semibold tracking-wider px-3 py-1"
-      >
-        ABOUT US
-      </Badge>
-
       {/* Blob-shaped mother-child image */}
       <img 
         src={valueImages[value.key]}
         alt="Mother and child"
-        className="absolute w-[160px] h-[90px] right-4 top-4 object-contain"
+        className="absolute w-[200px] h-[113px] right-2 top-8 object-contain"
       />
 
       {/* Content container */}
