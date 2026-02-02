@@ -1,53 +1,30 @@
 
 
-## Mobile About Cards Improvements
+## Fix Horizontal Scrollbar on Mobile
 
-### Summary
-Make two changes to the mobile About section cards: remove the "ABOUT US" badge and improve the image sizing/positioning.
+### Problem
+The horizontal scrollbar appears because the mobile About section carousel uses negative margins (`-ml-3`) that extend beyond the section container. While the carousel's inner wrapper has `overflow-hidden`, the section itself doesn't, causing content to overflow horizontally.
+
+### Solution
+Add `overflow-hidden` to the mobile About section container to prevent the carousel's negative margins from causing page-level horizontal scroll.
 
 ### Changes to Make
 
 **File: `src/components/AboutSection.tsx`**
 
-**1. Remove the "ABOUT US" Badge**
-Delete the Badge component from the MobileAboutCard (lines 68-74):
-```tsx
-{/* ABOUT US Badge - REMOVE THIS */}
-<Badge 
-  variant="secondary"
-  className="absolute top-4 left-4 bg-foreground text-background text-[10px] font-semibold tracking-wider px-3 py-1"
->
-  ABOUT US
-</Badge>
-```
+Update the mobile section container (line 160):
 
-**2. Fit the Image Better**
-Update the image styling to be larger and better positioned:
-- Increase image size from 160x90px to approximately 180-200px width
-- Adjust positioning to fit naturally in the top-right area
-- Keep `object-contain` to preserve the blob/organic shape
-
-Current image styling (line 77-81):
 ```tsx
-<img 
-  src={valueImages[value.key]}
-  alt="Mother and child"
-  className="absolute w-[160px] h-[90px] right-4 top-4 object-contain"
-/>
-```
+// Current
+<section className="w-full px-4 pt-16 pb-12">
 
-New image styling:
-```tsx
-<img 
-  src={valueImages[value.key]}
-  alt="Mother and child"
-  className="absolute w-[200px] h-[113px] right-2 top-8 object-contain"
-/>
+// Updated
+<section className="w-full px-4 pt-16 pb-12 overflow-hidden">
 ```
 
 ### Technical Notes
 
-- The Badge import can remain in the file (used elsewhere on desktop) but the component call will be removed from the mobile card
-- Image dimensions maintain the original aspect ratio (~16:9) while being larger
-- Position adjusted slightly for better visual balance without the badge
+- The Embla carousel uses negative margins on `CarouselContent` and positive padding on `CarouselItem` to create proper spacing between slides
+- The carousel's viewport (`div` with `overflow-hidden` in `carousel.tsx` line 139) handles clipping the slides, but the negative margin still affects the parent layout
+- Adding `overflow-hidden` to the section container clips any content that extends beyond its bounds, preventing horizontal page scroll
 
