@@ -14,7 +14,7 @@ const Index = () => {
       <ServicesSection />
       
       {/* Our Process Heading - positioned between services and process section */}
-      <div className="w-full px-5 md:px-8 lg:px-[100px] mt-[100px] md:mt-[180px] lg:mt-[250px] mb-[40px] md:mb-[60px] lg:mb-[80px] relative z-10">
+      <div className="w-full px-5 md:px-8 lg:px-[100px] mt-[100px] md:mt-[180px] lg:mt-[250px] mb-[40px] md:mb-[60px] lg:mb-[80px] relative z-10 flex justify-center">
         <img 
           src={ourProcessHeading} 
           alt="Our Process" 
