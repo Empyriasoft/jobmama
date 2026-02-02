@@ -16,7 +16,7 @@ interface ServiceTier {
 
 const serviceTiers: ServiceTier[] = [
   {
-    title: "01. Essential Starter",
+    title: "Essential Starter",
     price: "€199",
     period: "one-time",
     features: [
@@ -40,7 +40,7 @@ const serviceTiers: ServiceTier[] = [
     bookingUrl: "https://calendly.com/a-novakov89/30min"
   },
   {
-    title: "02. Signature 4-Step Transformation Package",
+    title: "Signature 4-Step Transformation Package",
     price: "€399",
     period: "one-time",
     features: [
@@ -65,7 +65,7 @@ const serviceTiers: ServiceTier[] = [
     bookingUrl: "https://calendly.com/a-novakov89/30min"
   },
   {
-    title: "03. Success Package: Total Confidence",
+    title: "Success Package: Total Confidence",
     price: "€599",
     period: "one-time",
     features: [
@@ -89,7 +89,7 @@ const serviceTiers: ServiceTier[] = [
     bookingUrl: "https://calendly.com/a-novakov89/30min"
   },
   {
-    title: "04. Corporate Solutions & HR Partnerships",
+    title: "Corporate Solutions & HR Partnerships",
     price: "Custom",
     period: "contact us",
     features: [
