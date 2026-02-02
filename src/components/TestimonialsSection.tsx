@@ -26,7 +26,7 @@ const TestimonialsSection = () => {
   const overlapPerGap = overlapTotal / (testimonials.length - 1); // Divide among 6 gaps
 
   return (
-    <section className="w-full px-5 md:px-8 lg:px-[100px] pt-16 md:pt-24 lg:pt-32 pb-16 md:pb-24 lg:pb-32">
+    <section className="w-full px-5 md:px-8 lg:px-[100px] pt-[200px] md:pt-[300px] lg:pt-[400px] pb-16 md:pb-24 lg:pb-32">
       {/* Overlapping round images */}
       <div className="flex justify-center items-center mb-12 md:mb-16 lg:mb-20">
         <div 
