@@ -99,7 +99,7 @@ const TestimonialsSection = () => {
                 onMouseEnter={() => setActiveIndex(index)}
               >
                 <div
-                  className={`rounded-full overflow-hidden bg-muted transition-all duration-300 ${isActive ? 'ring-4 ring-primary ring-offset-2' : ''}`}
+                  className="rounded-full overflow-hidden bg-muted transition-all duration-300"
                   style={{
                     width: size,
                     height: size,
