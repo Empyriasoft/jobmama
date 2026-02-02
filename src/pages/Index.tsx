@@ -4,7 +4,6 @@ import AboutSection from "@/components/AboutSection";
 import ServicesSection from "@/components/ServicesSection";
 import ProcessSection from "@/components/ProcessSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
-import Footer from "@/components/Footer";
 import ourProcessHeading from "@/assets/our-process-heading.png";
 
 const Index = () => {
@@ -26,7 +25,6 @@ const Index = () => {
       
       <ProcessSection />
       <TestimonialsSection />
-      <Footer />
     </div>
   );
 };
