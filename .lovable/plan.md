@@ -1,78 +1,39 @@
 
-# Mobile Expand-on-Touch for Service Card Features
+## Testimonials Image Row Update
 
-## Summary
-Change the feature bullet points in service cards to expand inline on mobile instead of showing a floating popover tooltip. Desktop behavior (hover card) will remain unchanged.
+### Summary
+Update the testimonials section image row to have a fixed container size of 1198x392px with perfectly round images at specific sizes decreasing from the center.
 
-## Current vs New Behavior
+### Changes
 
-### Current (Mobile)
-- Tap feature heading → floating popover appears above
-- Popover can be accidentally dismissed
-- Feels disconnected from the content
+**Container dimensions:**
+- Width: 1198px (max-width for desktop)
+- Height: 392px
 
-### New (Mobile)
-- Tap feature heading → description expands directly below the heading
-- Tap again to collapse
-- Smooth accordion-style animation
-- More natural touch interaction
+**Image sizes (based on position from center):**
+| Position | Size |
+|----------|------|
+| Center (index 3) | 392x392 |
+| Distance 1 (index 2, 4) | 284x284 |
+| Distance 2 (index 1, 5) | 191x191 |
+| Distance 3 (index 0, 6) | 140x140 |
 
-```text
-BEFORE (Popover):                    AFTER (Inline Expand):
-                                     
-  +------------------+               ✓ 1-on-1 coaching session
-  | Description here |               
-  +------------------+               ✓ Personalized action plan ▼
-        ↑                              A clear, step-by-step guide
-  ✓ Feature heading                    tailored to your journey...
-                                     
-                                     ✓ Complete resume overhaul
-```
-
-## What Stays the Same
-- Desktop: HoverCard on mouse hover (no changes)
-- Visual styling: fonts, colors, check icons
-- Card layout and structure
+**Shape:**
+- Remove blob/polygon clip paths
+- Use `border-radius: 50%` for perfectly round circles
 
 ---
 
-## Technical Details
+### Technical Details
 
-### Changes to `src/components/ServiceCard.tsx`
+**File to modify:** `src/components/TestimonialsSection.tsx`
 
-**1. Update the `FeatureItem` component for mobile:**
-- Replace `Popover` with a simple toggle state
-- When tapped, show description directly below the heading
-- Add smooth height animation using CSS transitions
-- Keep the Info icon but change to a chevron that rotates on expand
-
-**2. Mobile feature item structure:**
-```text
-<div>
-  <button onClick={toggle}>
-    <span>Feature heading</span>
-    <ChevronDown className={rotateOnOpen} />
-  </button>
-  {isExpanded && (
-    <div className="animate-accordion-down">
-      <p>Description text...</p>
-    </div>
-  )}
-</div>
-```
-
-**3. Animation:**
-- Use existing `animate-accordion-down` keyframe from tailwind config
-- Smooth expand/collapse transition
-
-### Files to Modify
-
-| File | Changes |
-|------|---------|
-| `src/components/ServiceCard.tsx` | Update `FeatureItem` component to use inline expand on mobile instead of Popover |
-
-## Visual Result
-
-**Mobile**: Tapping a feature heading expands/collapses the description directly below it with a smooth animation. The chevron icon rotates to indicate open/closed state.
-
-**Desktop**: No change - hover still shows the floating card tooltip.
+1. Remove the `blobClipPaths` array entirely
+2. Replace size calculation logic with a size map based on distance from center:
+   ```typescript
+   const sizeMap = [140, 191, 284, 392, 284, 191, 140];
+   ```
+3. Set container to `max-w-[1198px] h-[392px]` with `items-center`
+4. Change image container from `clipPath` to `rounded-full` for circular shape
+5. Calculate appropriate overlap margins to fit images within the 1198px width
+6. Add responsive scaling for mobile devices
