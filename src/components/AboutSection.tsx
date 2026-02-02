@@ -157,7 +157,7 @@ const AboutSection = () => {
   // Mobile: Carousel Layout
   if (isMobile) {
     return (
-      <section className="w-full px-4 pt-16 pb-12">
+      <section className="w-full px-4 pt-16 pb-12 overflow-hidden">
         {/* Section Title */}
         <h2
           style={{ fontFamily: "'Google Sans', sans-serif", color: '#0D141C' }}
