@@ -1,50 +1,59 @@
 
-## Fix White Stripe on Mobile About Cards
 
-### Problem
-The mobile carousel cards show a white stripe on the partially visible card (as shown in the screenshot with red arrows). This happens because:
-- `CarouselContent` uses `-ml-3` (negative margin)
-- `CarouselItem` uses `pl-3` (padding-left) to create gaps between cards
-- The padding area shows the white page background through the gap
+# Fix: About Section Card Text Overlapping on Medium Screens
 
-### Solution
-Change the gap approach from padding-based to margin-based gap on the card itself, which will keep the card background consistent without showing white stripes.
+## Problem Analysis
 
-### Changes to Make
+The desktop About card has three responsive breakpoints, but the medium (`md`) breakpoint causes text to overlap with the image:
 
-**File: `src/components/AboutSection.tsx`**
+| Element | Mobile | Medium (md) | Large (lg) |
+|---------|--------|-------------|------------|
+| Card height | - | 700px | 950px |
+| Image size | - | 400x226px | 671x379px |
+| Title font | - | 48px | 75.88px |
+| Description font | - | 18px | 24px |
+| Content bottom offset | - | 70px | 108px |
 
-Update the CarouselItem (line 179) to remove padding and add margin to the card:
+On a 700px card, the image ends at ~266px from top, but the large text content (title + description) starting from bottom-70px extends upward and overlaps with the image.
 
-Current:
-```tsx
-<CarouselItem key={value.key} className="pl-3 basis-[85%]">
-  <MobileAboutCard value={value} />
-</CarouselItem>
+## Solution
+
+Add proper `md` breakpoint values to ensure adequate spacing between the image and text content:
+
+### Changes to `src/components/AboutSection.tsx`
+
+**1. Reduce image size on medium screens**
+```
+Current: w-[400px] h-[226px]
+New: w-[300px] h-[170px] md:w-[350px] md:h-[198px]
 ```
 
-Updated:
-```tsx
-<CarouselItem key={value.key} className="basis-[85%]">
-  <div className="pr-3">
-    <MobileAboutCard value={value} />
-  </div>
-</CarouselItem>
+**2. Reduce title font size on medium screens**
+```
+Current: text-[48px] lg:text-[75.88px]
+New: text-[36px] md:text-[42px] lg:text-[75.88px]
 ```
 
-Also update CarouselContent (line 177) to remove the negative margin:
-
-Current:
-```tsx
-<CarouselContent className="-ml-3">
+**3. Reduce description font size on medium screens**
+```
+Current: text-[18px] lg:text-[24px]
+New: text-[16px] md:text-[18px] lg:text-[24px]
 ```
 
-Updated:
-```tsx
-<CarouselContent className="">
+**4. Adjust content container padding**
+```
+Current: bottom-[70px] left-12 right-12
+New: bottom-[50px] left-8 right-8 md:bottom-[60px] md:left-10 md:right-10 lg:bottom-[108px] lg:left-[95px] lg:right-[95px]
 ```
 
-### Why This Works
-- Removing the negative margin and left padding eliminates the gap that was showing the white background
-- Using `pr-3` (padding-right) on an inner wrapper creates the visual gap between cards without exposing the page background
-- The card backgrounds extend edge-to-edge within their container, preventing any white stripe from appearing
+## Technical Details
+
+The fix targets the `DesktopAboutCard` component (lines 109-151), specifically:
+
+- Line 127: Image sizing classes
+- Line 133: Content container positioning
+- Line 138: Title text size
+- Line 144: Description text size
+
+These changes ensure proper vertical spacing between the image and text content across all screen sizes while maintaining the design's visual proportions.
+
