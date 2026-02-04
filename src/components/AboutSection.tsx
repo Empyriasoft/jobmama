@@ -174,9 +174,9 @@ const AboutSection = () => {
           }}
           className="w-full"
         >
-          <CarouselContent className="">
+          <CarouselContent className="ml-0">
             {values.map((value) => (
-              <CarouselItem key={value.key} className="basis-[85%]">
+              <CarouselItem key={value.key} className="pl-0 basis-[85%]">
                 <MobileAboutCard value={value} />
               </CarouselItem>
             ))}
