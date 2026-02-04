@@ -48,8 +48,8 @@ const TabButton = ({ active, onClick, children }: TabButtonProps) => (
     onClick={onClick}
     className={`text-left py-4 px-6 font-google-sans font-medium text-4xl md:text-6xl lg:text-[116px] lg:leading-[1.1] transition-all ${
       active
-        ? "border-l-4 border-[#00E5CC] text-[#0D141C]"
-        : "border-l-4 border-transparent text-[#BBBBBB] hover:text-[#0D141C]"
+        ? "text-[#0D141C]"
+        : "text-[#BBBBBB] hover:text-[#0D141C]"
     }`}
   >
     {children}
