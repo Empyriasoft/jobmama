@@ -35,9 +35,9 @@ const testimonials = [
   },
   { 
     id: 5, 
-    name: "Rachel T.", 
+    name: "Nadia", 
     role: "HR Director",
-    image: "https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=400&h=400&fit=crop&crop=face",
+    image: testimonialRightImage,
     quote: "The personalized coaching sessions were a game-changer. I went from feeling invisible in the job market to receiving multiple offers. JobMama truly understands the challenges moms face."
   },
   { 
@@ -49,9 +49,9 @@ const testimonials = [
   },
   { 
     id: 7, 
-    name: "Nadia", 
+    name: "Michelle D.", 
     role: "Sales Executive",
-    image: testimonialRightImage,
+    image: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=400&h=400&fit=crop&crop=face",
     quote: "I was worried my sales skills were outdated after being away. JobMama's training and confidence-building sessions helped me exceed my targets in my first quarter back. Highly recommend!"
   },
 ];
