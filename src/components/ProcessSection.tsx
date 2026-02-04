@@ -80,18 +80,23 @@ const ProcessSection = () => {
   const businessesSteps = [
     {
       number: "01.",
-      title: "Assess & Match",
-      description: "We start by understanding your unique hiring needs, company culture, and the specific skills required for your open positions. Our team conducts a thorough assessment to identify the ideal candidate profile, ensuring we match you with professionals who not only have the qualifications but also align with your organizational values."
+      title: "Initial Discovery",
+      description: "Start by booking a consultation meeting with us. We will discuss your current challenges, parental leave turnover, and your specific needs for talent retention."
     },
     {
       number: "02.",
-      title: "Source Qualified Talent",
-      description: "Tap into JobMama's extensive network of skilled professionals returning to the workforce. These are experienced individuals who bring diverse perspectives, strong problem-solving abilities, and a renewed commitment to their careers. We pre-screen and vet candidates, presenting you with a curated selection of top talent ready to contribute from day one."
+      title: "Tailored Solutions",
+      description: "Based on our meeting, we recommend a mix of our modular services - whether it's a single workshop, a coaching series, or a targeted job posting - to solve your specific pain points."
     },
     {
       number: "03.",
-      title: "Hire & Integrate",
-      description: "Once you've found your ideal candidate, we support the onboarding process to ensure a smooth transition. From offer negotiation to integration support, we help both parties set the foundation for a successful working relationship. Our ongoing support ensures that your new hire thrives, contributing to your team's success and driving business growth."
+      title: "Program Alignment",
+      description: "We refine the selected solution to fit your industry and internal HR policies. This ensures that the integration of returning employees is seamless and adds immediate value to your teams."
+    },
+    {
+      number: "04.",
+      title: "Collaborative Execution",
+      description: "We facilitate the sessions or launch the recruitment ads. Throughout the process, we remain in close contact to provide feedback and ensure the collaboration meets your expectations."
     }
   ];
 
