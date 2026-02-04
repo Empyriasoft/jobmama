@@ -82,45 +82,25 @@ const TestimonialsSection = () => {
   useEffect(() => {
     if (!carouselApi) return;
 
-    carouselApi.on("select", () => {
+    const onSelect = () => {
       setActiveIndex(carouselApi.selectedScrollSnap());
-    });
+    };
+
+    // Set initial index
+    onSelect();
+    
+    carouselApi.on("select", onSelect);
+    
+    return () => {
+      carouselApi.off("select", onSelect);
+    };
   }, [carouselApi]);
 
-  // Mobile carousel view
-  const MobileCarousel = () => (
-    <Carousel
-      opts={{
-        align: "center",
-        loop: true,
-        startIndex: 3,
-      }}
-      setApi={setCarouselApi}
-      className="w-full max-w-[300px] mx-auto"
-    >
-      <CarouselContent className="-ml-2">
-        {testimonials.map((testimonial, index) => (
-          <CarouselItem key={testimonial.id} className="pl-2 basis-1/3">
-            <div className="flex justify-center">
-              <div
-                className="rounded-full overflow-hidden bg-muted transition-all duration-300"
-                style={{
-                  width: index === activeIndex ? 100 : 70,
-                  height: index === activeIndex ? 100 : 70,
-                }}
-              >
-                <img
-                  src={testimonial.image}
-                  alt={testimonial.name}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            </div>
-          </CarouselItem>
-        ))}
-      </CarouselContent>
-    </Carousel>
-  );
+  // Calculate which image should be enlarged based on visual position
+  const getImageSize = (index: number) => {
+    if (!isMobile) return 70;
+    return index === activeIndex ? 100 : 70;
+  };
 
   // Desktop overlapping view
   const DesktopOverlapping = () => (
@@ -170,7 +150,41 @@ const TestimonialsSection = () => {
     <section className="w-full px-5 md:px-8 lg:px-[100px] pt-[200px] md:pt-[300px] lg:pt-[400px] pb-16 md:pb-24 lg:pb-32">
       {/* Overlapping round images / Mobile carousel */}
       <div className="flex justify-center items-center mb-12 md:mb-16 lg:mb-20">
-        {isMobile ? <MobileCarousel /> : <DesktopOverlapping />}
+        {isMobile ? (
+          <Carousel
+            opts={{
+              align: "center",
+              loop: true,
+              startIndex: 3,
+            }}
+            setApi={setCarouselApi}
+            className="w-full max-w-[320px] mx-auto"
+          >
+            <CarouselContent className="-ml-4">
+              {testimonials.map((testimonial, index) => (
+                <CarouselItem key={testimonial.id} className="pl-4 basis-1/3">
+                  <div className="flex justify-center items-center h-[110px]">
+                    <div
+                      className="rounded-full overflow-hidden bg-muted transition-all duration-300"
+                      style={{
+                        width: getImageSize(index),
+                        height: getImageSize(index),
+                      }}
+                    >
+                      <img
+                        src={testimonial.image}
+                        alt={testimonial.name}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+          </Carousel>
+        ) : (
+          <DesktopOverlapping />
+        )}
       </div>
 
       {/* Testimonials heading */}
