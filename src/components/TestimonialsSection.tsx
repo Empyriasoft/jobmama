@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
+import testimonialCenterImage from "@/assets/testimonial-center.png";
 
 // Placeholder testimonial data - replace with real data/images later
 const testimonials = [
@@ -26,9 +27,9 @@ const testimonials = [
   },
   { 
     id: 4, 
-    name: "Amanda K.", 
-    role: "Financial Analyst",
-    image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400&h=400&fit=crop&crop=face",
+    name: "Estee", 
+    role: "JobMama Founder",
+    image: testimonialCenterImage,
     quote: "After five years away from finance, I thought my career was over. JobMama showed me how to leverage my experience and helped me land a senior position. Their belief in me made all the difference."
   },
   { 
