@@ -124,7 +124,7 @@ const DesktopAboutCard = ({ activeValue }: { activeValue: ValueKey }) => {
       <img 
         src={valueImages[activeValue]}
         alt="Mother and child"
-        className="absolute w-[300px] h-[170px] md:w-[350px] md:h-[198px] lg:w-[671px] lg:h-[379px] left-8 top-10 lg:left-[44px] lg:top-[49px] object-contain"
+        className="absolute w-[300px] h-[170px] md:w-[350px] md:h-[198px] lg:w-[671px] lg:h-[379px] left-8 md:left-10 lg:left-[95px] top-10 lg:top-[49px] object-contain"
       />
 
       {/* Content container positioned from bottom */}
