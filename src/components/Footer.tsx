@@ -31,7 +31,7 @@ const Footer = () => {
     href: null
   }];
   if (isMobile) {
-    return <footer className="relative w-full bg-background">
+    return <footer className="relative w-full bg-background mt-[500px]">
         {/* Content */}
         <div className="px-5 pt-16 pb-8 relative z-10">
           {/* Logo */}
@@ -80,14 +80,14 @@ const Footer = () => {
         </div>
 
         {/* Footer logo - edge to edge */}
-        <div className="w-full mt-8">
+        <div className="w-full mt-[500px]">
           <img src={footerLogo} alt="" className="w-full h-auto object-cover" />
         </div>
       </footer>;
   }
 
   // Desktop layout
-  return <footer className="relative w-full bg-background">
+  return <footer className="relative w-full bg-background mt-[500px]">
       {/* Content */}
       <div className="px-8 lg:px-[100px] pt-20 lg:pt-24 pb-12 lg:pb-16 relative z-10">
         <div className="flex justify-between items-start">
@@ -134,7 +134,7 @@ const Footer = () => {
       </div>
 
       {/* Footer logo - edge to edge */}
-      <div className="w-full">
+      <div className="w-full mt-[500px]">
         <img src={footerLogo} alt="" className="w-full h-auto object-cover" />
       </div>
     </footer>;
