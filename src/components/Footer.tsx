@@ -1,4 +1,5 @@
 import logo from "@/assets/logo.svg";
+import footerLogo from "@/assets/footer-logo.png";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 const Footer = () => {
@@ -23,9 +24,9 @@ const Footer = () => {
 
   if (isMobile) {
     return (
-      <footer className="relative w-full bg-background overflow-hidden">
+      <footer className="relative w-full bg-background">
         {/* Content */}
-        <div className="px-5 pt-16 pb-32 relative z-10">
+        <div className="px-5 pt-16 pb-8 relative z-10">
           {/* Logo */}
           <img src={logo} alt="JobMama" className="h-8 w-auto mb-2" />
           
@@ -95,22 +96,13 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Decorative curved shape */}
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[200%] h-[200px]">
-          <svg
-            className="w-full h-full"
-            viewBox="0 0 1200 200"
-            fill="none"
-            preserveAspectRatio="none"
-          >
-            <ellipse
-              cx="600"
-              cy="300"
-              rx="700"
-              ry="250"
-              fill="hsl(var(--foreground))"
-            />
-          </svg>
+        {/* Footer logo - edge to edge */}
+        <div className="w-full mt-8">
+          <img 
+            src={footerLogo} 
+            alt="" 
+            className="w-full h-auto object-cover"
+          />
         </div>
       </footer>
     );
@@ -118,9 +110,9 @@ const Footer = () => {
 
   // Desktop layout
   return (
-    <footer className="relative w-full bg-background overflow-hidden">
+    <footer className="relative w-full bg-background">
       {/* Content */}
-      <div className="px-8 lg:px-[100px] pt-20 lg:pt-24 pb-48 lg:pb-64 relative z-10">
+      <div className="px-8 lg:px-[100px] pt-20 lg:pt-24 pb-12 lg:pb-16 relative z-10">
         <div className="flex justify-between items-start">
           {/* Left side - Logo and tagline */}
           <div>
@@ -192,22 +184,13 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Decorative curved shape */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[150%] h-[300px] lg:h-[400px]">
-        <svg
-          className="w-full h-full"
-          viewBox="0 0 1200 400"
-          fill="none"
-          preserveAspectRatio="none"
-        >
-          <ellipse
-            cx="600"
-            cy="500"
-            rx="800"
-            ry="400"
-            fill="hsl(var(--foreground))"
-          />
-        </svg>
+      {/* Footer logo - edge to edge */}
+      <div className="w-full">
+        <img 
+          src={footerLogo} 
+          alt="" 
+          className="w-full h-auto object-cover"
+        />
       </div>
     </footer>
   );
