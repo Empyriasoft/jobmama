@@ -124,24 +124,24 @@ const DesktopAboutCard = ({ activeValue }: { activeValue: ValueKey }) => {
       <img 
         src={valueImages[activeValue]}
         alt="Mother and child"
-        className="absolute w-[400px] h-[226px] lg:w-[671px] lg:h-[379px] left-8 top-10 lg:left-[44px] lg:top-[49px] object-contain"
+        className="absolute w-[300px] h-[170px] md:w-[350px] md:h-[198px] lg:w-[671px] lg:h-[379px] left-8 top-10 lg:left-[44px] lg:top-[49px] object-contain"
       />
 
       {/* Content container positioned from bottom */}
       <div 
         key={activeValue}
-        className="absolute bottom-[70px] left-12 right-12 lg:bottom-[108px] lg:left-[95px] lg:right-[95px] flex flex-col gap-4 lg:gap-[36px] animate-fade-in"
+        className="absolute bottom-[50px] left-8 right-8 md:bottom-[60px] md:left-10 md:right-10 lg:bottom-[108px] lg:left-[95px] lg:right-[95px] flex flex-col gap-4 lg:gap-[36px] animate-fade-in"
       >
         {/* Main heading */}
         <h3
           style={{ fontFamily: "'Google Sans', sans-serif", letterSpacing: '-0.04em', color: '#000000' }}
-          className="text-[48px] lg:text-[75.88px] font-medium leading-[1.1]"
+          className="text-[36px] md:text-[42px] lg:text-[75.88px] font-medium leading-[1.1]"
         >
           {aboutContent[activeValue].title}
         </h3>
         <p
           style={{ fontFamily: "'Inter', sans-serif", letterSpacing: '-0.04em', color: '#000000' }}
-          className="text-[18px] lg:text-[24px] leading-[1.5] lg:leading-[1.6] font-light opacity-90"
+          className="text-[16px] md:text-[18px] lg:text-[24px] leading-[1.5] lg:leading-[1.6] font-light opacity-90"
         >
           {aboutContent[activeValue].description}
         </p>
