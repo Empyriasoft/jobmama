@@ -1,5 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  type CarouselApi,
+} from "@/components/ui/carousel";
 import testimonialCenterImage from "@/assets/testimonial-center.png";
 import testimonialRightImage from "@/assets/testimonial-right.png";
 
@@ -58,65 +64,115 @@ const testimonials = [
 
 // Size map based on position: [0, 1, 2, 3(center), 4, 5, 6]
 const sizeMap = [140, 191, 284, 392, 284, 191, 140];
-const mobileSizeMap = [50, 68, 102, 140, 102, 68, 50];
 
 const TestimonialsSection = () => {
   const isMobile = useIsMobile();
-  const [activeIndex, setActiveIndex] = useState(3); // Default to center (Amanda K.)
+  const [activeIndex, setActiveIndex] = useState(3);
+  const [carouselApi, setCarouselApi] = useState<CarouselApi>();
   
-  // Calculate total width and overlap needed
-  const sizes = isMobile ? mobileSizeMap : sizeMap;
-  const totalImageWidth = sizes.reduce((a, b) => a + b, 0);
-  const containerWidth = isMobile ? 340 : 1198;
+  // Calculate total width and overlap needed for desktop
+  const totalImageWidth = sizeMap.reduce((a, b) => a + b, 0);
+  const containerWidth = 1198;
   const overlapTotal = totalImageWidth - containerWidth;
   const overlapPerGap = overlapTotal / (testimonials.length - 1);
 
   const activeTestimonial = testimonials[activeIndex];
 
+  // Sync carousel with active index on mobile
+  useEffect(() => {
+    if (!carouselApi) return;
+
+    carouselApi.on("select", () => {
+      setActiveIndex(carouselApi.selectedScrollSnap());
+    });
+  }, [carouselApi]);
+
+  // Mobile carousel view
+  const MobileCarousel = () => (
+    <Carousel
+      opts={{
+        align: "center",
+        loop: true,
+        startIndex: 3,
+      }}
+      setApi={setCarouselApi}
+      className="w-full max-w-[300px] mx-auto"
+    >
+      <CarouselContent className="-ml-2">
+        {testimonials.map((testimonial, index) => (
+          <CarouselItem key={testimonial.id} className="pl-2 basis-1/3">
+            <div className="flex justify-center">
+              <div
+                className={`rounded-full overflow-hidden bg-muted transition-all duration-300 ${
+                  index === activeIndex ? "ring-2 ring-primary ring-offset-2" : ""
+                }`}
+                style={{
+                  width: index === activeIndex ? 100 : 70,
+                  height: index === activeIndex ? 100 : 70,
+                }}
+              >
+                <img
+                  src={testimonial.image}
+                  alt={testimonial.name}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+          </CarouselItem>
+        ))}
+      </CarouselContent>
+    </Carousel>
+  );
+
+  // Desktop overlapping view
+  const DesktopOverlapping = () => (
+    <div 
+      className="flex items-center justify-center"
+      style={{ 
+        maxWidth: containerWidth,
+        height: 392,
+      }}
+    >
+      {testimonials.map((testimonial, index) => {
+        const size = sizeMap[index];
+        const isCenter = index === 3;
+        const distanceFromCenter = Math.abs(index - 3);
+        const isActive = index === activeIndex;
+        
+        return (
+          <div
+            key={testimonial.id}
+            className="relative transition-all duration-300 hover:scale-110 hover:z-20 flex-shrink-0 cursor-pointer"
+            style={{
+              marginLeft: index === 0 ? 0 : -overlapPerGap,
+              zIndex: isActive ? 15 : (isCenter ? 10 : 7 - distanceFromCenter),
+            }}
+            onMouseEnter={() => setActiveIndex(index)}
+          >
+            <div
+              className="rounded-full overflow-hidden bg-muted transition-all duration-300"
+              style={{
+                width: size,
+                height: size,
+              }}
+            >
+              <img
+                src={testimonial.image}
+                alt={testimonial.name}
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+
   return (
     <section className="w-full px-5 md:px-8 lg:px-[100px] pt-[200px] md:pt-[300px] lg:pt-[400px] pb-16 md:pb-24 lg:pb-32">
-      {/* Overlapping round images */}
+      {/* Overlapping round images / Mobile carousel */}
       <div className="flex justify-center items-center mb-12 md:mb-16 lg:mb-20">
-        <div 
-          className="flex items-center justify-center"
-          style={{ 
-            maxWidth: containerWidth,
-            height: isMobile ? 140 : 392,
-          }}
-        >
-          {testimonials.map((testimonial, index) => {
-            const size = sizes[index];
-            const isCenter = index === 3;
-            const distanceFromCenter = Math.abs(index - 3);
-            const isActive = index === activeIndex;
-            
-            return (
-              <div
-                key={testimonial.id}
-                className="relative transition-all duration-300 hover:scale-110 hover:z-20 flex-shrink-0 cursor-pointer"
-                style={{
-                  marginLeft: index === 0 ? 0 : -overlapPerGap,
-                  zIndex: isActive ? 15 : (isCenter ? 10 : 7 - distanceFromCenter),
-                }}
-                onMouseEnter={() => setActiveIndex(index)}
-              >
-                <div
-                  className="rounded-full overflow-hidden bg-muted transition-all duration-300"
-                  style={{
-                    width: size,
-                    height: size,
-                  }}
-                >
-                  <img
-                    src={testimonial.image}
-                    alt={testimonial.name}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              </div>
-            );
-          })}
-        </div>
+        {isMobile ? <MobileCarousel /> : <DesktopOverlapping />}
       </div>
 
       {/* Testimonials heading */}
