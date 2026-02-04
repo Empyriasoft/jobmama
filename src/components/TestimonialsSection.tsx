@@ -103,9 +103,7 @@ const TestimonialsSection = () => {
           <CarouselItem key={testimonial.id} className="pl-2 basis-1/3">
             <div className="flex justify-center">
               <div
-                className={`rounded-full overflow-hidden bg-muted transition-all duration-300 ${
-                  index === activeIndex ? "ring-2 ring-primary ring-offset-2" : ""
-                }`}
+                className="rounded-full overflow-hidden bg-muted transition-all duration-300"
                 style={{
                   width: index === activeIndex ? 100 : 70,
                   height: index === activeIndex ? 100 : 70,
