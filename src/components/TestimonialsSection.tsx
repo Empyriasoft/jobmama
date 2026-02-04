@@ -65,7 +65,7 @@ const TestimonialsSection = () => {
   // Calculate total width and overlap needed
   const sizes = isMobile ? mobileSizeMap : sizeMap;
   const totalImageWidth = sizes.reduce((a, b) => a + b, 0);
-  const containerWidth = isMobile ? 428 : 1198;
+  const containerWidth = isMobile ? 340 : 1198;
   const overlapTotal = totalImageWidth - containerWidth;
   const overlapPerGap = overlapTotal / (testimonials.length - 1);
 
@@ -119,8 +119,8 @@ const TestimonialsSection = () => {
 
       {/* Testimonials heading */}
       <h2
-        style={{ fontFamily: "'Google Sans', sans-serif", color: '#0D141C', width: 928, height: 58 }}
-        className="text-[32px] md:text-[48px] lg:text-[64px] font-medium text-center mb-6 md:mb-8 lg:mb-10 mx-auto flex items-center justify-center"
+        style={{ fontFamily: "'Google Sans', sans-serif", color: '#0D141C' }}
+        className="text-[32px] md:text-[48px] lg:text-[64px] font-medium text-center mb-6 md:mb-8 lg:mb-10 mx-auto w-full lg:w-[928px] lg:h-[58px] flex items-center justify-center"
       >
         Testimonials
       </h2>
