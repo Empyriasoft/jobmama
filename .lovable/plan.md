@@ -1,59 +1,67 @@
 
 
-# Fix: About Section Card Text Overlapping on Medium Screens
+# Add Tabs to Our Process Section
 
-## Problem Analysis
+## Overview
 
-The desktop About card has three responsive breakpoints, but the medium (`md`) breakpoint causes text to overlap with the image:
+Add two vertical tabs ("Mamas" and "Businesses") on the left side of the Process section while keeping the current step content intact.
 
-| Element | Mobile | Medium (md) | Large (lg) |
-|---------|--------|-------------|------------|
-| Card height | - | 700px | 950px |
-| Image size | - | 400x226px | 671x379px |
-| Title font | - | 48px | 75.88px |
-| Description font | - | 18px | 24px |
-| Content bottom offset | - | 70px | 108px |
+## Current Content to Keep
 
-On a 700px card, the image ends at ~266px from top, but the large text content (title + description) starting from bottom-70px extends upward and overlaps with the image.
+The existing steps for the "Mamas" tab will remain unchanged:
+- **01. Reflect & Plan** - Deep-dive conversation, Strategic Action Plan
+- **02. Rebuild Your Toolkit** - CV rewrite, LinkedIn optimization, interview skills
+- **03. Relaunch Your Career** - Job applications, follow-up support, community access
 
-## Solution
+## Implementation
 
-Add proper `md` breakpoint values to ensure adequate spacing between the image and text content:
+### Changes to `src/components/ProcessSection.tsx`
 
-### Changes to `src/components/AboutSection.tsx`
+**1. Add React state**
+- Import `useState` from React
+- Track active tab: `"mamas"` or `"businesses"`
 
-**1. Reduce image size on medium screens**
+**2. Create content arrays**
+- `mamasSteps`: Current 3 steps (unchanged)
+- `businessesSteps`: Business-focused version with similar structure
+
+**3. Add vertical tabs component**
+- Left side vertical navigation
+- Active tab styling: cyan left border (`border-l-4 border-[#00E5CC]`)
+- Large typography matching the reference image
+
+**4. Update layout**
+- Two-column layout: tabs (left) + content (right)
+- Mobile: tabs horizontal above content
+- Desktop: tabs vertical on left
+
+### Layout Structure
+
+```text
++-------------------+------------------------------------------+
+|                   |  01.  Reflect & Plan                     |
+|   Mamas           |       [description...]                   |
+|   [active]        |                                          |
+|                   |  02.  Rebuild Your Toolkit               |
+|   Businesses      |       [description...]                   |
+|                   |                                          |
+|                   |  03.  Relaunch Your Career               |
+|                   |       [description...]                   |
++-------------------+------------------------------------------+
 ```
-Current: w-[400px] h-[226px]
-New: w-[300px] h-[170px] md:w-[350px] md:h-[198px]
-```
 
-**2. Reduce title font size on medium screens**
-```
-Current: text-[48px] lg:text-[75.88px]
-New: text-[36px] md:text-[42px] lg:text-[75.88px]
-```
+### Businesses Tab Content
 
-**3. Reduce description font size on medium screens**
-```
-Current: text-[18px] lg:text-[24px]
-New: text-[16px] md:text-[18px] lg:text-[24px]
-```
-
-**4. Adjust content container padding**
-```
-Current: bottom-[70px] left-12 right-12
-New: bottom-[50px] left-8 right-8 md:bottom-[60px] md:left-10 md:right-10 lg:bottom-[108px] lg:left-[95px] lg:right-[95px]
-```
+Will create similar 3-step process focused on businesses:
+- **01. Assess & Match** - Understanding business hiring needs
+- **02. Source Qualified Talent** - Access to JobMama's network of skilled returning professionals
+- **03. Hire & Integrate** - Support for onboarding returning professionals
 
 ## Technical Details
 
-The fix targets the `DesktopAboutCard` component (lines 109-151), specifically:
-
-- Line 127: Image sizing classes
-- Line 133: Content container positioning
-- Line 138: Title text size
-- Line 144: Description text size
-
-These changes ensure proper vertical spacing between the image and text content across all screen sizes while maintaining the design's visual proportions.
+- File to modify: `src/components/ProcessSection.tsx`
+- Add `useState` import
+- Create `TabButton` component for tab styling
+- Responsive design: `flex-col` on mobile, `flex-row` on desktop (lg+)
+- Tab highlight color: `#00E5CC` (cyan/turquoise from reference)
 
