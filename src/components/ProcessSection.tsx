@@ -63,17 +63,17 @@ const ProcessSection = () => {
     {
       number: "01.",
       title: "Reflect & Plan",
-      description: "We begin with a deep-dive conversation to understand your story, your professional goals, and your concerns. This isn't just about a job; it's about your life. In our initial coaching session, we reflect on what you truly want from your next chapter and map out a personalized Strategic Action Plan. You will walk away with clarity, direction, and a concrete plan in hand."
+      description: "We begin with a deep-dive conversation to understand your story, your professional goals, and your concerns. In our initial coaching session, we reflect on what you truly want from your next chapter and map out a personalized Strategic Action Plan."
     },
     {
       number: "02.",
       title: "Rebuild Your Toolkit",
-      description: "Next, we roll up our sleeves to modernize your professional presence. We rewrite your CV, optimize your LinkedIn profile, and sharpen your interview skills to meet the market standards. As we upgrade your tools, we focus on rebuilding your confidence. Our founder's philosophy is simple: motherhood enhances your skills- it doesn't set them back. We help you translate your resilience and multitasking into professional assets."
+      description: "We rewrite your CV, optimize your LinkedIn profile, and sharpen your interview skills to meet the market standards. As we upgrade your tools, we focus on rebuilding your confidence. We help you translate your resilience and multitasking into professional assets."
     },
     {
       number: "03.",
       title: "Relaunch Your Career",
-      description: "With a revamped toolkit and renewed self-belief, you are ready to step out and shine. Whether you are applying for new roles or negotiating a return to your previous employer, we provide the guidance you need to land a position that aligns with your potential. At JobMama, we don't disappear after the sessions end; we offer follow-up support and remain your biggest cheerleaders. You also gain access to our community- a network of fellow moms and experts to lean on as you launch this exciting new chapter."
+      description: "Whether you are applying for new roles or negotiating a return to your previous employer, we provide the guidance you need to land a position that aligns with your potential."
     }
   ];
 
