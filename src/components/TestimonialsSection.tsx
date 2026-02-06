@@ -43,10 +43,10 @@ const testimonials = [
   },
   { 
     id: 5, 
-    name: "Nadia", 
-    role: "HR Director",
+    name: "Nadya N.", 
+    role: "Sofia",
     image: testimonialRightImage,
-    quote: "The personalized coaching sessions were a game-changer. I went from feeling invisible in the job market to receiving multiple offers. JobMama truly understands the challenges moms face."
+    quote: "Svetlana's expertise in modernizing my CV and LinkedIn gave me the confidence to re-enter the market, leading to interview calls almost immediately. I've been in my new role for four months now and feel excellent-I highly recommend her professional and inspiring guidance!"
   },
   { 
     id: 6, 
