@@ -179,20 +179,6 @@ const TestimonialsSection = () => {
               );
             })}
           </div>
-          
-          {/* Dot indicators */}
-          <div className="flex justify-center gap-2 mt-4">
-            {testimonials.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setActiveIndex(index)}
-                className={`h-2 rounded-full transition-all duration-300 ${
-                  index === activeIndex ? 'bg-primary w-6' : 'bg-muted-foreground/30 w-2'
-                }`}
-                aria-label={`Go to testimonial ${index + 1}`}
-              />
-            ))}
-          </div>
         </div>
       ) : (
         /* Desktop Overlapping Images */
