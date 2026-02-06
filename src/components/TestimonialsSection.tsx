@@ -195,9 +195,9 @@ const TestimonialsSection = () => {
       {/* Testimonials heading */}
       <h2
         style={{ fontFamily: "'Google Sans', sans-serif", color: '#0D141C' }}
-        className="text-[32px] md:text-[48px] lg:text-[64px] font-medium text-center mb-6 md:mb-8 lg:mb-10 mx-auto w-full lg:w-[928px] lg:h-[58px] flex items-center justify-center"
+        className="text-[24px] md:text-[36px] lg:text-[48px] font-medium text-center mb-6 md:mb-8 lg:mb-10 mx-auto max-w-4xl px-4"
       >
-        Testimonials
+        Real moms, real results – here's what some of our JobMama clients have to say
       </h2>
 
       {/* Testimonial text */}
