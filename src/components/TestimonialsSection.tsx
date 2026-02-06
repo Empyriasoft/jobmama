@@ -145,12 +145,9 @@ const TestimonialsSection = () => {
 
   // Mobile testimonial card component
   const MobileTestimonialCard = ({ testimonial }: { testimonial: typeof testimonials[0] }) => (
-    <div 
-      className="rounded-[24px] p-6 flex flex-col items-center text-center"
-      style={{ backgroundColor: '#ececec' }}
-    >
+    <div className="p-4 flex flex-col items-center text-center">
       {/* Profile image */}
-      <div className="w-[100px] h-[100px] rounded-full overflow-hidden bg-muted mb-4 flex items-center justify-center">
+      <div className="w-[160px] h-[160px] rounded-full overflow-hidden bg-muted mb-6 flex items-center justify-center">
         {testimonial.image ? (
           <img
             src={testimonial.image}
@@ -165,7 +162,7 @@ const TestimonialsSection = () => {
       {/* Quote */}
       <p
         style={{ fontFamily: "'Inter', sans-serif", letterSpacing: '-0.02em' }}
-        className="text-[14px] leading-[1.6] text-foreground/80 mb-4"
+        className="text-[14px] leading-[1.6] text-muted-foreground mb-4"
       >
         "{testimonial.quote}"
       </p>
