@@ -15,13 +15,13 @@ const Footer = () => {
   }];
   const socialLinks = [{
     label: "Instagram",
-    href: "https://instagram.com"
+    href: "https://www.instagram.com/jobmama_bg/"
   }, {
     label: "LinkedIn",
-    href: "https://linkedin.com"
+    href: "https://www.linkedin.com/company/jobmamabg/"
   }, {
-    label: "X (Twitter)",
-    href: "https://twitter.com"
+    label: "Facebook",
+    href: "https://www.facebook.com/share/1CEd9a68Nk/"
   }];
   const contactInfo = [{
     label: "hello@jobmama.com",
