@@ -143,54 +143,87 @@ const TestimonialsSection = () => {
     </div>
   );
 
+  // Mobile testimonial card component
+  const MobileTestimonialCard = ({ testimonial }: { testimonial: typeof testimonials[0] }) => (
+    <div 
+      className="rounded-[24px] p-6 flex flex-col items-center text-center"
+      style={{ backgroundColor: '#ececec' }}
+    >
+      {/* Profile image */}
+      <div className="w-[100px] h-[100px] rounded-full overflow-hidden bg-muted mb-4 flex items-center justify-center">
+        {testimonial.image ? (
+          <img
+            src={testimonial.image}
+            alt={testimonial.name}
+            className="w-full h-full object-cover"
+          />
+        ) : (
+          <span className="text-muted-foreground text-sm">Photo</span>
+        )}
+      </div>
+      
+      {/* Quote */}
+      <p
+        style={{ fontFamily: "'Inter', sans-serif", letterSpacing: '-0.02em' }}
+        className="text-[14px] leading-[1.6] text-foreground/80 mb-4"
+      >
+        "{testimonial.quote}"
+      </p>
+      
+      {/* Name */}
+      <p
+        style={{ fontFamily: "'Inter', sans-serif" }}
+        className="text-[14px] font-medium text-foreground"
+      >
+        — {testimonial.name}, {testimonial.role}
+      </p>
+    </div>
+  );
+
+  // Mobile: Card carousel (like About section)
+  if (isMobile) {
+    return (
+      <section className="w-full pl-4 pr-0 pt-[200px] pb-16 overflow-hidden">
+        {/* Testimonials heading */}
+        <h2
+          style={{ fontFamily: "'Google Sans', sans-serif", color: '#0D141C' }}
+          className="text-[24px] font-medium text-center mb-8 pr-4"
+        >
+          Here is what some of our clients have to say:
+        </h2>
+
+        {/* Carousel */}
+        <Carousel
+          opts={{
+            align: "start",
+            containScroll: "trimSnaps",
+          }}
+          className="w-full"
+        >
+          <CarouselContent>
+            {testimonials.map((testimonial) => (
+              <CarouselItem key={testimonial.id} className="basis-[85%]">
+                <MobileTestimonialCard testimonial={testimonial} />
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+        </Carousel>
+      </section>
+    );
+  }
+
+  // Desktop layout
   return (
     <section className="w-full px-5 md:px-8 lg:px-[100px] pt-[200px] md:pt-[300px] lg:pt-[400px] pb-16 md:pb-24 lg:pb-32">
-      {/* Mobile Testimonial Images */}
-      {isMobile ? (
-        <div className="mb-12">
-          {/* Scrollable image row */}
-          <div 
-            className="flex justify-center items-center gap-3 overflow-x-auto pb-4"
-            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-          >
-            {testimonials.map((testimonial, index) => {
-              const isActive = index === activeIndex;
-              return (
-                <button
-                  key={testimonial.id}
-                  onClick={() => setActiveIndex(index)}
-                  className="rounded-full overflow-hidden bg-muted transition-all duration-300 flex-shrink-0 flex items-center justify-center"
-                  style={{
-                    width: isActive ? 120 : 70,
-                    height: isActive ? 120 : 70,
-                    opacity: isActive ? 1 : 0.5,
-                  }}
-                >
-                  {testimonial.image ? (
-                    <img
-                      src={testimonial.image}
-                      alt={testimonial.name}
-                      className="w-full h-full object-cover"
-                    />
-                  ) : (
-                    <span className="text-muted-foreground text-xs">Photo</span>
-                  )}
-                </button>
-              );
-            })}
-          </div>
-        </div>
-      ) : (
-        /* Desktop Overlapping Images */
-        <div className="flex justify-center items-center mb-12 md:mb-16 lg:mb-20">
-          <DesktopOverlapping />
-        </div>
-      )}
+      {/* Desktop Overlapping Images */}
+      <div className="flex justify-center items-center mb-12 md:mb-16 lg:mb-20">
+        <DesktopOverlapping />
+      </div>
 
       {/* Testimonials heading */}
       <h2
         style={{ fontFamily: "'Google Sans', sans-serif", color: '#0D141C' }}
-        className="text-[24px] md:text-[36px] lg:text-[48px] font-medium text-center mb-6 md:mb-8 lg:mb-10 mx-auto max-w-4xl px-4"
+        className="text-[36px] lg:text-[48px] font-medium text-center mb-8 lg:mb-10 mx-auto max-w-4xl px-4"
       >
         Here is what some of our clients have to say:
       </h2>
@@ -199,13 +232,13 @@ const TestimonialsSection = () => {
       <div className="max-w-3xl mx-auto text-center">
         <p
           style={{ fontFamily: "'Inter', sans-serif", letterSpacing: '-0.02em' }}
-          className="text-[14px] md:text-[16px] lg:text-[18px] leading-[1.6] text-muted-foreground transition-opacity duration-300"
+          className="text-[16px] lg:text-[18px] leading-[1.6] text-muted-foreground transition-opacity duration-300"
         >
           "{activeTestimonial.quote}"
         </p>
         <p
           style={{ fontFamily: "'Inter', sans-serif" }}
-          className="text-[14px] md:text-[16px] font-medium text-foreground mt-6 transition-opacity duration-300"
+          className="text-[16px] font-medium text-foreground mt-6 transition-opacity duration-300"
         >
           — {activeTestimonial.name}, {activeTestimonial.role}
         </p>
