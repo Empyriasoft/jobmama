@@ -143,68 +143,71 @@ const TestimonialsSection = () => {
     </div>
   );
 
-  // Mobile testimonial card component
-  const MobileTestimonialCard = ({ testimonial }: { testimonial: typeof testimonials[0] }) => (
-    <div className="p-4 flex flex-col items-center text-center">
-      {/* Profile image */}
-      <div className="w-[160px] h-[160px] rounded-full overflow-hidden bg-muted mb-6 flex items-center justify-center">
-        {testimonial.image ? (
-          <img
-            src={testimonial.image}
-            alt={testimonial.name}
-            className="w-full h-full object-cover"
-          />
-        ) : (
-          <span className="text-muted-foreground text-sm">Photo</span>
-        )}
-      </div>
-      
-      {/* Quote */}
-      <p
-        style={{ fontFamily: "'Inter', sans-serif", letterSpacing: '-0.02em' }}
-        className="text-[14px] leading-[1.6] text-muted-foreground mb-4"
-      >
-        "{testimonial.quote}"
-      </p>
-      
-      {/* Name */}
-      <p
-        style={{ fontFamily: "'Inter', sans-serif" }}
-        className="text-[14px] font-medium text-foreground"
-      >
-        — {testimonial.name}, {testimonial.role}
-      </p>
-    </div>
-  );
 
-  // Mobile: Card carousel (like About section)
+  // Mobile: Image carousel with fixed text below
   if (isMobile) {
     return (
-      <section className="w-full pl-4 pr-0 pt-[200px] pb-16 overflow-hidden">
+      <section className="w-full px-4 pt-[200px] pb-16 overflow-hidden">
         {/* Testimonials heading */}
         <h2
           style={{ fontFamily: "'Google Sans', sans-serif", color: '#0D141C' }}
-          className="text-[24px] font-medium text-center mb-8 pr-4"
+          className="text-[24px] font-medium text-center mb-8"
         >
           Here is what some of our clients have to say:
         </h2>
 
-        {/* Carousel */}
+        {/* Image Carousel - only images swipe */}
         <Carousel
+          setApi={setCarouselApi}
           opts={{
-            align: "start",
-            containScroll: "trimSnaps",
+            align: "center",
+            startIndex: 0,
           }}
           className="w-full"
         >
           <CarouselContent className="-ml-2">
-            {testimonials.map((testimonial) => (
-              <CarouselItem key={testimonial.id} className="basis-[75%] pl-2">
-                <MobileTestimonialCard testimonial={testimonial} />
-              </CarouselItem>
-            ))}
+            {testimonials.map((testimonial, index) => {
+              const isActive = index === activeIndex;
+              return (
+                <CarouselItem key={testimonial.id} className="basis-1/3 pl-2 flex justify-center">
+                  <div
+                    className="rounded-full overflow-hidden bg-muted flex items-center justify-center transition-all duration-300"
+                    style={{
+                      width: isActive ? 120 : 70,
+                      height: isActive ? 120 : 70,
+                    }}
+                  >
+                    {testimonial.image ? (
+                      <img
+                        src={testimonial.image}
+                        alt={testimonial.name}
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <span className="text-muted-foreground text-xs">Photo</span>
+                    )}
+                  </div>
+                </CarouselItem>
+              );
+            })}
           </CarouselContent>
         </Carousel>
+
+        {/* Fixed Text Section - updates based on activeIndex */}
+        <div className="text-center px-4 mt-8">
+          <p
+            style={{ fontFamily: "'Inter', sans-serif", letterSpacing: '-0.02em' }}
+            className="text-[14px] leading-[1.6] text-muted-foreground mb-4 transition-opacity duration-300"
+          >
+            "{activeTestimonial.quote}"
+          </p>
+          <p
+            style={{ fontFamily: "'Inter', sans-serif" }}
+            className="text-[14px] font-medium text-foreground transition-opacity duration-300"
+          >
+            — {activeTestimonial.name}, {activeTestimonial.role}
+          </p>
+        </div>
       </section>
     );
   }
