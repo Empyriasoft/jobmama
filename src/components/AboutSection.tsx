@@ -62,7 +62,7 @@ const MobileAboutCard = ({ value }: { value: { key: ValueKey; label: string } })
   
   return (
     <div 
-      className="relative overflow-hidden rounded-[24px] min-h-[520px] w-full flex flex-col"
+      className="relative overflow-hidden rounded-[24px] w-full flex flex-col"
       style={{ backgroundColor: '#ececec' }}
     >
       {/* Blob-shaped image - contained at top */}
@@ -75,7 +75,7 @@ const MobileAboutCard = ({ value }: { value: { key: ValueKey; label: string } })
       </div>
 
       {/* Content container */}
-      <div className="p-5 pt-4 flex flex-col gap-3 flex-1">
+      <div className="p-5 pt-4 flex flex-col gap-3">
         {/* Title */}
         <h3
           style={{ fontFamily: "'Google Sans', sans-serif", letterSpacing: '-0.04em' }}
@@ -97,7 +97,7 @@ const MobileAboutCard = ({ value }: { value: { key: ValueKey; label: string } })
         {/* Read more link */}
         <button
           onClick={() => setExpanded(!expanded)}
-          className="flex items-center gap-1 text-foreground font-medium text-[14px] mt-auto self-start hover:opacity-80 transition-opacity"
+          className="flex items-center gap-1 text-foreground font-medium text-[14px] mt-2 self-start hover:opacity-80 transition-opacity"
           style={{ fontFamily: "'Inter', sans-serif" }}
         >
           {expanded ? 'Show less' : 'Read more'} 
