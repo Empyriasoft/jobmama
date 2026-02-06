@@ -112,7 +112,7 @@ const serviceTiers: ServiceTier[] = [
 
 const ServicesSection = () => {
   return (
-    <section className="w-full px-5 pt-16 pb-16 md:px-8 md:pt-24 md:pb-20 lg:px-[100px] lg:pt-[150px] lg:pb-[100px]">
+    <section id="services" className="w-full px-5 pt-16 pb-16 md:px-8 md:pt-24 md:pb-20 lg:px-[100px] lg:pt-[150px] lg:pb-[100px]">
       {/* Section Title */}
       <h2
         style={{

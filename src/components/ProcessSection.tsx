@@ -103,7 +103,7 @@ const ProcessSection = () => {
   const currentSteps = activeTab === "mamas" ? mamasSteps : businessesSteps;
 
   return (
-    <section className="relative bg-[#87dda8] py-12 sm:py-16 md:py-24 lg:py-32 px-4 sm:px-6 md:px-12 lg:px-[100px] overflow-hidden">
+    <section id="our-approach" className="relative bg-[#87dda8] py-12 sm:py-16 md:py-24 lg:py-32 px-4 sm:px-6 md:px-12 lg:px-[100px] overflow-hidden">
       {/* Decorative Shape */}
       <img
         src={decorativeShape}

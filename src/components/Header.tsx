@@ -6,7 +6,26 @@ import logo from "@/assets/logo.svg";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const navItems = ["Home", "Our Services", "Our Approach"];
+  
+  const navItems = [
+    { label: "Home", href: "#home" },
+    { label: "Our Services", href: "#services" },
+    { label: "Our Approach", href: "#our-approach" },
+  ];
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    setIsOpen(false);
+    
+    if (href === "#home") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
 
   return (
     <header className="w-full px-5 py-6 md:px-8 lg:px-[100px]">
@@ -20,12 +39,13 @@ const Header = () => {
         <nav className="hidden items-center gap-10 md:flex">
           {navItems.map((item) => (
             <a
-              key={item}
-              href="#"
+              key={item.label}
+              href={item.href}
+              onClick={(e) => handleNavClick(e, item.href)}
               className="text-[22px] font-light text-foreground transition-colors hover:text-muted-foreground"
               style={{ fontFamily: "'Zalando Sans', sans-serif" }}
             >
-              {item}
+              {item.label}
             </a>
           ))}
           <Button variant="cta" size="cta" className="text-[22px] w-[181px] h-[66px] font-light" style={{ fontFamily: "'Zalando Sans', sans-serif" }}>
@@ -54,7 +74,7 @@ const Header = () => {
               </svg>
             </Button>
           </SheetTrigger>
-          <SheetContent side="right" className="w-full sm:w-[320px] p-0">
+          <SheetContent side="right" className="w-full sm:w-[320px] p-0" hideCloseButton>
             <div className="flex flex-col h-full">
               {/* Header with close button */}
               <div className="flex items-center justify-between p-5 border-b border-border">
@@ -70,13 +90,13 @@ const Header = () => {
               <nav className="flex flex-col p-5 gap-6 flex-1">
                 {navItems.map((item) => (
                   <a
-                    key={item}
-                    href="#"
-                    onClick={() => setIsOpen(false)}
+                    key={item.label}
+                    href={item.href}
+                    onClick={(e) => handleNavClick(e, item.href)}
                     className="text-[20px] font-light text-foreground transition-colors hover:text-muted-foreground py-2"
                     style={{ fontFamily: "'Zalando Sans', sans-serif" }}
                   >
-                    {item}
+                    {item.label}
                   </a>
                 ))}
               </nav>
