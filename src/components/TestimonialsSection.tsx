@@ -72,7 +72,7 @@ const testimonials = [
   { 
     id: 9, 
     name: "Elena", 
-    role: "JobMama Client",
+    role: "Sofia",
     image: testimonialElenaImage,
     quote: "With her practical guidance and genuine support, JobMama and Svetla helped me return to the job market with confidence and stand out after my maternity leave."
   },
