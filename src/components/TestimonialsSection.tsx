@@ -11,66 +11,31 @@ import testimonialRightImage from "@/assets/testimonial-right.png";
 import testimonialAsyaImage from "@/assets/testimonial-asya.jpg";
 import testimonialElenaImage from "@/assets/testimonial-elena.png";
 
-// Placeholder testimonial data - replace with real data/images later
+// Real client testimonial data
 const testimonials = [
   { 
     id: 1, 
-    name: "Sarah M.", 
-    role: "Marketing Manager",
-    image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=400&h=400&fit=crop&crop=face",
-    quote: "JobMama completely transformed my approach to returning to work. After two years of being a stay-at-home mom, I felt lost and unsure of my skills. The personalized coaching helped me regain my confidence, update my resume, and land a role that perfectly fits my family's needs."
-  },
-  { 
-    id: 2, 
-    name: "Emily R.", 
-    role: "Software Engineer",
-    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop&crop=face",
-    quote: "I was terrified to re-enter the tech industry after my maternity leave. JobMama's expert guidance helped me brush up on my skills and negotiate a flexible schedule. I'm now thriving in my dream role!"
-  },
-  { 
-    id: 3, 
-    name: "Jessica L.", 
-    role: "Project Manager",
-    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=400&fit=crop&crop=face",
-    quote: "The support I received was incredible. From resume workshops to interview prep, every step was tailored to my unique situation as a returning mom. I couldn't have done it without JobMama."
-  },
-  { 
-    id: 4, 
     name: "Estee", 
     role: "JobMama Founder",
     image: testimonialCenterImage,
     quote: "After five years away from finance, I thought my career was over. JobMama showed me how to leverage my experience and helped me land a senior position. Their belief in me made all the difference."
   },
   { 
-    id: 5, 
+    id: 2, 
     name: "Nadya N.", 
     role: "Sofia",
     image: testimonialRightImage,
     quote: "Svetlana's expertise in modernizing my CV and LinkedIn gave me the confidence to re-enter the market, leading to interview calls almost immediately. I've been in my new role for four months now and feel excellent-I highly recommend her professional and inspiring guidance!"
   },
   { 
-    id: 6, 
-    name: "Nicole P.", 
-    role: "Creative Director",
-    image: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=400&h=400&fit=crop&crop=face",
-    quote: "Returning to the creative industry felt daunting, but JobMama helped me showcase my portfolio in a fresh way. I'm now leading a team at an amazing agency. Thank you, JobMama!"
-  },
-  { 
-    id: 7, 
-    name: "Michelle D.", 
-    role: "Sales Executive",
-    image: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=400&h=400&fit=crop&crop=face",
-    quote: "I was worried my sales skills were outdated after being away. JobMama's training and confidence-building sessions helped me exceed my targets in my first quarter back. Highly recommend!"
-  },
-  { 
-    id: 8, 
+    id: 3, 
     name: "Asya A.", 
     role: "Sofia",
     image: testimonialAsyaImage,
     quote: "As a working mom of three making a career pivot, Svetlana helped me create a standout professional identity and shared invaluable insights into the pharmaceutical market. Her expert interview preparation gave me the strategic edge and confidence I needed to successfully navigate the entire process!"
   },
   { 
-    id: 9, 
+    id: 4, 
     name: "Elena", 
     role: "Sofia",
     image: testimonialElenaImage,
@@ -78,12 +43,12 @@ const testimonials = [
   },
 ];
 
-// Size map based on position: [0, 1, 2, 3, 4(center), 5, 6, 7, 8]
-const sizeMap = [120, 140, 180, 250, 392, 250, 180, 140, 120];
+// Size map based on position: [0, 1, 2, 3] - symmetric around center
+const sizeMap = [200, 340, 340, 200];
 
 const TestimonialsSection = () => {
   const isMobile = useIsMobile();
-  const [activeIndex, setActiveIndex] = useState(4);
+  const [activeIndex, setActiveIndex] = useState(1);
   const [carouselApi, setCarouselApi] = useState<CarouselApi>();
   const hasInitialized = useRef(false);
   
@@ -105,7 +70,7 @@ const TestimonialsSection = () => {
 
     // Scroll to center position on mount (only once)
     if (!hasInitialized.current) {
-      carouselApi.scrollTo(4, true);
+      carouselApi.scrollTo(1, true);
       hasInitialized.current = true;
     }
     
@@ -134,8 +99,8 @@ const TestimonialsSection = () => {
     >
       {testimonials.map((testimonial, index) => {
         const size = sizeMap[index];
-        const isCenter = index === 4;
-        const distanceFromCenter = Math.abs(index - 4);
+        const isCenter = index === 1 || index === 2;
+        const distanceFromCenter = Math.abs(index - 1.5);
         const isActive = index === activeIndex;
         
         return (
