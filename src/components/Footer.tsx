@@ -4,14 +4,14 @@ import { useIsMobile } from "@/hooks/use-mobile";
 const Footer = () => {
   const isMobile = useIsMobile();
   const navLinks = [{
-    label: "Projects",
-    href: "#projects"
+    label: "Home",
+    href: "#"
   }, {
-    label: "Pricing",
-    href: "#pricing"
+    label: "Our Services",
+    href: "#services"
   }, {
-    label: "About",
-    href: "#about"
+    label: "Our Approach",
+    href: "#our-approach"
   }];
   const socialLinks = [{
     label: "Instagram",
