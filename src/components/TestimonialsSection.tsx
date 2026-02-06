@@ -77,7 +77,7 @@ const TestimonialsSection = () => {
 
     // Scroll to center position on mount (only once)
     if (!hasInitialized.current) {
-      carouselApi.scrollTo(0, true);
+      carouselApi.scrollTo(2, true);
       hasInitialized.current = true;
     }
     
@@ -163,6 +163,7 @@ const TestimonialsSection = () => {
             opts={{
               align: "center",
               containScroll: false,
+              startIndex: 2,
             }}
             className="w-full"
           >
