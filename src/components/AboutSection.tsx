@@ -62,18 +62,20 @@ const MobileAboutCard = ({ value }: { value: { key: ValueKey; label: string } })
   
   return (
     <div 
-      className="relative overflow-hidden rounded-[24px] h-[480px] w-full"
-      style={{ backgroundColor: '#ececec' }} // Light gray to match desktop
+      className="relative overflow-hidden rounded-[24px] min-h-[520px] w-full flex flex-col"
+      style={{ backgroundColor: '#ececec' }}
     >
-      {/* Blob-shaped mother-child image */}
-      <img 
-        src={valueImages[value.key]}
-        alt="Mother and child"
-        className="absolute w-[200px] h-[113px] left-5 top-8 object-contain"
-      />
+      {/* Blob-shaped image - contained at top */}
+      <div className="p-5 pb-0">
+        <img 
+          src={valueImages[value.key]}
+          alt="Mother and child"
+          className="w-[180px] h-[102px] object-contain"
+        />
+      </div>
 
       {/* Content container */}
-      <div className="absolute bottom-0 left-0 right-0 p-5 flex flex-col gap-3">
+      <div className="p-5 pt-4 flex flex-col gap-3 flex-1">
         {/* Title */}
         <h3
           style={{ fontFamily: "'Google Sans', sans-serif", letterSpacing: '-0.04em' }}
@@ -86,7 +88,7 @@ const MobileAboutCard = ({ value }: { value: { key: ValueKey; label: string } })
         <p
           style={{ fontFamily: "'Inter', sans-serif", letterSpacing: '-0.02em' }}
           className={`text-[14px] leading-[1.5] font-light text-foreground/90 ${
-            expanded ? '' : 'line-clamp-4'
+            expanded ? '' : 'line-clamp-5'
           }`}
         >
           {content.description}
@@ -95,7 +97,7 @@ const MobileAboutCard = ({ value }: { value: { key: ValueKey; label: string } })
         {/* Read more link */}
         <button
           onClick={() => setExpanded(!expanded)}
-          className="flex items-center gap-1 text-foreground font-medium text-[14px] mt-1 self-start hover:opacity-80 transition-opacity"
+          className="flex items-center gap-1 text-foreground font-medium text-[14px] mt-auto self-start hover:opacity-80 transition-opacity"
           style={{ fontFamily: "'Inter', sans-serif" }}
         >
           {expanded ? 'Show less' : 'Read more'} 

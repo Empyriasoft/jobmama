@@ -137,37 +137,30 @@ const TestimonialsSection = () => {
       {/* Overlapping round images / Mobile carousel */}
       <div className="flex justify-center items-center mb-12 md:mb-16 lg:mb-20">
         {isMobile ? (
-          <Carousel
-            opts={{
-              align: "center",
-              loop: true,
-              containScroll: false,
-            }}
-            setApi={setCarouselApi}
-            className="w-full max-w-[320px] mx-auto"
-          >
-            <CarouselContent className="-ml-4">
-              {testimonials.map((testimonial, index) => (
-                <CarouselItem key={testimonial.id} className="pl-4 basis-1/3">
-                  <div className="flex justify-center items-center h-[110px]">
-                    <div
-                      className="rounded-full overflow-hidden bg-muted transition-all duration-300"
-                      style={{
-                        width: getImageSize(index),
-                        height: getImageSize(index),
-                      }}
-                    >
-                      <img
-                        src={testimonial.image}
-                        alt={testimonial.name}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                  </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-          </Carousel>
+          <div className="flex justify-center items-center gap-2 px-4">
+            {testimonials.map((testimonial, index) => {
+              const isActive = index === activeIndex;
+              const size = isActive ? 120 : 80;
+              return (
+                <button
+                  key={testimonial.id}
+                  onClick={() => setActiveIndex(index)}
+                  className="rounded-full overflow-hidden bg-muted transition-all duration-300 flex-shrink-0"
+                  style={{
+                    width: size,
+                    height: size,
+                    opacity: isActive ? 1 : 0.7,
+                  }}
+                >
+                  <img
+                    src={testimonial.image}
+                    alt={testimonial.name}
+                    className="w-full h-full object-cover"
+                  />
+                </button>
+              );
+            })}
+          </div>
         ) : (
           <DesktopOverlapping />
         )}
