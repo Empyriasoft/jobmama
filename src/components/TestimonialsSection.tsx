@@ -203,7 +203,7 @@ const TestimonialsSection = () => {
         </div>
 
         {/* Fixed Text Section - updates based on activeIndex */}
-        <div className="text-center px-4 mt-8" style={{ minHeight: 180 }}>
+        <div className="text-center px-4 mt-8" style={{ minHeight: 260 }}>
           <p
             style={{ fontFamily: "'Inter', sans-serif", letterSpacing: '-0.02em' }}
             className="text-[14px] leading-[1.6] text-muted-foreground mb-4"
