@@ -168,7 +168,7 @@ const TestimonialsSection = () => {
           >
             <CarouselContent 
               className="ml-0"
-              style={{ paddingLeft: 'calc(50% - 60px)', paddingRight: 'calc(50% - 60px)' }}
+              style={{ paddingLeft: 'calc(50% - 75px)', paddingRight: 'calc(50% - 75px)' }}
             >
               {testimonials.map((testimonial, index) => {
                 const isActive = index === activeIndex;
@@ -180,8 +180,8 @@ const TestimonialsSection = () => {
                     <div
                       className="rounded-full overflow-hidden bg-muted flex items-center justify-center transition-all duration-300"
                       style={{
-                        width: isActive ? 120 : 70,
-                        height: isActive ? 120 : 70,
+                        width: isActive ? 150 : 70,
+                        height: isActive ? 150 : 70,
                       }}
                     >
                       {testimonial.image ? (
