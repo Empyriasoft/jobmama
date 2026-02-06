@@ -9,6 +9,7 @@ import {
 import testimonialCenterImage from "@/assets/testimonial-center.png";
 import testimonialRightImage from "@/assets/testimonial-right.png";
 import testimonialAsyaImage from "@/assets/testimonial-asya.jpg";
+import testimonialElenaImage from "@/assets/testimonial-elena.png";
 
 // Placeholder testimonial data - replace with real data/images later
 const testimonials = [
@@ -68,10 +69,17 @@ const testimonials = [
     image: testimonialAsyaImage,
     quote: "As a working mom of three making a career pivot, Svetlana helped me create a standout professional identity and shared invaluable insights into the pharmaceutical market. Her expert interview preparation gave me the strategic edge and confidence I needed to successfully navigate the entire process!"
   },
+  { 
+    id: 9, 
+    name: "Elena", 
+    role: "JobMama Client",
+    image: testimonialElenaImage,
+    quote: "With her practical guidance and genuine support, JobMama and Svetla helped me return to the job market with confidence and stand out after my maternity leave."
+  },
 ];
 
-// Size map based on position: [0, 1, 2, 3, 4(center), 5, 6, 7]
-const sizeMap = [120, 150, 200, 284, 392, 284, 200, 150];
+// Size map based on position: [0, 1, 2, 3, 4(center), 5, 6, 7, 8]
+const sizeMap = [120, 140, 180, 250, 392, 250, 180, 140, 120];
 
 const TestimonialsSection = () => {
   const isMobile = useIsMobile();
