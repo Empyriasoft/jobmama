@@ -145,59 +145,51 @@ const TestimonialsSection = () => {
 
   return (
     <section className="w-full px-5 md:px-8 lg:px-[100px] pt-[200px] md:pt-[300px] lg:pt-[400px] pb-16 md:pb-24 lg:pb-32">
-      {/* Mobile Testimonial Carousel */}
+      {/* Mobile Testimonial Images */}
       {isMobile ? (
         <div className="mb-12">
-          {/* Image carousel */}
-          <Carousel
-            setApi={setCarouselApi}
-            opts={{
-              align: "center",
-              loop: true,
-            }}
-            className="w-full"
+          {/* Scrollable image row */}
+          <div 
+            className="flex justify-center items-center gap-3 overflow-x-auto pb-4"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
-            <CarouselContent className="items-center">
-              {testimonials.map((testimonial, index) => {
-                const isActive = index === activeIndex;
-                return (
-                  <CarouselItem 
-                    key={testimonial.id} 
-                    className="basis-1/3 flex justify-center"
-                  >
-                    <div
-                      className="rounded-full overflow-hidden bg-muted transition-all duration-300 flex items-center justify-center"
-                      style={{
-                        width: isActive ? 140 : 80,
-                        height: isActive ? 140 : 80,
-                        opacity: isActive ? 1 : 0.5,
-                      }}
-                    >
-                      {testimonial.image ? (
-                        <img
-                          src={testimonial.image}
-                          alt={testimonial.name}
-                          className="w-full h-full object-cover"
-                        />
-                      ) : (
-                        <span className="text-muted-foreground text-xs">Photo</span>
-                      )}
-                    </div>
-                  </CarouselItem>
-                );
-              })}
-            </CarouselContent>
-          </Carousel>
+            {testimonials.map((testimonial, index) => {
+              const isActive = index === activeIndex;
+              return (
+                <button
+                  key={testimonial.id}
+                  onClick={() => setActiveIndex(index)}
+                  className="rounded-full overflow-hidden bg-muted transition-all duration-300 flex-shrink-0 flex items-center justify-center"
+                  style={{
+                    width: isActive ? 120 : 70,
+                    height: isActive ? 120 : 70,
+                    opacity: isActive ? 1 : 0.5,
+                  }}
+                >
+                  {testimonial.image ? (
+                    <img
+                      src={testimonial.image}
+                      alt={testimonial.name}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <span className="text-muted-foreground text-xs">Photo</span>
+                  )}
+                </button>
+              );
+            })}
+          </div>
           
           {/* Dot indicators */}
-          <div className="flex justify-center gap-2 mt-6">
+          <div className="flex justify-center gap-2 mt-4">
             {testimonials.map((_, index) => (
               <button
                 key={index}
-                onClick={() => carouselApi?.scrollTo(index)}
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                  index === activeIndex ? 'bg-primary w-6' : 'bg-muted-foreground/30'
+                onClick={() => setActiveIndex(index)}
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  index === activeIndex ? 'bg-primary w-6' : 'bg-muted-foreground/30 w-2'
                 }`}
+                aria-label={`Go to testimonial ${index + 1}`}
               />
             ))}
           </div>
