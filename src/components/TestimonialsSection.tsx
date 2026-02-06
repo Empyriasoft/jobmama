@@ -176,7 +176,7 @@ const TestimonialsSection = () => {
                 return (
                   <CarouselItem 
                     key={testimonial.id} 
-                    className="basis-auto pl-8 flex justify-center items-center"
+                    className="basis-auto pl-12 flex justify-center items-center"
                   >
                     <div
                       className="rounded-full overflow-hidden bg-muted flex items-center justify-center transition-all duration-300"
