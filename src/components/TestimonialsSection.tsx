@@ -15,10 +15,10 @@ import testimonialElenaImage from "@/assets/testimonial-elena.png";
 const testimonials = [
   { 
     id: 1, 
-    name: "Estee", 
-    role: "JobMama Founder",
+    name: "Estervina", 
+    role: "Varna",
     image: testimonialCenterImage,
-    quote: "After five years away from finance, I thought my career was over. JobMama showed me how to leverage my experience and helped me land a senior position. Their belief in me made all the difference."
+    quote: "After three back-to-back maternity leaves, Svetlana's support was exactly what I needed to bridge the gap back to my career. From a modernized CV to constant encouragement, she ensured I felt empowered and supported every step of the way!"
   },
   { 
     id: 2, 
