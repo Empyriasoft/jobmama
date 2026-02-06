@@ -203,16 +203,16 @@ const TestimonialsSection = () => {
         </div>
 
         {/* Fixed Text Section - updates based on activeIndex */}
-        <div className="text-center px-4 mt-8">
+        <div className="text-center px-4 mt-8" style={{ minHeight: 180 }}>
           <p
             style={{ fontFamily: "'Inter', sans-serif", letterSpacing: '-0.02em' }}
-            className="text-[14px] leading-[1.6] text-muted-foreground mb-4 transition-opacity duration-300"
+            className="text-[14px] leading-[1.6] text-muted-foreground mb-4"
           >
             "{activeTestimonial.quote}"
           </p>
           <p
             style={{ fontFamily: "'Inter', sans-serif" }}
-            className="text-[14px] font-medium text-foreground transition-opacity duration-300"
+            className="text-[14px] font-medium text-foreground"
           >
             — {activeTestimonial.name}, {activeTestimonial.role}
           </p>
