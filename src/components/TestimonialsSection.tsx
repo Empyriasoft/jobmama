@@ -147,51 +147,59 @@ const TestimonialsSection = () => {
   // Mobile: Image carousel with fixed text below
   if (isMobile) {
     return (
-      <section className="w-full px-4 pt-[200px] pb-16 overflow-hidden">
+      <section className="w-full pt-[200px] pb-16 overflow-hidden">
         {/* Testimonials heading */}
         <h2
           style={{ fontFamily: "'Google Sans', sans-serif", color: '#0D141C' }}
-          className="text-[24px] font-medium text-center mb-8"
+          className="text-[24px] font-medium text-center mb-8 px-4"
         >
           Here is what some of our clients have to say:
         </h2>
 
-        {/* Image Carousel - only images swipe */}
-        <Carousel
-          setApi={setCarouselApi}
-          opts={{
-            align: "center",
-            startIndex: 0,
-          }}
-          className="w-full"
-        >
-          <CarouselContent className="-ml-2">
-            {testimonials.map((testimonial, index) => {
-              const isActive = index === activeIndex;
-              return (
-                <CarouselItem key={testimonial.id} className="basis-1/3 pl-2 flex justify-center">
-                  <div
-                    className="rounded-full overflow-hidden bg-muted flex items-center justify-center transition-all duration-300"
-                    style={{
-                      width: isActive ? 120 : 70,
-                      height: isActive ? 120 : 70,
-                    }}
+        {/* Image Carousel - only images swipe, centered layout */}
+        <div className="relative">
+          <Carousel
+            setApi={setCarouselApi}
+            opts={{
+              align: "center",
+              containScroll: false,
+            }}
+            className="w-full"
+          >
+            <CarouselContent 
+              className="ml-0"
+              style={{ paddingLeft: 'calc(50% - 60px)', paddingRight: 'calc(50% - 60px)' }}
+            >
+              {testimonials.map((testimonial, index) => {
+                const isActive = index === activeIndex;
+                return (
+                  <CarouselItem 
+                    key={testimonial.id} 
+                    className="basis-auto pl-4 flex justify-center items-center"
                   >
-                    {testimonial.image ? (
-                      <img
-                        src={testimonial.image}
-                        alt={testimonial.name}
-                        className="w-full h-full object-cover"
-                      />
-                    ) : (
-                      <span className="text-muted-foreground text-xs">Photo</span>
-                    )}
-                  </div>
-                </CarouselItem>
-              );
-            })}
-          </CarouselContent>
-        </Carousel>
+                    <div
+                      className="rounded-full overflow-hidden bg-muted flex items-center justify-center transition-all duration-300"
+                      style={{
+                        width: isActive ? 120 : 70,
+                        height: isActive ? 120 : 70,
+                      }}
+                    >
+                      {testimonial.image ? (
+                        <img
+                          src={testimonial.image}
+                          alt={testimonial.name}
+                          className="w-full h-full object-cover"
+                        />
+                      ) : (
+                        <span className="text-muted-foreground text-xs">Photo</span>
+                      )}
+                    </div>
+                  </CarouselItem>
+                );
+              })}
+            </CarouselContent>
+          </Carousel>
+        </div>
 
         {/* Fixed Text Section - updates based on activeIndex */}
         <div className="text-center px-4 mt-8">
