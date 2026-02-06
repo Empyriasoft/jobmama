@@ -31,9 +31,9 @@ const Footer = () => {
     href: null
   }];
   if (isMobile) {
-    return <footer className="relative w-full bg-background mt-[250px]">
+    return <footer className="relative w-full bg-background mt-[150px]">
         {/* Content */}
-        <div className="px-5 pt-16 pb-8 relative z-10">
+        <div className="px-5 pt-12 pb-8 relative z-10">
           {/* Logo */}
           <img src={logo} alt="JobMama" className="h-8 w-auto mb-2" />
           
@@ -80,7 +80,7 @@ const Footer = () => {
         </div>
 
         {/* Footer logo - edge to edge */}
-        <div className="w-full mt-[250px]">
+        <div className="w-full mt-[100px]">
           <img src={footerLogo} alt="" className="w-full h-auto object-cover" />
         </div>
       </footer>;

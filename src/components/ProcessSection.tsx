@@ -46,7 +46,7 @@ interface TabButtonProps {
 const TabButton = ({ active, onClick, children }: TabButtonProps) => (
   <button
     onClick={onClick}
-    className={`text-left py-2 px-3 md:py-4 md:px-6 font-google-sans font-medium text-2xl sm:text-3xl md:text-5xl lg:text-[116px] lg:leading-[1.1] transition-all whitespace-nowrap ${
+    className={`text-left py-2 px-3 md:py-3 md:px-4 lg:py-4 lg:px-6 font-google-sans font-medium text-2xl sm:text-3xl md:text-4xl lg:text-[116px] lg:leading-[1.1] transition-all whitespace-nowrap min-h-[44px] ${
       active
         ? "text-[#0D141C]"
         : "text-white hover:text-[#0D141C]"

@@ -3,7 +3,7 @@ import aboutHeartImage from "@/assets/about-heart-image.png";
 import aboutPurposeImage from "@/assets/about-purpose-image.png";
 import aboutVisionImage from "@/assets/about-vision-image.png";
 import aboutSolutionImage from "@/assets/about-solution-image.png";
-import { useIsMobile } from "@/hooks/use-mobile";
+import { useIsMobile, useIsTablet } from "@/hooks/use-mobile";
 import {
   Carousel,
   CarouselContent,
@@ -153,6 +153,7 @@ const DesktopAboutCard = ({ activeValue }: { activeValue: ValueKey }) => {
 const AboutSection = () => {
   const [activeValue, setActiveValue] = useState<ValueKey>("empathy");
   const isMobile = useIsMobile();
+  const isTablet = useIsTablet();
 
   // Mobile: Carousel Layout
   if (isMobile) {
@@ -182,6 +183,45 @@ const AboutSection = () => {
             ))}
           </CarouselContent>
         </Carousel>
+      </section>
+    );
+  }
+
+  // Tablet: Horizontal tabs above card
+  if (isTablet) {
+    return (
+      <section className="w-full px-5 pt-20 pb-16 md:px-12 md:pt-[100px] md:pb-16">
+        {/* Section Title */}
+        <h2
+          style={{ fontFamily: "'Google Sans', sans-serif", color: '#0D141C' }}
+          className="text-[56px] mb-12 font-medium text-center"
+        >
+          About JobMama
+        </h2>
+
+        {/* Horizontal Tabs */}
+        <div className="flex flex-wrap justify-center gap-3 mb-8">
+          {values.map((value) => {
+            const isActive = activeValue === value.key;
+            return (
+              <button
+                key={value.key}
+                onClick={() => setActiveValue(value.key)}
+                className={`px-4 py-2 rounded-full text-[16px] font-medium transition-all min-h-[44px] ${
+                  isActive
+                    ? "bg-primary text-primary-foreground"
+                    : "bg-muted text-muted-foreground hover:bg-muted/80"
+                }`}
+                style={{ fontFamily: "'Google Sans', sans-serif" }}
+              >
+                {value.label}
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Card */}
+        <DesktopAboutCard activeValue={activeValue} />
       </section>
     );
   }

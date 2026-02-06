@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import {
   Carousel,
@@ -69,6 +69,7 @@ const TestimonialsSection = () => {
   const isMobile = useIsMobile();
   const [activeIndex, setActiveIndex] = useState(3);
   const [carouselApi, setCarouselApi] = useState<CarouselApi>();
+  const hasInitialized = useRef(false);
   
   // Calculate total width and overlap needed for desktop
   const totalImageWidth = sizeMap.reduce((a, b) => a + b, 0);
@@ -86,9 +87,13 @@ const TestimonialsSection = () => {
       setActiveIndex(carouselApi.selectedScrollSnap());
     };
 
-    // Set initial index
-    onSelect();
+    // Scroll to center position on mount (only once)
+    if (!hasInitialized.current) {
+      carouselApi.scrollTo(3, true);
+      hasInitialized.current = true;
+    }
     
+    onSelect();
     carouselApi.on("select", onSelect);
     
     return () => {
@@ -155,7 +160,7 @@ const TestimonialsSection = () => {
             opts={{
               align: "center",
               loop: true,
-              startIndex: 3,
+              containScroll: false,
             }}
             setApi={setCarouselApi}
             className="w-full max-w-[320px] mx-auto"
