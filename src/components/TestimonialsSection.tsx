@@ -165,24 +165,24 @@ const TestimonialsSection = () => {
               containScroll: false,
               startIndex: 2,
             }}
-            className="w-full"
+            className="w-full overflow-hidden"
           >
-            <CarouselContent 
-              className="ml-0"
-              style={{ paddingLeft: 'calc(50% - 75px)', paddingRight: 'calc(50% - 75px)' }}
-            >
+            <CarouselContent className="ml-0 flex items-center">
               {testimonials.map((testimonial, index) => {
                 const isActive = index === activeIndex;
+                const imageSize = isActive ? 150 : 70;
+                // Each item takes exactly 1/3 of viewport width, centered
                 return (
                   <CarouselItem 
                     key={testimonial.id} 
-                    className="basis-auto pl-12 flex justify-center items-center"
+                    className="basis-1/3 shrink-0 grow-0 pl-0 flex justify-center items-center"
+                    style={{ minWidth: '33.333%' }}
                   >
                     <div
                       className="rounded-full overflow-hidden bg-muted flex items-center justify-center transition-all duration-300"
                       style={{
-                        width: isActive ? 150 : 70,
-                        height: isActive ? 150 : 70,
+                        width: imageSize,
+                        height: imageSize,
                       }}
                     >
                       {testimonial.image ? (
