@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import aboutHeartImage from "@/assets/about-heart-image.png";
 import aboutPurposeImage from "@/assets/about-purpose-image.png";
-import aboutVisionImage from "@/assets/about-vision-image.png";
+import aboutMissionVisionImage from "@/assets/about-mission-vision.png";
 import aboutSolutionImage from "@/assets/about-solution-image.png";
 import { useIsMobile, useIsTablet } from "@/hooks/use-mobile";
 import {
@@ -16,7 +16,7 @@ type ValueKey = "empathy" | "determination" | "change" | "confidence";
 const valueImages: Record<ValueKey, string> = {
   empathy: aboutHeartImage,
   determination: aboutPurposeImage,
-  change: aboutVisionImage,
+  change: aboutMissionVisionImage,
   confidence: aboutSolutionImage,
 };
 
