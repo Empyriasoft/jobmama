@@ -145,36 +145,32 @@ const TestimonialsSection = () => {
 
   return (
     <section className="w-full px-5 md:px-8 lg:px-[100px] pt-[200px] md:pt-[300px] lg:pt-[400px] pb-16 md:pb-24 lg:pb-32">
-      {/* Overlapping round images / Mobile carousel */}
-      <div className="flex justify-center items-center mb-12 md:mb-16 lg:mb-20">
-        {isMobile ? (
+      {/* Mobile Testimonial Carousel */}
+      {isMobile ? (
+        <div className="mb-12">
+          {/* Image carousel */}
           <Carousel
             setApi={setCarouselApi}
             opts={{
               align: "center",
               loop: true,
-              startIndex: 0,
             }}
-            className="w-full max-w-[320px]"
+            className="w-full"
           >
-            <CarouselContent className="-ml-2">
+            <CarouselContent className="items-center">
               {testimonials.map((testimonial, index) => {
                 const isActive = index === activeIndex;
                 return (
                   <CarouselItem 
                     key={testimonial.id} 
-                    className={`pl-2 basis-auto transition-all duration-300 ${isActive ? 'z-10' : 'z-0'}`}
+                    className="basis-1/3 flex justify-center"
                   >
-                    <button
-                      onClick={() => {
-                        setActiveIndex(index);
-                        carouselApi?.scrollTo(index);
-                      }}
-                      className="rounded-full overflow-hidden bg-muted transition-all duration-300 flex-shrink-0 flex items-center justify-center"
+                    <div
+                      className="rounded-full overflow-hidden bg-muted transition-all duration-300 flex items-center justify-center"
                       style={{
-                        width: isActive ? 160 : 70,
-                        height: isActive ? 160 : 70,
-                        opacity: isActive ? 1 : 0.6,
+                        width: isActive ? 140 : 80,
+                        height: isActive ? 140 : 80,
+                        opacity: isActive ? 1 : 0.5,
                       }}
                     >
                       {testimonial.image ? (
@@ -186,16 +182,32 @@ const TestimonialsSection = () => {
                       ) : (
                         <span className="text-muted-foreground text-xs">Photo</span>
                       )}
-                    </button>
+                    </div>
                   </CarouselItem>
                 );
               })}
             </CarouselContent>
           </Carousel>
-        ) : (
+          
+          {/* Dot indicators */}
+          <div className="flex justify-center gap-2 mt-6">
+            {testimonials.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => carouselApi?.scrollTo(index)}
+                className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                  index === activeIndex ? 'bg-primary w-6' : 'bg-muted-foreground/30'
+                }`}
+              />
+            ))}
+          </div>
+        </div>
+      ) : (
+        /* Desktop Overlapping Images */
+        <div className="flex justify-center items-center mb-12 md:mb-16 lg:mb-20">
           <DesktopOverlapping />
-        )}
-      </div>
+        </div>
+      )}
 
       {/* Testimonials heading */}
       <h2
