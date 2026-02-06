@@ -197,7 +197,7 @@ const TestimonialsSection = () => {
         style={{ fontFamily: "'Google Sans', sans-serif", color: '#0D141C' }}
         className="text-[24px] md:text-[36px] lg:text-[48px] font-medium text-center mb-6 md:mb-8 lg:mb-10 mx-auto max-w-4xl px-4"
       >
-        Real moms, real results – here's what some of our JobMama clients have to say
+        Here is what some of our clients have to say:
       </h2>
 
       {/* Testimonial text */}
