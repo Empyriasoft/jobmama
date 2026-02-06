@@ -197,9 +197,9 @@ const TestimonialsSection = () => {
           }}
           className="w-full"
         >
-          <CarouselContent>
+          <CarouselContent className="-ml-2">
             {testimonials.map((testimonial) => (
-              <CarouselItem key={testimonial.id} className="basis-[85%]">
+              <CarouselItem key={testimonial.id} className="basis-[75%] pl-2">
                 <MobileTestimonialCard testimonial={testimonial} />
               </CarouselItem>
             ))}
