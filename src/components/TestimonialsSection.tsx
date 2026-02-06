@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/carousel";
 import testimonialCenterImage from "@/assets/testimonial-center.png";
 import testimonialRightImage from "@/assets/testimonial-right.png";
+import testimonialAsyaImage from "@/assets/testimonial-asya.jpg";
 
 // Placeholder testimonial data - replace with real data/images later
 const testimonials = [
@@ -60,14 +61,21 @@ const testimonials = [
     image: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=400&h=400&fit=crop&crop=face",
     quote: "I was worried my sales skills were outdated after being away. JobMama's training and confidence-building sessions helped me exceed my targets in my first quarter back. Highly recommend!"
   },
+  { 
+    id: 8, 
+    name: "Asya A.", 
+    role: "Sofia",
+    image: testimonialAsyaImage,
+    quote: "As a working mom of three making a career pivot, Svetlana helped me create a standout professional identity and shared invaluable insights into the pharmaceutical market. Her expert interview preparation gave me the strategic edge and confidence I needed to successfully navigate the entire process!"
+  },
 ];
 
-// Size map based on position: [0, 1, 2, 3(center), 4, 5, 6]
-const sizeMap = [140, 191, 284, 392, 284, 191, 140];
+// Size map based on position: [0, 1, 2, 3, 4(center), 5, 6, 7]
+const sizeMap = [120, 150, 200, 284, 392, 284, 200, 150];
 
 const TestimonialsSection = () => {
   const isMobile = useIsMobile();
-  const [activeIndex, setActiveIndex] = useState(3);
+  const [activeIndex, setActiveIndex] = useState(4);
   const [carouselApi, setCarouselApi] = useState<CarouselApi>();
   const hasInitialized = useRef(false);
   
@@ -89,7 +97,7 @@ const TestimonialsSection = () => {
 
     // Scroll to center position on mount (only once)
     if (!hasInitialized.current) {
-      carouselApi.scrollTo(3, true);
+      carouselApi.scrollTo(4, true);
       hasInitialized.current = true;
     }
     
@@ -118,8 +126,8 @@ const TestimonialsSection = () => {
     >
       {testimonials.map((testimonial, index) => {
         const size = sizeMap[index];
-        const isCenter = index === 3;
-        const distanceFromCenter = Math.abs(index - 3);
+        const isCenter = index === 4;
+        const distanceFromCenter = Math.abs(index - 4);
         const isActive = index === activeIndex;
         
         return (
