@@ -121,6 +121,10 @@ All colors MUST be HSL.
   }
 
   /* Hide scrollbars while maintaining scroll functionality */
+  html {
+    scroll-behavior: smooth;
+  }
+
   html,
   body {
     scrollbar-width: none; /* Firefox */
