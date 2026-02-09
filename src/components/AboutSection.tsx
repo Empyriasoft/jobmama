@@ -30,7 +30,7 @@ const MobileAboutCard = ({ valueKey }: { valueKey: ValueKey }) => {
   
   return (
     <div 
-      className="relative overflow-hidden rounded-[24px] w-full flex flex-col"
+      className="relative overflow-hidden rounded-[24px] w-full flex flex-col min-h-[380px]"
       style={{ backgroundColor: '#ececec' }}
     >
       <div className="p-5 pb-0">
