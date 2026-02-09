@@ -1,142 +1,140 @@
 import logo from "@/assets/logo.svg";
 import footerLogo from "@/assets/footer-logo.png";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { useLanguage } from "@/contexts/LanguageContext";
+
 const Footer = () => {
   const isMobile = useIsMobile();
-  const navLinks = [{
-    label: "Home",
-    href: "#"
-  }, {
-    label: "Our Services",
-    href: "#services"
-  }, {
-    label: "Our Approach",
-    href: "#our-approach"
-  }];
-  const socialLinks = [{
-    label: "Instagram",
-    href: "https://www.instagram.com/jobmama_bg/"
-  }, {
-    label: "LinkedIn",
-    href: "https://www.linkedin.com/company/jobmamabg/"
-  }, {
-    label: "Facebook",
-    href: "https://www.facebook.com/share/1CEd9a68Nk/"
-  }];
-  const contactInfo = [{
-    label: "hello@jobmama.com",
-    href: "mailto:hello@jobmama.com"
-  }, {
-    label: "©2025",
-    href: null
-  }];
+  const { t } = useLanguage();
+
   if (isMobile) {
-    return <footer className="relative w-full bg-background mt-[150px]">
-        {/* Content */}
+    return (
+      <footer className="relative w-full bg-background mt-[150px]">
         <div className="px-5 pt-12 pb-8 relative z-10">
-          {/* Logo */}
           <img src={logo} alt="JobMama" className="h-8 w-auto mb-2" />
           
-          {/* Tagline */}
-          <p style={{
-          fontFamily: "'Inter', sans-serif"
-        }} className="text-foreground text-base tracking-[-0.6px] mb-10">
-            Europe based.
+          <p
+            style={{ fontFamily: "'Inter', sans-serif" }}
+            className="text-foreground text-base tracking-[-0.6px] mb-10"
+          >
+            {t.footer.tagline}
           </p>
 
-          {/* Links Grid */}
           <div className="grid grid-cols-2 gap-x-8 gap-y-8">
-            {/* Navigation */}
             <div className="flex flex-col gap-2">
-              {navLinks.map(link => <a key={link.label} href={link.href} style={{
-              fontFamily: "'Inter', sans-serif"
-            }} className="text-foreground text-base tracking-[-0.6px] hover:opacity-70 transition-opacity">
+              {t.footer.navLinks.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  style={{ fontFamily: "'Inter', sans-serif" }}
+                  className="text-foreground text-base tracking-[-0.6px] hover:opacity-70 transition-opacity"
+                >
                   {link.label}
-                </a>)}
+                </a>
+              ))}
             </div>
 
-            {/* Social */}
             <div className="flex flex-col gap-2">
-              {socialLinks.map(link => <a key={link.label} href={link.href} target="_blank" rel="noopener noreferrer" style={{
-              fontFamily: "'Inter', sans-serif"
-            }} className="text-foreground text-base tracking-[-0.6px] hover:opacity-70 transition-opacity">
+              {t.footer.socialLinks.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ fontFamily: "'Inter', sans-serif" }}
+                  className="text-foreground text-base tracking-[-0.6px] hover:opacity-70 transition-opacity"
+                >
                   {link.label}
-                </a>)}
+                </a>
+              ))}
             </div>
 
-            {/* Contact */}
             <div className="flex flex-col gap-2 col-span-2">
-              {contactInfo.map(item => item.href ? <a key={item.label} href={item.href} style={{
-              fontFamily: "'Inter', sans-serif"
-            }} className="text-foreground text-base tracking-[-0.6px] hover:opacity-70 transition-opacity">
-                    {item.label}
-                  </a> : <span key={item.label} style={{
-              fontFamily: "'Inter', sans-serif"
-            }} className="text-foreground text-base tracking-[-0.6px]">
-                    {item.label}
-                  </span>)}
+              <a
+                href={`mailto:${t.footer.email}`}
+                style={{ fontFamily: "'Inter', sans-serif" }}
+                className="text-foreground text-base tracking-[-0.6px] hover:opacity-70 transition-opacity"
+              >
+                {t.footer.email}
+              </a>
+              <span
+                style={{ fontFamily: "'Inter', sans-serif" }}
+                className="text-foreground text-base tracking-[-0.6px]"
+              >
+                {t.footer.copyright}
+              </span>
             </div>
           </div>
         </div>
 
-        {/* Footer logo - edge to edge */}
         <div className="w-full mt-[100px]">
           <img src={footerLogo} alt="" className="w-full h-auto object-cover" />
         </div>
-      </footer>;
+      </footer>
+    );
   }
 
-  // Desktop layout
-  return <footer className="relative w-full bg-background mt-[500px]">
-      {/* Content */}
+  return (
+    <footer className="relative w-full bg-background mt-[500px]">
       <div className="px-8 lg:px-[100px] pt-20 lg:pt-24 pb-12 lg:pb-16 relative z-10">
         <div className="flex justify-between items-start">
-          {/* Left side - Logo and tagline */}
           <div>
             <img src={logo} alt="JobMama" className="h-10 lg:h-[42px] w-auto mb-3" />
-            
           </div>
 
-          {/* Right side - Links */}
           <div className="flex gap-16 lg:gap-24">
-            {/* Navigation */}
             <div className="flex flex-col gap-2">
-              {navLinks.map(link => <a key={link.label} href={link.href} style={{
-              fontFamily: "'Inter', sans-serif"
-            }} className="text-foreground text-lg lg:text-xl tracking-[-0.6px] hover:opacity-70 transition-opacity">
+              {t.footer.navLinks.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  style={{ fontFamily: "'Inter', sans-serif" }}
+                  className="text-foreground text-lg lg:text-xl tracking-[-0.6px] hover:opacity-70 transition-opacity"
+                >
                   {link.label}
-                </a>)}
+                </a>
+              ))}
             </div>
 
-            {/* Social */}
             <div className="flex flex-col gap-2">
-              {socialLinks.map(link => <a key={link.label} href={link.href} target="_blank" rel="noopener noreferrer" style={{
-              fontFamily: "'Inter', sans-serif"
-            }} className="text-foreground text-lg lg:text-xl tracking-[-0.6px] hover:opacity-70 transition-opacity">
+              {t.footer.socialLinks.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ fontFamily: "'Inter', sans-serif" }}
+                  className="text-foreground text-lg lg:text-xl tracking-[-0.6px] hover:opacity-70 transition-opacity"
+                >
                   {link.label}
-                </a>)}
+                </a>
+              ))}
             </div>
 
-            {/* Contact */}
             <div className="flex flex-col gap-2">
-              {contactInfo.map(item => item.href ? <a key={item.label} href={item.href} style={{
-              fontFamily: "'Inter', sans-serif"
-            }} className="text-foreground text-lg lg:text-xl tracking-[-0.6px] hover:opacity-70 transition-opacity">
-                    {item.label}
-                  </a> : <span key={item.label} style={{
-              fontFamily: "'Inter', sans-serif"
-            }} className="text-foreground text-lg lg:text-xl tracking-[-0.6px]">
-                    {item.label}
-                  </span>)}
+              <a
+                href={`mailto:${t.footer.email}`}
+                style={{ fontFamily: "'Inter', sans-serif" }}
+                className="text-foreground text-lg lg:text-xl tracking-[-0.6px] hover:opacity-70 transition-opacity"
+              >
+                {t.footer.email}
+              </a>
+              <span
+                style={{ fontFamily: "'Inter', sans-serif" }}
+                className="text-foreground text-lg lg:text-xl tracking-[-0.6px]"
+              >
+                {t.footer.copyright}
+              </span>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Footer logo - edge to edge */}
       <div className="w-full mt-[450px]">
         <img src={footerLogo} alt="" className="w-full h-auto object-cover" />
       </div>
-    </footer>;
+    </footer>
+  );
 };
+
 export default Footer;

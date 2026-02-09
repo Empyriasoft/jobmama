@@ -3,16 +3,11 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 import { X, Menu } from "lucide-react";
 import logo from "@/assets/logo.svg";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
-  
-  const navItems = [
-    { label: "Home", href: "#home" },
-    { label: "About Us", href: "#about" },
-    { label: "Our Services", href: "#services" },
-    { label: "Our Approach", href: "#our-approach" },
-  ];
+  const { language, toggleLanguage, t } = useLanguage();
 
   const smoothScrollTo = (targetY: number, duration = 800) => {
     const startY = window.scrollY;
@@ -58,6 +53,18 @@ const Header = () => {
     }
   };
 
+  const LanguageToggle = ({ className = "" }: { className?: string }) => (
+    <button
+      onClick={toggleLanguage}
+      className={`flex items-center gap-1 text-foreground font-medium transition-opacity hover:opacity-70 min-h-[44px] ${className}`}
+      style={{ fontFamily: "'Inter', sans-serif" }}
+    >
+      <span className={language === "bg" ? "opacity-100" : "opacity-40"}>BG</span>
+      <span className="opacity-40">|</span>
+      <span className={language === "en" ? "opacity-100" : "opacity-40"}>EN</span>
+    </button>
+  );
+
   return (
     <header className="w-full px-5 py-6 md:px-8 lg:px-[100px]">
       <div className="flex w-full items-center justify-between">
@@ -66,42 +73,51 @@ const Header = () => {
           <img src={logo} alt="JobMama" className="h-8" />
         </a>
 
-        {/* Hamburger Menu - all screen sizes */}
-        <Sheet open={isOpen} onOpenChange={setIsOpen}>
-          <SheetTrigger asChild>
-            <Button variant="ghost" size="sm" className="p-2 min-w-[44px] min-h-[44px]">
-              <Menu className="h-6 w-6" />
-            </Button>
-          </SheetTrigger>
-          <SheetContent side="right" className="w-full sm:w-[320px] p-0" hideCloseButton>
-            <div className="flex flex-col h-full">
-              {/* Header with close button */}
-              <div className="flex items-center justify-between p-5 border-b border-border">
-                <img src={logo} alt="JobMama" className="h-8" />
-                <SheetClose asChild>
-                  <Button variant="ghost" size="sm" className="p-2 min-w-[44px] min-h-[44px]">
-                    <X className="h-6 w-6" />
-                  </Button>
-                </SheetClose>
-              </div>
+        {/* Right side: Language toggle + Hamburger */}
+        <div className="flex items-center gap-2">
+          <LanguageToggle className="text-sm" />
+          
+          <Sheet open={isOpen} onOpenChange={setIsOpen}>
+            <SheetTrigger asChild>
+              <Button variant="ghost" size="sm" className="p-2 min-w-[44px] min-h-[44px]">
+                <Menu className="h-6 w-6" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="right" className="w-full sm:w-[320px] p-0" hideCloseButton>
+              <div className="flex flex-col h-full">
+                {/* Header with close button */}
+                <div className="flex items-center justify-between p-5 border-b border-border">
+                  <img src={logo} alt="JobMama" className="h-8" />
+                  <SheetClose asChild>
+                    <Button variant="ghost" size="sm" className="p-2 min-w-[44px] min-h-[44px]">
+                      <X className="h-6 w-6" />
+                    </Button>
+                  </SheetClose>
+                </div>
 
-              {/* Navigation Links */}
-              <nav className="flex flex-col p-5 gap-6 flex-1">
-                {navItems.map((item) => (
-                  <a
-                    key={item.label}
-                    href={item.href}
-                    onClick={(e) => handleNavClick(e, item.href)}
-                    className="text-[20px] font-light text-foreground transition-colors hover:text-muted-foreground py-2"
-                    style={{ fontFamily: "'Zalando Sans', sans-serif" }}
-                  >
-                    {item.label}
-                  </a>
-                ))}
-              </nav>
-            </div>
-          </SheetContent>
-        </Sheet>
+                {/* Navigation Links */}
+                <nav className="flex flex-col p-5 gap-6 flex-1">
+                  {t.header.nav.map((item) => (
+                    <a
+                      key={item.href}
+                      href={item.href}
+                      onClick={(e) => handleNavClick(e, item.href)}
+                      className="text-[20px] font-light text-foreground transition-colors hover:text-muted-foreground py-2"
+                      style={{ fontFamily: "'Zalando Sans', sans-serif" }}
+                    >
+                      {item.label}
+                    </a>
+                  ))}
+                </nav>
+
+                {/* Language toggle in menu */}
+                <div className="p-5 border-t border-border">
+                  <LanguageToggle className="text-base" />
+                </div>
+              </div>
+            </SheetContent>
+          </Sheet>
+        </div>
       </div>
     </header>
   );

@@ -1,125 +1,30 @@
 import ServiceCard from "@/components/ServiceCard";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export interface ServiceFeature {
   heading: string;
   description: string;
 }
 
-interface ServiceTier {
-  title: string;
-  features: ServiceFeature[];
-  bookingUrl: string;
-}
-
-const serviceTiers: ServiceTier[] = [
-  {
-    title: "Essential Starter",
-    features: [
-      {
-        heading: "1-on-1 coaching session",
-        description: "To define your goals, uncover your unique strengths, and address your concerns."
-      },
-      {
-        heading: "Personalized action plan",
-        description: "A clear, step-by-step guide tailored to your successful journey back to being a working mom."
-      },
-      {
-        heading: "Complete resume overhaul",
-        description: "Modern formatting and a fresh perspective on your professional experience."
-      },
-      {
-        heading: "Optimized CV",
-        description: "Industry-specific keywords to ensure your expertise is immediately visible to employers."
-      }
-    ],
-    bookingUrl: "https://calendly.com/a-novakov89/30min"
-  },
-  {
-    title: "Signature 4-Step Transformation Package",
-    features: [
-      {
-        heading: "Career Mapping & Goal Setting",
-        description: "Align Your Expertise with Your Current Life Goals."
-      },
-      {
-        heading: "High-Impact CV Overhaul",
-        description: "A total resume transformation that bridges career gaps and showcases your potential to recruiters."
-      },
-      {
-        heading: "LinkedIn Profile Booster",
-        description: "A full digital makeover and headline optimization."
-      },
-      {
-        heading: "Strategic Market Navigation",
-        description: "Master the hunt by learning how to find the right companies."
-      }
-    ],
-    bookingUrl: "https://calendly.com/a-novakov89/30min"
-  },
-  {
-    title: "Success Package: Total Confidence",
-    features: [
-      {
-        heading: "Interview Mastery",
-        description: "A 1-on-1 mock interview to practice key questions and refine your professional pitch. Learn what to watch for during the meeting and how to spot \"green\" and \"red\" flags in a future employer."
-      },
-      {
-        heading: "Maternity Gap Strategy",
-        description: "Learn how to address your career break with poise and confidence."
-      },
-      {
-        heading: "Job Offer Evaluation",
-        description: "Expert help to review your contract or offer, identifying essential flexibility needs and terms."
-      },
-      {
-        heading: "Salary & Benefit Negotiation",
-        description: "A personalized strategy to help you state and negotiate your desired compensation and the social benefits."
-      }
-    ],
-    bookingUrl: "https://calendly.com/a-novakov89/30min"
-  },
-  {
-    title: "Corporate Solutions & HR Partnerships",
-    features: [
-      {
-        heading: "Reintegration Workshops",
-        description: "We facilitate a seamless return to work through moderated synchronization meetings and a 90-day roadmap, supported by quarterly workshops that build confidence and internal networks."
-      },
-      {
-        heading: "Smooth Transition Coaching Program",
-        description: "Specialized sessions during maternity leave focused on company HR policies, business updates, and the employee's emotional well-being."
-      },
-      {
-        heading: "Talent Acquisition",
-        description: "Job advertisement placement within JobMama's specialized channels and community."
-      }
-    ],
-    bookingUrl: "https://calendly.com/a-novakov89/30min"
-  }
-];
-
 const ServicesSection = () => {
+  const { t } = useLanguage();
+
   return (
     <section id="services" className="w-full px-5 pt-16 pb-16 md:px-8 md:pt-24 md:pb-20 lg:px-[100px] lg:pt-[150px] lg:pb-[100px]">
-      {/* Section Title */}
       <h2
-        style={{
-          fontFamily: "'Google Sans', sans-serif",
-          color: '#0D141C'
-        }}
+        style={{ fontFamily: "'Google Sans', sans-serif", color: '#0D141C' }}
         className="text-[40px] md:text-[72px] lg:text-[128.7px] mb-10 md:mb-16 lg:mb-24 font-medium text-center"
       >
-        Services
+        {t.services.sectionTitle}
       </h2>
 
-      {/* Cards Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-5 lg:gap-6">
-        {serviceTiers.map((tier) => (
+        {t.services.tiers.map((tier) => (
           <ServiceCard
             key={tier.title}
             title={tier.title}
             features={tier.features}
-            bookingUrl={tier.bookingUrl}
+            bookingUrl="https://calendly.com/a-novakov89/30min"
           />
         ))}
       </div>

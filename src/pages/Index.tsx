@@ -5,9 +5,11 @@ import ServicesSection from "@/components/ServicesSection";
 import ProcessSection from "@/components/ProcessSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import Footer from "@/components/Footer";
-import ourProcessHeading from "@/assets/our-process-heading.png";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Index = () => {
+  const { t } = useLanguage();
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -15,13 +17,14 @@ const Index = () => {
       <AboutSection />
       <ServicesSection />
       
-      {/* Our Process Heading - positioned between services and process section */}
+      {/* Our Process Heading */}
       <div className="w-full px-5 md:px-8 lg:px-[100px] mt-[100px] md:mt-[180px] lg:mt-[250px] mb-[40px] md:mb-[60px] lg:mb-[80px] relative z-10 flex justify-center">
-        <img 
-          src={ourProcessHeading} 
-          alt="Our Process" 
-          className="h-[40px] md:h-[72px] lg:h-[128px] w-auto"
-        />
+        <h2
+          style={{ fontFamily: "'Google Sans', sans-serif", color: '#0D141C' }}
+          className="text-[40px] md:text-[72px] lg:text-[128.7px] font-medium text-center"
+        >
+          {t.process.sectionTitle}
+        </h2>
       </div>
       
       <ProcessSection />
