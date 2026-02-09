@@ -20,7 +20,7 @@ const FAQItem = ({ number, question, description }: FAQItemProps) => (
   <div className="flex flex-col gap-3 md:gap-6">
     <div className="flex items-start gap-3 md:gap-6">
       <NumberBadge number={number} />
-      <h3 className="font-google-sans font-medium text-xl sm:text-2xl md:text-4xl lg:text-[58px] text-[#0D141C] leading-tight">
+      <h3 className="font-google-sans font-medium text-xl sm:text-2xl md:text-3xl lg:text-[48px] text-[#0D141C] leading-tight break-words">
         {question}
       </h3>
     </div>
