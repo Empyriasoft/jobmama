@@ -13,10 +13,7 @@ const Header = () => {
     { label: "Our Approach", href: "#our-approach" },
   ];
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
-    setIsOpen(false);
-    
+  const scrollToTarget = (href: string) => {
     if (href === "#home") {
       window.scrollTo({ top: 0, behavior: "smooth" });
     } else {
@@ -24,6 +21,18 @@ const Header = () => {
       if (element) {
         element.scrollIntoView({ behavior: "smooth" });
       }
+    }
+  };
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    
+    if (isOpen) {
+      setIsOpen(false);
+      // Delay scroll to let the Sheet release its scroll lock
+      setTimeout(() => scrollToTarget(href), 350);
+    } else {
+      scrollToTarget(href);
     }
   };
 
