@@ -66,14 +66,14 @@ const Header = () => {
           <img src={logo} alt="JobMama" className="h-8" />
         </a>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden items-center gap-10 md:flex">
+        {/* Desktop Navigation Bar */}
+        <nav className="hidden md:flex items-center bg-muted rounded-full px-2 py-1.5 gap-1">
           {navItems.map((item) => (
             <a
               key={item.label}
               href={item.href}
               onClick={(e) => handleNavClick(e, item.href)}
-              className="text-[22px] font-light text-foreground transition-colors hover:text-muted-foreground"
+              className="px-5 py-2.5 rounded-full text-[16px] lg:text-[18px] font-light text-foreground transition-colors hover:bg-background hover:shadow-sm"
               style={{ fontFamily: "'Zalando Sans', sans-serif" }}
             >
               {item.label}
@@ -128,7 +128,6 @@ const Header = () => {
                   </a>
                 ))}
               </nav>
-
             </div>
           </SheetContent>
         </Sheet>
