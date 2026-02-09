@@ -71,31 +71,29 @@ const MobileAboutCard = ({ valueKey }: { valueKey: ValueKey }) => {
   );
 };
 
-// Desktop Card Component
+// Desktop Card Component — flex layout to prevent text/image overlap
 const DesktopAboutCard = ({ activeValue }: { activeValue: ValueKey }) => {
-  const [tiltX, setTiltX] = useState<number>(0);
-  const [isSwiping, setIsSwiping] = useState<boolean>(false);
   const { t } = useLanguage();
   const content = t.about.values[activeValue];
 
   return (
     <div 
-      className="relative overflow-hidden rounded-[40px] lg:rounded-[80px] h-[500px] md:h-[700px] lg:h-[950px] w-full cursor-default"
-      style={{ 
-        backgroundColor: '#ececec',
-        transform: `perspective(1000px) rotateY(${tiltX}deg) scale(${isSwiping ? 0.98 : 1})`,
-        transition: isSwiping ? 'none' : 'transform 0.3s ease-out'
-      }}
+      className="overflow-hidden rounded-[40px] lg:rounded-[80px] min-h-[500px] md:min-h-[700px] lg:min-h-[800px] w-full flex flex-col"
+      style={{ backgroundColor: '#ececec' }}
     >
-      <img 
-        src={valueImages[activeValue]}
-        alt=""
-        className="absolute w-[300px] h-[170px] md:w-[350px] md:h-[198px] lg:w-[671px] lg:h-[379px] left-8 md:left-10 lg:left-[95px] top-10 lg:top-[49px] object-contain"
-      />
+      {/* Image area */}
+      <div className="p-8 md:p-10 lg:px-[95px] lg:pt-[49px] lg:pb-0 shrink-0">
+        <img 
+          src={valueImages[activeValue]}
+          alt=""
+          className="w-[300px] h-[170px] md:w-[350px] md:h-[198px] lg:w-[671px] lg:h-[379px] object-contain"
+        />
+      </div>
 
+      {/* Text area — grows to fill remaining space */}
       <div 
         key={activeValue}
-        className="absolute bottom-[50px] left-8 right-8 md:bottom-[60px] md:left-10 md:right-10 lg:bottom-[108px] lg:left-[95px] lg:right-[95px] flex flex-col gap-4 lg:gap-[36px] animate-fade-in"
+        className="flex-1 flex flex-col justify-end p-8 md:p-10 lg:px-[95px] lg:pb-[108px] gap-4 lg:gap-[36px] animate-fade-in"
       >
         <h3
           style={{ fontFamily: "'Google Sans', sans-serif", letterSpacing: '-0.04em', color: '#000000' }}
@@ -105,7 +103,7 @@ const DesktopAboutCard = ({ activeValue }: { activeValue: ValueKey }) => {
         </h3>
         <p
           style={{ fontFamily: "'Inter', sans-serif", letterSpacing: '-0.04em', color: '#000000' }}
-          className="text-[16px] md:text-[18px] lg:text-[24px] leading-[1.5] lg:leading-[1.6] font-light opacity-90 whitespace-pre-line"
+          className="text-[16px] md:text-[18px] lg:text-[20px] leading-[1.5] lg:leading-[1.6] font-light opacity-90 whitespace-pre-line"
         >
           {content.description}
         </p>
@@ -190,13 +188,13 @@ const AboutSection = () => {
     <section id="about" className="w-full px-5 pt-20 pb-16 md:px-8 md:pt-[150px] md:pb-20 lg:px-[100px] lg:pt-[251px] lg:pb-[100px]">
       <h2
         style={{ fontFamily: "'Google Sans', sans-serif", color: '#0D141C' }}
-        className="text-[40px] md:text-[72px] lg:text-[128.7px] mb-12 md:mb-[100px] lg:mb-[196px] font-medium text-center"
+        className="text-[40px] md:text-[72px] lg:text-[100px] xl:text-[128.7px] mb-12 md:mb-[100px] lg:mb-[196px] font-medium text-center break-words"
       >
         {t.about.sectionTitle}
       </h2>
 
       <div className="flex flex-col lg:flex-row lg:gap-16">
-        <div className="hidden lg:flex lg:flex-col lg:justify-center lg:w-[340px] lg:h-[950px]">
+        <div className="hidden lg:flex lg:flex-col lg:justify-center lg:w-[400px] lg:shrink-0">
           {values.map((value, index) => {
             const isActive = activeValue === value.key;
             const isLast = index === values.length - 1;
@@ -209,7 +207,7 @@ const AboutSection = () => {
                 >
                   <span
                     style={{ fontFamily: "'Google Sans', sans-serif" }}
-                    className={`text-[40px] font-normal leading-[1.2] transition-colors duration-200 ${
+                    className={`text-[32px] font-normal leading-[1.2] transition-colors duration-200 ${
                       isActive
                         ? "text-foreground"
                         : "text-muted-foreground/50 hover:text-muted-foreground"
@@ -220,11 +218,11 @@ const AboutSection = () => {
                 </button>
                 
                 {isActive && (
-                  <div className="h-[3px] w-[60px] bg-primary transition-all duration-300 mt-[113px] mb-[113px]" />
+                  <div className="h-[3px] w-[60px] bg-primary transition-all duration-300 mt-[80px] mb-[80px]" />
                 )}
                 
                 {!isActive && !isLast && (
-                  <div style={{ height: '113px' }} />
+                  <div style={{ height: '80px' }} />
                 )}
               </div>
             );

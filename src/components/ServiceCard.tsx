@@ -115,7 +115,7 @@ const ServiceCard = ({ title, features, bookingUrl }: ServiceCardProps) => {
     >
       <h3 
         style={{ fontFamily: "'Google Sans', sans-serif", color: '#0D141C' }}
-        className="text-xl md:text-2xl font-medium mb-6"
+        className="text-xl md:text-2xl font-medium mb-6 min-h-[72px] flex items-end"
       >
         {title}
       </h3>
