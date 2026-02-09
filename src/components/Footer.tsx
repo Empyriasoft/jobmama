@@ -134,7 +134,7 @@ const Footer = () => {
       </div>
 
       {/* Footer logo - edge to edge */}
-      <div className="w-full mt-[500px]">
+      <div className="w-full mt-[450px]">
         <img src={footerLogo} alt="" className="w-full h-auto object-cover" />
       </div>
     </footer>;
