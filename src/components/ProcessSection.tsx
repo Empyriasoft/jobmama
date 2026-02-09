@@ -1,11 +1,8 @@
 import { useState } from "react";
 import decorativeShape from "@/assets/faq-decorative-shape.png";
+import { useLanguage } from "@/contexts/LanguageContext";
 
-const NumberBadge = ({
-  number
-}: {
-  number: string;
-}) => (
+const NumberBadge = ({ number }: { number: string }) => (
   <div className="inline-flex items-center justify-center px-3 py-1 md:px-4 md:py-2 border-2 border-[#0D141C] rounded-full shrink-0">
     <span className="font-inter font-medium text-base md:text-xl lg:text-[38px] text-[#0D141C]">
       {number}
@@ -19,11 +16,7 @@ interface FAQItemProps {
   description: string;
 }
 
-const FAQItem = ({
-  number,
-  question,
-  description
-}: FAQItemProps) => (
+const FAQItem = ({ number, question, description }: FAQItemProps) => (
   <div className="flex flex-col gap-3 md:gap-6">
     <div className="flex items-start gap-3 md:gap-6">
       <NumberBadge number={number} />
@@ -58,53 +51,12 @@ const TabButton = ({ active, onClick, children }: TabButtonProps) => (
 
 const ProcessSection = () => {
   const [activeTab, setActiveTab] = useState<"mamas" | "businesses">("mamas");
+  const { t } = useLanguage();
 
-  const mamasSteps = [
-    {
-      number: "01.",
-      title: "Reflect & Plan",
-      description: "We begin with a deep-dive conversation to understand your story, your professional goals, and your concerns. In our initial coaching session, we reflect on what you truly want from your next chapter and map out a personalized Strategic Action Plan."
-    },
-    {
-      number: "02.",
-      title: "Rebuild Your Toolkit",
-      description: "We rewrite your CV, optimize your LinkedIn profile, and sharpen your interview skills to meet the market standards. As we upgrade your tools, we focus on rebuilding your confidence. We help you translate your resilience and multitasking into professional assets."
-    },
-    {
-      number: "03.",
-      title: "Relaunch Your Career",
-      description: "Whether you are applying for new roles or negotiating a return to your previous employer, we provide the guidance you need to land a position that aligns with your potential."
-    }
-  ];
-
-  const businessesSteps = [
-    {
-      number: "01.",
-      title: "Initial Discovery",
-      description: "Start by booking a consultation meeting with us. We will discuss your current challenges, parental leave turnover, and your specific needs for talent retention."
-    },
-    {
-      number: "02.",
-      title: "Tailored Solutions",
-      description: "Based on our meeting, we recommend a mix of our modular services - whether it's a single workshop, a coaching series, or a targeted job posting - to solve your specific pain points."
-    },
-    {
-      number: "03.",
-      title: "Program Alignment",
-      description: "We refine the selected solution to fit your industry and internal HR policies. This ensures that the integration of returning employees is seamless and adds immediate value to your teams."
-    },
-    {
-      number: "04.",
-      title: "Collaborative Execution",
-      description: "We facilitate the sessions or launch the recruitment ads. Throughout the process, we remain in close contact to provide feedback and ensure the collaboration meets your expectations."
-    }
-  ];
-
-  const currentSteps = activeTab === "mamas" ? mamasSteps : businessesSteps;
+  const currentSteps = activeTab === "mamas" ? t.process.mamasSteps : t.process.businessesSteps;
 
   return (
     <section id="our-approach" className="relative bg-[#87dda8] py-12 sm:py-16 md:py-24 lg:py-32 px-4 sm:px-6 md:px-12 lg:px-[100px] overflow-hidden">
-      {/* Decorative Shape */}
       <img
         src={decorativeShape}
         alt=""
@@ -112,23 +64,21 @@ const ProcessSection = () => {
       />
 
       <div className="relative z-10 flex flex-col lg:flex-row gap-8 sm:gap-10 lg:gap-16">
-        {/* Tabs Navigation */}
         <div className="flex flex-row lg:flex-col lg:w-1/3 gap-2 sm:gap-3 lg:gap-4">
           <TabButton
             active={activeTab === "mamas"}
             onClick={() => setActiveTab("mamas")}
           >
-            Mamas
+            {t.process.tabs.mamas}
           </TabButton>
           <TabButton
             active={activeTab === "businesses"}
             onClick={() => setActiveTab("businesses")}
           >
-            Businesses
+            {t.process.tabs.businesses}
           </TabButton>
         </div>
 
-        {/* Process Steps */}
         <div className="lg:w-2/3 flex flex-col gap-8 sm:gap-12 md:gap-16 lg:gap-20">
           {currentSteps.map((step) => (
             <FAQItem

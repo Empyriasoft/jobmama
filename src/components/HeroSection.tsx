@@ -1,8 +1,11 @@
 import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import heroImage from "@/assets/hero-mother-child.jpg";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const HeroSection = () => {
+  const { t } = useLanguage();
+
   useEffect(() => {
     const googleSansLink = document.createElement("link");
     googleSansLink.href = "https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap";
@@ -29,7 +32,7 @@ const HeroSection = () => {
           style={{ backgroundImage: `url(${heroImage})` }} 
         />
         
-        {/* Gradient Overlay - stronger on mobile for readability */}
+        {/* Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-r from-foreground/70 via-foreground/40 to-transparent sm:from-foreground/50 sm:via-foreground/30" />
         
         {/* Content */}
@@ -39,15 +42,32 @@ const HeroSection = () => {
               style={{ fontFamily: "'Google Sans', sans-serif" }} 
               className="mb-4 text-2xl font-bold leading-[1.1] tracking-tight text-hero sm:mb-6 sm:text-3xl md:mb-[48px] md:text-5xl lg:text-8xl"
             >
-              Back to Work, Bold &<br />Confident
+              {t.hero.title}
             </h1>
             
-            <p 
-              style={{ fontFamily: "'Inter', sans-serif", fontWeight: 500 }} 
-              className="mb-6 max-w-xs text-sm leading-relaxed text-hero/80 font-light sm:mb-8 sm:max-w-sm sm:text-base md:mb-[71px] md:max-w-md md:text-xl"
-            >
-              Restart your career with one-to-one coaching, CV makeover, free workshops and more!
-            </p>
+            {t.hero.subtitle && (
+              <p 
+                style={{ fontFamily: "'Inter', sans-serif", fontWeight: 500 }} 
+                className="mb-6 max-w-xs text-sm leading-relaxed text-hero/80 font-light sm:mb-8 sm:max-w-sm sm:text-base md:mb-[71px] md:max-w-md md:text-xl"
+              >
+                {t.hero.subtitle}
+              </p>
+            )}
+
+            {t.hero.bullets.length > 0 && (
+              <ul className="mb-6 flex flex-col gap-2 sm:mb-8 md:mb-[71px]">
+                {t.hero.bullets.map((bullet, index) => (
+                  <li 
+                    key={index}
+                    style={{ fontFamily: "'Inter', sans-serif" }}
+                    className="text-xs leading-relaxed text-hero/80 sm:text-sm md:text-base flex items-start gap-2"
+                  >
+                    <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-hero/60 shrink-0" />
+                    {bullet}
+                  </li>
+                ))}
+              </ul>
+            )}
             
             <Button 
               variant="hero" 
@@ -55,7 +75,7 @@ const HeroSection = () => {
               className="text-sm px-4 py-2 sm:text-base sm:px-6 sm:py-3 md:text-lg md:px-8 md:py-4"
               onClick={() => window.open('https://calendly.com/a-novakov89/30min', '_blank', 'noopener,noreferrer')}
             >
-              Book a Free Call
+              {t.hero.cta}
             </Button>
           </div>
         </div>

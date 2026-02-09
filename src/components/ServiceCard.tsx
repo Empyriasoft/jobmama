@@ -7,6 +7,7 @@ import {
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { useLanguage } from "@/contexts/LanguageContext";
 import type { ServiceFeature } from "@/components/ServicesSection";
 
 interface ServiceCardProps {
@@ -25,16 +26,13 @@ const FeatureItem = ({ feature, isExpanded = false, onToggle }: FeatureItemProps
   const isMobile = useIsMobile();
   const [isHoverOpen, setIsHoverOpen] = useState(false);
   
-  // Close tooltip on scroll (desktop only)
   useEffect(() => {
     if (!isHoverOpen || isMobile) return;
-    
     const handleScroll = () => setIsHoverOpen(false);
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, [isHoverOpen, isMobile]);
 
-  // Mobile: inline expand/collapse
   if (isMobile) {
     return (
       <div className="flex-1">
@@ -64,7 +62,6 @@ const FeatureItem = ({ feature, isExpanded = false, onToggle }: FeatureItemProps
     );
   }
 
-  // Desktop: hover card tooltip
   const triggerContent = (
     <span 
       style={{ fontFamily: "'Inter', sans-serif", color: '#0D141C' }}
@@ -99,6 +96,7 @@ const FeatureItem = ({ feature, isExpanded = false, onToggle }: FeatureItemProps
 
 const ServiceCard = ({ title, features, bookingUrl }: ServiceCardProps) => {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+  const { t } = useLanguage();
 
   const handleToggleFeature = (index: number) => {
     setExpandedIndex(expandedIndex === index ? null : index);
@@ -115,7 +113,6 @@ const ServiceCard = ({ title, features, bookingUrl }: ServiceCardProps) => {
       className="relative flex flex-col p-6 md:p-8 rounded-[40px] transition-transform duration-300 hover:scale-105"
       style={{ backgroundColor: '#00CEFF' }}
     >
-      {/* Title */}
       <h3 
         style={{ fontFamily: "'Google Sans', sans-serif", color: '#0D141C' }}
         className="text-xl md:text-2xl font-medium mb-6"
@@ -123,7 +120,6 @@ const ServiceCard = ({ title, features, bookingUrl }: ServiceCardProps) => {
         {title}
       </h3>
 
-      {/* Features */}
       <ul className="flex flex-col gap-3 mb-8 flex-1">
         {features.map((feature, index) => (
           <li key={index} className="flex items-start gap-3">
@@ -137,7 +133,6 @@ const ServiceCard = ({ title, features, bookingUrl }: ServiceCardProps) => {
         ))}
       </ul>
 
-      {/* CTA Button */}
       <Button
         onClick={handleBookClick}
         className="w-full rounded-full py-3 text-base font-medium transition-colors duration-200"
@@ -153,7 +148,7 @@ const ServiceCard = ({ title, features, bookingUrl }: ServiceCardProps) => {
           e.currentTarget.style.backgroundColor = '#FFFFFF';
         }}
       >
-        Schedule Call
+        {t.services.cta}
       </Button>
     </div>
   );
