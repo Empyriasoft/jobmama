@@ -82,16 +82,16 @@ const serviceTiers: ServiceTier[] = [
     title: "Corporate Solutions & HR Partnerships",
     features: [
       {
-        heading: "Integration Workshops",
-        description: "A collaborative session gathering returning employees and their team leads to align on business duties and the current state of work. We facilitate updates on business activities and assess the evolving skillset of the returner to ensure a productive re-entry."
+        heading: "Reintegration Workshops",
+        description: "We facilitate a seamless return to work through moderated synchronization meetings and a 90-day roadmap, supported by quarterly workshops that build confidence and internal networks."
       },
       {
-        heading: "Parental Return-to-Work Coaching",
-        description: "A series of 5 structured online sessions focusing on the emotional and professional transition of the employee. We cover HR policies, business updates, and consult on the employee's motivation and specific needs during their return."
+        heading: "Smooth Transition Coaching Program",
+        description: "Specialized sessions during maternity leave focused on company HR policies, business updates, and the employee's emotional well-being."
       },
       {
-        heading: "Targeted Talent Acquisition",
-        description: "Promote your company's culture by posting \"mom-friendly\" job advertisements directly in our dedicated Facebook and LinkedIn community groups to reach qualified, resilient professionals."
+        heading: "Talent Acquisition",
+        description: "Job advertisement placement within JobMama's specialized channels and community."
       }
     ],
     bookingUrl: "https://calendly.com/a-novakov89/30min"
