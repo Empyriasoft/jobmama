@@ -22,25 +22,25 @@ export const en = {
         label: "The Heart Behind the Brand",
         title: "The Heart Behind the Brand",
         description:
-          "JobMama was born out of real-world experience. After maternity leave, our founder faced a common challenge: navigating the job market with a young child while experiencing the \"confidence gap.\"\n\nBeyond being a mother who has \"been there,\" she is a seasoned HR professional with years on the other side of the hiring table. JobMama is where expert professional insight meets true maternal empathy.",
+          "JobMama was born from a real story. After sixteen months of maternity leave, our founder faced a challenge that is all too familiar: redundancy. With a young child who was often ill, she personally went through difficult situations — job loss, uncertainty, and self-doubt about how to move forward in such a dynamic and competitive world.\n\nBut her story has another side. Beyond being a mother who has \"been there,\" she is a seasoned HR professional who spent years on the other side of the interview table. Having reviewed thousands of CVs and approved hundreds of hires, she knows exactly what employers are looking for and how to present a candidate successfully.\n\nJobMama is a place created with understanding of motherhood and a professional perspective on career development.",
       },
       determination: {
-        label: "The Purpose",
-        title: "The Purpose",
+        label: "Why Does JobMama Exist?",
+        title: "Why Does JobMama Exist?",
         description:
-          "For many mothers, the end of maternity leave isn't a simple return—it's a forced career pivot. Nearly 50% of women report being unable to return to their previous roles. JobMama is a human resources consultancy dedicated to helping mothers transition back into the workforce. We believe a career break for motherhood should be a pause, not a full stop.",
+          "For many women, the end of maternity leave isn't simply a return to work — it's a moment of uncertainty and forced career change. In Bulgaria, nearly 50% of women report being unable to return to their previous positions, leading to a lack of growth and a loss of identity.\n\nYou're probably asking yourself:\n\"Will anyone hire me after such a long break?\"\n\"Is my CV still relevant?\"\n\"How will I manage to balance a career and caring for a small child?\"\n\nJobMama is a consultancy dedicated to women navigating the transition from maternity back to the professional world. We believe that a career break for childcare should be just a pause, not a full stop.",
       },
       change: {
-        label: "Our Vision & Mission",
-        title: "Our Vision & Mission",
+        label: "Our Mission",
+        title: "Our Mission",
         description:
-          "Our mission is to empower women to rebuild their professional confidence, modernize their job search skills, and secure fulfilling employment. We envision a labor market where mothers are valued for their resilience and expertise, and where professional reintegration is a seamless, empowering experience.",
+          "Our mission is to inspire you to regain your professional confidence, become better at finding your dream job, and discover exactly those positions that fulfill you. We believe in a labor market where mothers are valued for their resilience and expertise, and where professional reintegration is a smooth and supportive experience.\n\nBy helping talented women remain part of the workforce, we're not only helping on a personal level — we're working toward equality and economic growth. Our goal is to prove that professional fulfillment and motherhood can successfully coexist.",
       },
       confidence: {
-        label: "The Solution",
-        title: "The Solution",
+        label: "Our Approach",
+        title: "Our Approach",
         description:
-          "A holistic path to your career relaunch. Empathetic coaching to overcome confidence gaps, expert HR-led career services to make you the top candidate, and measurable results turning your transition into a career launchpad. We offer a specialized bridge back to professional life.",
+          "Our approach is multifaceted because we know that a successful return requires more than just updating your CV.\n\nEmpathy and Coaching: To overcome the \"confidence crisis\" and rediscover your professional identity.\n\nExpertise: Practical strategies driven by our HR experience that will make you the preferred candidate.\n\nMeasurable Results: We turn your transition period into a career launchpad.\n\nWe build a path toward a confident return to the professional world and toward choosing a job that isn't a compromise, but your natural next step.",
       },
     },
   },
