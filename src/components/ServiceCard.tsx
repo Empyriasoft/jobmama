@@ -11,10 +11,7 @@ import type { ServiceFeature } from "@/components/ServicesSection";
 
 interface ServiceCardProps {
   title: string;
-  price?: string;
-  period?: string;
   features: ServiceFeature[];
-  isPopular?: boolean;
   bookingUrl?: string;
 }
 
@@ -100,7 +97,7 @@ const FeatureItem = ({ feature, isExpanded = false, onToggle }: FeatureItemProps
   );
 };
 
-const ServiceCard = ({ title, price, period, features, isPopular = false, bookingUrl }: ServiceCardProps) => {
+const ServiceCard = ({ title, features, bookingUrl }: ServiceCardProps) => {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
 
   const handleToggleFeature = (index: number) => {

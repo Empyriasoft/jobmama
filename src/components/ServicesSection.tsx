@@ -7,18 +7,13 @@ export interface ServiceFeature {
 
 interface ServiceTier {
   title: string;
-  price: string;
-  period: string;
   features: ServiceFeature[];
-  isPopular?: boolean;
   bookingUrl: string;
 }
 
 const serviceTiers: ServiceTier[] = [
   {
     title: "Essential Starter",
-    price: "€199",
-    period: "one-time",
     features: [
       {
         heading: "1-on-1 coaching session",
@@ -41,8 +36,6 @@ const serviceTiers: ServiceTier[] = [
   },
   {
     title: "Signature 4-Step Transformation Package",
-    price: "€399",
-    period: "one-time",
     features: [
       {
         heading: "Career Mapping & Goal Setting",
@@ -61,13 +54,10 @@ const serviceTiers: ServiceTier[] = [
         description: "Master the hunt by learning how to find the right companies."
       }
     ],
-    isPopular: true,
     bookingUrl: "https://calendly.com/a-novakov89/30min"
   },
   {
     title: "Success Package: Total Confidence",
-    price: "€599",
-    period: "one-time",
     features: [
       {
         heading: "Interview Mastery",
@@ -90,8 +80,6 @@ const serviceTiers: ServiceTier[] = [
   },
   {
     title: "Corporate Solutions & HR Partnerships",
-    price: "Custom",
-    period: "contact us",
     features: [
       {
         heading: "Integration Workshops",
@@ -130,10 +118,7 @@ const ServicesSection = () => {
           <ServiceCard
             key={tier.title}
             title={tier.title}
-            price={tier.price}
-            period={tier.period}
             features={tier.features}
-            isPopular={tier.isPopular}
             bookingUrl={tier.bookingUrl}
           />
         ))}
