@@ -46,7 +46,7 @@ interface TabButtonProps {
 const TabButton = ({ active, onClick, children }: TabButtonProps) => (
   <button
     onClick={onClick}
-    className={`text-left py-2 px-3 md:py-3 md:px-4 lg:py-4 lg:px-6 font-google-sans font-medium text-2xl sm:text-3xl md:text-4xl lg:text-[116px] lg:leading-[1.1] transition-all whitespace-nowrap min-h-[44px] ${
+    className={`text-left py-2 px-3 md:py-3 md:px-4 lg:py-4 lg:px-6 font-google-sans font-medium text-3xl sm:text-4xl md:text-5xl lg:text-7xl xl:text-[116px] xl:leading-[1.1] transition-all whitespace-nowrap min-h-[44px] ${
       active
         ? "text-[#0D141C]"
         : "text-white hover:text-[#0D141C]"
@@ -111,9 +111,9 @@ const ProcessSection = () => {
         className="absolute bottom-0 left-0 w-[200px] sm:w-[300px] md:w-[450px] lg:w-[600px] h-auto pointer-events-none"
       />
 
-      <div className="relative z-10 flex flex-col lg:flex-row gap-6 sm:gap-8 lg:gap-16">
+      <div className="relative z-10 flex flex-col lg:flex-row gap-8 sm:gap-10 lg:gap-16">
         {/* Tabs Navigation */}
-        <div className="lg:w-1/3 flex flex-row lg:flex-col gap-1 sm:gap-2 lg:gap-4">
+        <div className="flex flex-row lg:flex-col lg:w-1/3 gap-2 sm:gap-3 lg:gap-4">
           <TabButton
             active={activeTab === "mamas"}
             onClick={() => setActiveTab("mamas")}
