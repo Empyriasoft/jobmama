@@ -224,18 +224,18 @@ const TestimonialsSection = () => {
   // Desktop layout
   return (
     <section className="w-full px-5 md:px-8 lg:px-[100px] pt-[200px] md:pt-[300px] lg:pt-[400px] pb-16 md:pb-24 lg:pb-32">
+      {/* Testimonials heading */}
+      <h2
+        style={{ fontFamily: "'Google Sans', sans-serif", color: '#0D141C' }}
+        className="text-[36px] lg:text-[48px] font-medium text-center mb-10 lg:mb-16 mx-auto max-w-4xl px-4"
+      >
+        Here is what some of our clients have to say:
+      </h2>
+
       {/* Desktop Overlapping Images */}
       <div className="flex justify-center items-center mb-12 md:mb-16 lg:mb-20">
         <DesktopOverlapping />
       </div>
-
-      {/* Testimonials heading */}
-      <h2
-        style={{ fontFamily: "'Google Sans', sans-serif", color: '#0D141C' }}
-        className="text-[36px] lg:text-[48px] font-medium text-center mb-8 lg:mb-10 mx-auto max-w-4xl px-4"
-      >
-        Here is what some of our clients have to say:
-      </h2>
 
       {/* Testimonial text */}
       <div className="max-w-3xl mx-auto text-center">
