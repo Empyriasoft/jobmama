@@ -160,7 +160,7 @@ const AboutSection = () => {
   // Mobile: Carousel Layout
   if (isMobile) {
     return (
-      <section className="w-full pl-4 pr-0 pt-16 pb-12 overflow-hidden">
+      <section id="about" className="w-full pl-4 pr-0 pt-16 pb-12 overflow-hidden">
         {/* Section Title */}
         <h2
           style={{ fontFamily: "'Google Sans', sans-serif", color: '#0D141C' }}
@@ -192,7 +192,7 @@ const AboutSection = () => {
   // Tablet: Horizontal tabs above card
   if (isTablet) {
     return (
-      <section className="w-full px-5 pt-20 pb-16 md:px-12 md:pt-[100px] md:pb-16">
+      <section id="about" className="w-full px-5 pt-20 pb-16 md:px-12 md:pt-[100px] md:pb-16">
         {/* Section Title */}
         <h2
           style={{ fontFamily: "'Google Sans', sans-serif", color: '#0D141C' }}
@@ -230,7 +230,7 @@ const AboutSection = () => {
 
   // Desktop: Original Layout (unchanged)
   return (
-    <section className="w-full px-5 pt-20 pb-16 md:px-8 md:pt-[150px] md:pb-20 lg:px-[100px] lg:pt-[251px] lg:pb-[100px]">
+    <section id="about" className="w-full px-5 pt-20 pb-16 md:px-8 md:pt-[150px] md:pb-20 lg:px-[100px] lg:pt-[251px] lg:pb-[100px]">
       {/* Section Title */}
       <h2
         style={{ fontFamily: "'Google Sans', sans-serif", color: '#0D141C' }}

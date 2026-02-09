@@ -9,6 +9,7 @@ const Header = () => {
   
   const navItems = [
     { label: "Home", href: "#home" },
+    { label: "About Us", href: "#about" },
     { label: "Our Services", href: "#services" },
     { label: "Our Approach", href: "#our-approach" },
   ];
@@ -78,9 +79,6 @@ const Header = () => {
               {item.label}
             </a>
           ))}
-          <Button variant="cta" size="cta" className="text-[22px] w-[181px] h-[66px] font-light" style={{ fontFamily: "'Zalando Sans', sans-serif" }}>
-            Get in Touch
-          </Button>
         </nav>
 
         {/* Mobile Menu */}
@@ -131,18 +129,6 @@ const Header = () => {
                 ))}
               </nav>
 
-              {/* CTA Button */}
-              <div className="p-5 border-t border-border">
-                <Button 
-                  variant="cta" 
-                  size="cta" 
-                  className="w-full text-[18px] h-[56px] font-light" 
-                  style={{ fontFamily: "'Zalando Sans', sans-serif" }}
-                  onClick={() => setIsOpen(false)}
-                >
-                  Get in Touch
-                </Button>
-              </div>
             </div>
           </SheetContent>
         </Sheet>
