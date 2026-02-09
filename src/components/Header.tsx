@@ -74,13 +74,13 @@ const Header = () => {
         </a>
 
         {/* Right side: Language toggle + Hamburger */}
-        <div className="flex items-center gap-2">
-          <LanguageToggle className="text-sm" />
+        <div className="flex items-center gap-3 md:gap-4">
+          <LanguageToggle className="text-sm md:text-base lg:text-lg" />
           
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="sm" className="p-2 min-w-[44px] min-h-[44px]">
-                <Menu className="h-6 w-6" />
+              <Button variant="ghost" size="sm" className="p-2 min-w-[44px] min-h-[44px] md:min-w-[52px] md:min-h-[52px]">
+                <Menu className="h-6 w-6 md:h-7 md:w-7 lg:h-8 lg:w-8" />
               </Button>
             </SheetTrigger>
             <SheetContent side="right" className="w-full sm:w-[320px] p-0" hideCloseButton>
