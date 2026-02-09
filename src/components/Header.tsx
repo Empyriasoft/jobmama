@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
-import { X } from "lucide-react";
+import { X, Menu } from "lucide-react";
 import logo from "@/assets/logo.svg";
 
 const Header = () => {
@@ -66,40 +66,11 @@ const Header = () => {
           <img src={logo} alt="JobMama" className="h-8" />
         </a>
 
-        {/* Desktop Navigation Bar */}
-        <nav className="hidden md:flex items-center bg-muted rounded-full px-2 py-1.5 gap-1">
-          {navItems.map((item) => (
-            <a
-              key={item.label}
-              href={item.href}
-              onClick={(e) => handleNavClick(e, item.href)}
-              className="px-5 py-2.5 rounded-full text-[16px] lg:text-[18px] font-light text-foreground transition-colors hover:bg-background hover:shadow-sm"
-              style={{ fontFamily: "'Zalando Sans', sans-serif" }}
-            >
-              {item.label}
-            </a>
-          ))}
-        </nav>
-
-        {/* Mobile Menu */}
+        {/* Hamburger Menu - all screen sizes */}
         <Sheet open={isOpen} onOpenChange={setIsOpen}>
           <SheetTrigger asChild>
-            <Button variant="ghost" size="sm" className="md:hidden p-2 min-w-[44px] min-h-[44px]">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <line x1="3" y1="12" x2="21" y2="12" />
-                <line x1="3" y1="6" x2="21" y2="6" />
-                <line x1="3" y1="18" x2="21" y2="18" />
-              </svg>
+            <Button variant="ghost" size="sm" className="p-2 min-w-[44px] min-h-[44px]">
+              <Menu className="h-6 w-6" />
             </Button>
           </SheetTrigger>
           <SheetContent side="right" className="w-full sm:w-[320px] p-0" hideCloseButton>
