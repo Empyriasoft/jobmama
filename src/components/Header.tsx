@@ -13,13 +13,35 @@ const Header = () => {
     { label: "Our Approach", href: "#our-approach" },
   ];
 
+  const smoothScrollTo = (targetY: number, duration = 800) => {
+    const startY = window.scrollY;
+    const diff = targetY - startY;
+    let startTime: number | null = null;
+
+    const easeInOutCubic = (t: number) =>
+      t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
+    const step = (timestamp: number) => {
+      if (!startTime) startTime = timestamp;
+      const elapsed = timestamp - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      window.scrollTo(0, startY + diff * easeInOutCubic(progress));
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      }
+    };
+
+    requestAnimationFrame(step);
+  };
+
   const scrollToTarget = (href: string) => {
     if (href === "#home") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      smoothScrollTo(0);
     } else {
       const element = document.querySelector(href);
       if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
+        const top = element.getBoundingClientRect().top + window.scrollY;
+        smoothScrollTo(top);
       }
     }
   };
@@ -29,7 +51,6 @@ const Header = () => {
     
     if (isOpen) {
       setIsOpen(false);
-      // Delay scroll to let the Sheet release its scroll lock
       setTimeout(() => scrollToTarget(href), 350);
     } else {
       scrollToTarget(href);
