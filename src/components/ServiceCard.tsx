@@ -11,8 +11,8 @@ import type { ServiceFeature } from "@/components/ServicesSection";
 
 interface ServiceCardProps {
   title: string;
-  price: string;
-  period: string;
+  price?: string;
+  period?: string;
   features: ServiceFeature[];
   isPopular?: boolean;
   bookingUrl?: string;
@@ -118,45 +118,13 @@ const ServiceCard = ({ title, price, period, features, isPopular = false, bookin
       className="relative flex flex-col p-6 md:p-8 rounded-[40px] transition-transform duration-300 hover:scale-105"
       style={{ backgroundColor: '#00CEFF' }}
     >
-      {/* Popular Badge */}
-      {isPopular && (
-        <div 
-          className="absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-medium"
-          style={{ 
-            backgroundColor: '#ececec', 
-            color: '#0D141C',
-            fontFamily: "'Google Sans', sans-serif"
-          }}
-        >
-          Popular
-        </div>
-      )}
-
       {/* Title */}
       <h3 
         style={{ fontFamily: "'Google Sans', sans-serif", color: '#0D141C' }}
-        className="text-xl md:text-2xl font-medium mb-4"
+        className="text-xl md:text-2xl font-medium mb-6"
       >
         {title}
       </h3>
-
-      {/* Price */}
-      {(price || period) && (
-        <div className="mb-6">
-          <span 
-            style={{ fontFamily: "'Google Sans', sans-serif", color: '#0D141C' }}
-            className="text-3xl md:text-4xl font-medium"
-          >
-            {price}
-          </span>
-          <span 
-            style={{ fontFamily: "'Inter', sans-serif", color: '#0D141C' }}
-            className="text-sm md:text-base opacity-70 ml-1"
-          >
-            {period}
-          </span>
-        </div>
-      )}
 
       {/* Features */}
       <ul className="flex flex-col gap-3 mb-8 flex-1">
