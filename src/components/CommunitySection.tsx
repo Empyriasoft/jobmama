@@ -38,7 +38,7 @@ const CommunitySection = () => {
             <img src={communityCol2Top} alt="Community group photo" className="w-full h-full object-cover object-center" />
           </div>
           <div className="h-[551px] rounded-2xl overflow-hidden bg-muted">
-            <img src={communityCol2Middle} alt="Community gathering" className="w-full h-full object-cover object-center" />
+            <img src="/placeholder.svg" alt="Community 5" className="w-full h-full object-cover" />
           </div>
           <div className="h-[383px] rounded-2xl overflow-hidden bg-muted">
             <img src="/placeholder.svg" alt="Community 6" className="w-full h-full object-cover" />
@@ -50,7 +50,7 @@ const CommunitySection = () => {
             <img src="/placeholder.svg" alt="Community 7" className="w-full h-full object-cover" />
           </div>
           <div className="h-[551px] rounded-2xl overflow-hidden bg-muted">
-            <img src="/placeholder.svg" alt="Community 8" className="w-full h-full object-cover" />
+            <img src={communityCol2Middle} alt="Community gathering" className="w-full h-full object-cover object-center" />
           </div>
           <div className="h-[472px] rounded-2xl overflow-hidden bg-muted">
             <img src={communityCol3Bottom} alt="Community members" className="w-full h-full object-cover object-top" />
