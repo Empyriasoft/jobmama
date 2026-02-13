@@ -3,6 +3,7 @@ import communityCol2Middle from "@/assets/community-col2-middle.jpg";
 import communityCol3Bottom from "@/assets/community-col3-bottom.png";
 import communityCol1Bottom from "@/assets/community-col1-bottom.png";
 import communityCol1Top from "@/assets/community-col1-top.png";
+import communityCol2Top from "@/assets/community-col2-top.png";
 
 const CommunitySection = () => {
   const { t } = useLanguage();
@@ -33,7 +34,7 @@ const CommunitySection = () => {
         {/* Column 2 */}
         <div className="flex flex-col gap-4 flex-1">
           <div className="h-[244px] rounded-2xl overflow-hidden bg-muted">
-            <img src="/placeholder.svg" alt="Community 4" className="w-full h-full object-cover" />
+            <img src={communityCol2Top} alt="Community group photo" className="w-full h-full object-cover object-center" />
           </div>
           <div className="h-[551px] rounded-2xl overflow-hidden bg-muted">
             <img src={communityCol2Middle} alt="Community gathering" className="w-full h-full object-cover object-center" />
