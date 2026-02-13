@@ -2,6 +2,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import communityCol2Middle from "@/assets/community-col2-middle.jpg";
 import communityCol3Bottom from "@/assets/community-col3-bottom.png";
 import communityCol1Bottom from "@/assets/community-col1-bottom.png";
+import communityCol1Top from "@/assets/community-col1-top.png";
 
 const CommunitySection = () => {
   const { t } = useLanguage();
@@ -20,7 +21,7 @@ const CommunitySection = () => {
         {/* Column 1 */}
         <div className="flex flex-col gap-4 flex-1">
           <div className="h-[397px] rounded-2xl overflow-hidden bg-muted">
-            <img src="/placeholder.svg" alt="Community 1" className="w-full h-full object-cover" />
+            <img src={communityCol1Top} alt="Community conversation" className="w-full h-full object-cover object-center" />
           </div>
           <div className="h-[551px] rounded-2xl overflow-hidden bg-muted">
             <img src="/placeholder.svg" alt="Community 2" className="w-full h-full object-cover" />
