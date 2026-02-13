@@ -1,44 +1,28 @@
 
 
-## "Our Community" Photo Gallery Section
+## Restructure Community Section to 3-Column, 3-Row Layout
 
-A new section placed between ProcessSection and TestimonialsSection, featuring a masonry/grid gallery layout inspired by the reference image.
+Replace the current 4-column masonry grid with a precise 3-column, 3-row layout using exact pixel heights for each card.
 
-### What It Will Look Like
-- A masonry-style grid of photos with gaps between cards
-- **White background** with photo cards of varying sizes
-- Section heading: "Нашата общност" (BG) / "Our Community" (EN) -- styled like other section headings
-- Initially hardcoded with placeholder images; you can later upload real event photos to replace them
+### Card Dimensions
 
-### Implementation Steps
+| Position | Column 1 | Column 2 | Column 3 |
+|----------|----------|----------|----------|
+| Row 1 | 478 x 397 | 478 x 244 | 478 x 154 |
+| Row 2 | 478 x 551 | 478 x 551 | 478 x 551 |
+| Row 3 | 484 x 237 | 478 x 383 | 478 x 472 |
 
-1. **Add translations** for both BG and EN:
-   - BG: `community.heading` = "Нашата общност"
-   - EN: `community.heading` = "Our Community"
+### Implementation
 
-2. **Create `src/components/CommunitySection.tsx`**:
-   - White background section
-   - CSS Grid masonry-style layout (3 columns desktop, 2 tablet, 1 mobile)
-   - Cards with varying row spans to create the staggered look from the reference image
-   - Rounded corners on photo cards
-   - Placeholder images initially -- you'll upload real event photos and I'll wire them in
+**File: `src/components/CommunitySection.tsx`**
 
-3. **Update `src/pages/Index.tsx`**:
-   - Import and place CommunitySection between ProcessSection and TestimonialsSection
+- Replace the desktop grid with `lg:grid grid-cols-3 gap-4`
+- Use explicit pixel heights on each card instead of row-spans (since each card has a unique height)
+- 9 cards total, laid out column by column using CSS Grid's `grid-auto-flow: column` or by manually ordering items
+- Each card gets a fixed `h-[Xpx]` class matching the exact heights above
+- Keep tablet (2-col) and mobile (1-col) responsive layouts with reasonable proportional heights
 
-### Technical Details
+### Technical Approach
 
-- CSS Grid with `grid-auto-rows` and varying `row-span` values for the masonry effect
-- Rounded corners (`rounded-2xl`), subtle gaps between cards
-- White background to match the site's minimalist aesthetic
-- Responsive: 3 columns desktop, 2 tablet, 1 mobile
-- No new dependencies needed
-
-### Files Modified
-| File | Change |
-|------|--------|
-| `src/translations/bg.ts` | Add `community` translation key |
-| `src/translations/en.ts` | Add `community` translation key |
-| `src/components/CommunitySection.tsx` | New masonry gallery component |
-| `src/pages/Index.tsx` | Add CommunitySection between Process and Testimonials |
+Since CSS Grid flows row-by-row by default but the cards are specified column-by-column, the grid will use column-first ordering. Each card will have its explicit height set via Tailwind classes like `h-[397px]`, `h-[551px]`, etc. The grid will use `grid-cols-3` with items ordered so they fill columns top-to-bottom.
 
