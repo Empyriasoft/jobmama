@@ -1,28 +1,27 @@
 
 
-## Restructure Community Section to 3-Column, 3-Row Layout
+## Adapt Community Section for Mobile and Tablet
 
-Replace the current 4-column masonry grid with a precise 3-column, 3-row layout using exact pixel heights for each card.
+The desktop 3-column gallery currently has 9 real photos, but the mobile and tablet layouts still show placeholder images. Here's the plan to fix that.
 
-### Card Dimensions
+### Mobile (below 768px)
+- **2-column masonry layout** with the 9 community photos arranged in two columns
+- Column 1: 4 images, Column 2: 5 images (or vice versa), with varied heights to create visual interest
+- Heights scaled down proportionally (roughly 40-50% of desktop values) to fit mobile screens
+- All 9 real images used with proper `object-cover` cropping
 
-| Position | Column 1 | Column 2 | Column 3 |
-|----------|----------|----------|----------|
-| Row 1 | 478 x 397 | 478 x 244 | 478 x 154 |
-| Row 2 | 478 x 551 | 478 x 551 | 478 x 551 |
-| Row 3 | 484 x 237 | 478 x 383 | 478 x 472 |
+### Tablet (768px - 1024px)
+- **2-column layout** reusing all 9 real images
+- Heights scaled to roughly 60-70% of desktop values
+- Similar masonry-style arrangement as desktop but in 2 columns
 
-### Implementation
+### Technical Details
 
 **File: `src/components/CommunitySection.tsx`**
 
-- Replace the desktop grid with `lg:grid grid-cols-3 gap-4`
-- Use explicit pixel heights on each card instead of row-spans (since each card has a unique height)
-- 9 cards total, laid out column by column using CSS Grid's `grid-auto-flow: column` or by manually ordering items
-- Each card gets a fixed `h-[Xpx]` class matching the exact heights above
-- Keep tablet (2-col) and mobile (1-col) responsive layouts with reasonable proportional heights
+1. **Mobile layout** - Replace the placeholder loop with two flex columns containing the actual imported images at reduced heights (e.g., 150px-250px range)
+2. **Tablet layout** - Replace placeholders with the real images, distributing 4-5 images per column with intermediate heights
+3. All images keep `rounded-2xl overflow-hidden` styling and `object-cover object-center` for consistent appearance
 
-### Technical Approach
-
-Since CSS Grid flows row-by-row by default but the cards are specified column-by-column, the grid will use column-first ordering. Each card will have its explicit height set via Tailwind classes like `h-[397px]`, `h-[551px]`, etc. The grid will use `grid-cols-3` with items ordered so they fill columns top-to-bottom.
+This is a straightforward update -- just swapping placeholder references for the already-imported image assets and adjusting card heights for smaller screens.
 
