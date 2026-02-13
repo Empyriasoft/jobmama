@@ -1,4 +1,5 @@
 import { useLanguage } from "@/contexts/LanguageContext";
+import communityCol2Middle from "@/assets/community-col2-middle.jpg";
 
 const CommunitySection = () => {
   const { t } = useLanguage();
@@ -32,7 +33,7 @@ const CommunitySection = () => {
             <img src="/placeholder.svg" alt="Community 4" className="w-full h-full object-cover" />
           </div>
           <div className="h-[551px] rounded-2xl overflow-hidden bg-muted">
-            <img src="/placeholder.svg" alt="Community 5" className="w-full h-full object-cover" />
+            <img src={communityCol2Middle} alt="Community gathering" className="w-full h-full object-cover object-center" />
           </div>
           <div className="h-[383px] rounded-2xl overflow-hidden bg-muted">
             <img src="/placeholder.svg" alt="Community 6" className="w-full h-full object-cover" />
