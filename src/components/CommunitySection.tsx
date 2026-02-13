@@ -65,36 +65,71 @@ const CommunitySection = () => {
       {/* Tablet 2-column layout */}
       <div className="hidden md:flex lg:hidden gap-4">
         <div className="flex flex-col gap-4 flex-1">
-          <div className="h-[250px] rounded-2xl overflow-hidden bg-muted">
-            <img src="/placeholder.svg" alt="Community 1" className="w-full h-full object-cover" />
+          <div className="h-[270px] rounded-2xl overflow-hidden bg-muted">
+            <img src={communityCol1Top} alt="Community conversation" className="w-full h-full object-cover object-center" />
           </div>
-          <div className="h-[350px] rounded-2xl overflow-hidden bg-muted">
-            <img src="/placeholder.svg" alt="Community 2" className="w-full h-full object-cover" />
+          <div className="h-[380px] rounded-2xl overflow-hidden bg-muted">
+            <img src={communityCol1Middle} alt="Jenga game" className="w-full h-full object-cover object-center" />
           </div>
-          <div className="h-[200px] rounded-2xl overflow-hidden bg-muted">
-            <img src="/placeholder.svg" alt="Community 3" className="w-full h-full object-cover" />
+          <div className="h-[170px] rounded-2xl overflow-hidden bg-muted">
+            <img src={communityCol1Bottom} alt="JobMama branding" className="w-full h-full object-cover object-center" />
+          </div>
+          <div className="h-[260px] rounded-2xl overflow-hidden bg-muted">
+            <img src={communityCol2Bottom} alt="Community discussion" className="w-full h-full object-cover object-center" />
           </div>
         </div>
         <div className="flex flex-col gap-4 flex-1">
-          <div className="h-[180px] rounded-2xl overflow-hidden bg-muted">
-            <img src="/placeholder.svg" alt="Community 4" className="w-full h-full object-cover" />
+          <div className="h-[170px] rounded-2xl overflow-hidden bg-muted">
+            <img src={communityCol2Top} alt="Community group photo" className="w-full h-full object-cover object-center" />
           </div>
-          <div className="h-[350px] rounded-2xl overflow-hidden bg-muted">
-            <img src="/placeholder.svg" alt="Community 5" className="w-full h-full object-cover" />
+          <div className="h-[380px] rounded-2xl overflow-hidden bg-muted">
+            <img src={communityCol2MiddleV2} alt="JobMama presenter" className="w-full h-full object-cover object-center" />
           </div>
-          <div className="h-[270px] rounded-2xl overflow-hidden bg-muted">
-            <img src="/placeholder.svg" alt="Community 6" className="w-full h-full object-cover" />
+          <div className="h-[110px] rounded-2xl overflow-hidden bg-muted">
+            <img src={communityCol3Top} alt="Jenga block with text" className="w-full h-full object-cover object-center" />
+          </div>
+          <div className="h-[380px] rounded-2xl overflow-hidden bg-muted">
+            <img src={communityCol2Middle} alt="Community gathering" className="w-full h-full object-cover object-center" />
+          </div>
+          <div className="h-[330px] rounded-2xl overflow-hidden bg-muted">
+            <img src={communityCol3Bottom} alt="Community members" className="w-full h-full object-cover object-top" />
           </div>
         </div>
       </div>
 
-      {/* Mobile 1-column layout */}
-      <div className="flex md:hidden flex-col gap-4">
-        {[1, 2, 3, 4, 5, 6].map((i) => (
-          <div key={i} className="h-[200px] rounded-2xl overflow-hidden bg-muted">
-            <img src="/placeholder.svg" alt={`Community ${i}`} className="w-full h-full object-cover" />
+      {/* Mobile 2-column masonry layout */}
+      <div className="flex md:hidden gap-3">
+        <div className="flex flex-col gap-3 flex-1">
+          <div className="h-[160px] rounded-2xl overflow-hidden bg-muted">
+            <img src={communityCol1Top} alt="Community conversation" className="w-full h-full object-cover object-center" />
           </div>
-        ))}
+          <div className="h-[220px] rounded-2xl overflow-hidden bg-muted">
+            <img src={communityCol1Middle} alt="Jenga game" className="w-full h-full object-cover object-center" />
+          </div>
+          <div className="h-[120px] rounded-2xl overflow-hidden bg-muted">
+            <img src={communityCol1Bottom} alt="JobMama branding" className="w-full h-full object-cover object-center" />
+          </div>
+          <div className="h-[190px] rounded-2xl overflow-hidden bg-muted">
+            <img src={communityCol2Bottom} alt="Community discussion" className="w-full h-full object-cover object-center" />
+          </div>
+        </div>
+        <div className="flex flex-col gap-3 flex-1">
+          <div className="h-[120px] rounded-2xl overflow-hidden bg-muted">
+            <img src={communityCol2Top} alt="Community group photo" className="w-full h-full object-cover object-center" />
+          </div>
+          <div className="h-[220px] rounded-2xl overflow-hidden bg-muted">
+            <img src={communityCol2MiddleV2} alt="JobMama presenter" className="w-full h-full object-cover object-center" />
+          </div>
+          <div className="h-[80px] rounded-2xl overflow-hidden bg-muted">
+            <img src={communityCol3Top} alt="Jenga block with text" className="w-full h-full object-cover object-center" />
+          </div>
+          <div className="h-[220px] rounded-2xl overflow-hidden bg-muted">
+            <img src={communityCol2Middle} alt="Community gathering" className="w-full h-full object-cover object-center" />
+          </div>
+          <div className="h-[190px] rounded-2xl overflow-hidden bg-muted">
+            <img src={communityCol3Bottom} alt="Community members" className="w-full h-full object-cover object-top" />
+          </div>
+        </div>
       </div>
     </section>
   );
