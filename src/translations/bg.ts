@@ -115,6 +115,9 @@ export const bg: Translations = {
       { name: "Maria", location: "София", quote: "Очаквайте скоро..." },
     ],
   },
+  community: {
+    heading: "Нашата общност",
+  },
   footer: {
     tagline: "Базирани в Европа.",
     navLinks: [

@@ -113,6 +113,9 @@ export const en = {
       { name: "Maria", location: "Sofia", quote: "Coming soon..." },
     ],
   },
+  community: {
+    heading: "Our Community",
+  },
   footer: {
     tagline: "Europe based.",
     navLinks: [
