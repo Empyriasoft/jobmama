@@ -8,6 +8,7 @@ import communityCol1Middle from "@/assets/community-col1-middle.png";
 import communityCol2MiddleNew from "@/assets/community-col2-middle-new.png";
 import communityCol2MiddleV2 from "@/assets/community-col2-middle-v2.png";
 import communityCol2Bottom from "@/assets/community-col2-bottom.png";
+import communityCol3Top from "@/assets/community-col3-top.png";
 
 const CommunitySection = () => {
   const { t } = useLanguage();
@@ -50,7 +51,7 @@ const CommunitySection = () => {
         {/* Column 3 */}
         <div className="flex flex-col gap-4 flex-1">
           <div className="h-[154px] rounded-2xl overflow-hidden bg-muted">
-            <img src="/placeholder.svg" alt="Community 7" className="w-full h-full object-cover" />
+            <img src={communityCol3Top} alt="Jenga block with text" className="w-full h-full object-cover object-center" />
           </div>
           <div className="h-[551px] rounded-2xl overflow-hidden bg-muted">
             <img src={communityCol2Middle} alt="Community gathering" className="w-full h-full object-cover object-center" />
