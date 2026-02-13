@@ -7,6 +7,7 @@ import communityCol2Top from "@/assets/community-col2-top.png";
 import communityCol1Middle from "@/assets/community-col1-middle.png";
 import communityCol2MiddleNew from "@/assets/community-col2-middle-new.png";
 import communityCol2MiddleV2 from "@/assets/community-col2-middle-v2.png";
+import communityCol2Bottom from "@/assets/community-col2-bottom.png";
 
 const CommunitySection = () => {
   const { t } = useLanguage();
@@ -43,7 +44,7 @@ const CommunitySection = () => {
             <img src={communityCol2MiddleV2} alt="JobMama presenter" className="w-full h-full object-cover object-center" />
           </div>
           <div className="h-[383px] rounded-2xl overflow-hidden bg-muted">
-            <img src="/placeholder.svg" alt="Community 6" className="w-full h-full object-cover" />
+            <img src={communityCol2Bottom} alt="Community discussion" className="w-full h-full object-cover object-center" />
           </div>
         </div>
         {/* Column 3 */}
