@@ -97,7 +97,7 @@ const TestimonialsSection = () => {
 
   if (isMobile) {
     return (
-      <section className="w-full pt-[200px] pb-16 overflow-hidden">
+      <section className="w-full pt-[130px] pb-16 overflow-hidden">
         <h2
           style={{ fontFamily: "'Google Sans', sans-serif", color: '#0D141C' }}
           className="text-[24px] font-medium text-center mb-8 px-4"
@@ -158,7 +158,7 @@ const TestimonialsSection = () => {
   }
 
   return (
-    <section className="w-full px-5 md:px-8 lg:px-[100px] pt-[200px] md:pt-[300px] lg:pt-[400px] pb-16 md:pb-24 lg:pb-32">
+    <section className="w-full px-5 md:px-8 lg:px-[100px] pt-[130px] md:pt-[230px] lg:pt-[330px] pb-16 md:pb-24 lg:pb-32">
       <h2
         style={{ fontFamily: "'Google Sans', sans-serif", color: '#0D141C' }}
         className="text-[36px] lg:text-[48px] font-medium text-center mb-10 lg:mb-16 mx-auto max-w-4xl px-4"
