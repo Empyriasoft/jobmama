@@ -129,7 +129,7 @@ export const en = {
       { label: "Facebook", href: "https://www.facebook.com/share/1CEd9a68Nk/" },
     ],
     email: "hello@jobmama.com",
-    copyright: "©2025",
+    copyright: "©2026",
   },
 };
 
