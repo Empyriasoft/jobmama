@@ -131,6 +131,6 @@ export const bg: Translations = {
       { label: "Facebook", href: "https://www.facebook.com/share/1CEd9a68Nk/" },
     ],
     email: "hello@jobmama.com",
-    copyright: "\u00A92025",
+    copyright: "©2026",
   },
 };
