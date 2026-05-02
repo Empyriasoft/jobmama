@@ -10,6 +10,7 @@ import testimonialCenterImage from "@/assets/testimonial-center.png";
 import testimonialRightImage from "@/assets/testimonial-right.png";
 import testimonialAsyaImage from "@/assets/testimonial-asya.jpg";
 import testimonialElenaImage from "@/assets/testimonial-elena.png";
+import testimonialSilviaImage from "@/assets/testimonial-svetla-client.jpg";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const testimonialImages = [
@@ -17,7 +18,7 @@ const testimonialImages = [
   testimonialRightImage,
   testimonialAsyaImage,
   testimonialElenaImage,
-  null, // Placeholder for Maria
+  testimonialSilviaImage,
 ];
 
 // Size map based on position

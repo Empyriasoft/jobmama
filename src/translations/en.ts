@@ -110,7 +110,7 @@ export const en = {
       { name: "Nadya N.", location: "Sofia", quote: "Svetlana's expertise in modernizing my CV and LinkedIn gave me the confidence to re-enter the market, leading to interview calls almost immediately. I've been in my new role for four months now and feel excellent—I highly recommend her professional and inspiring guidance!" },
       { name: "Asya A.", location: "Sofia", quote: "As a working mom of three making a career pivot, Svetlana helped me create a standout professional identity and shared invaluable insights into the pharmaceutical market. Her expert interview preparation gave me the strategic edge and confidence I needed to successfully navigate the entire process!" },
       { name: "Elena", location: "Sofia", quote: "With her practical guidance and genuine support, JobMama and Svetla helped me return to the job market with confidence and stand out after my maternity leave." },
-      { name: "Maria", location: "Sofia", quote: "Coming soon..." },
+      { name: "Silvia", location: "Sofia", quote: "I highly recommend Svetla Petrova for her exceptional professionalism in optimizing my LinkedIn profile, perfectly highlighting my skills and professional experience." },
     ],
   },
   community: {
