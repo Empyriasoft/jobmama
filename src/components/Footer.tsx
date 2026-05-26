@@ -2,6 +2,7 @@ import logo from "@/assets/logo.svg";
 import footerLogo from "@/assets/footer-logo.png";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { openConsentBanner } from "@/lib/consent";
 
 const Footer = () => {
   const isMobile = useIsMobile();
@@ -63,6 +64,13 @@ const Footer = () => {
               >
                 {t.footer.copyright}
               </span>
+              <button
+                onClick={openConsentBanner}
+                style={{ fontFamily: "'Inter', sans-serif" }}
+                className="text-foreground text-base tracking-[-0.6px] hover:opacity-70 transition-opacity text-left"
+              >
+                Бисквитки
+              </button>
             </div>
           </div>
         </div>
@@ -125,6 +133,13 @@ const Footer = () => {
               >
                 {t.footer.copyright}
               </span>
+              <button
+                onClick={openConsentBanner}
+                style={{ fontFamily: "'Inter', sans-serif" }}
+                className="text-foreground text-lg lg:text-xl tracking-[-0.6px] hover:opacity-70 transition-opacity text-left"
+              >
+                Бисквитки
+              </button>
             </div>
           </div>
         </div>
