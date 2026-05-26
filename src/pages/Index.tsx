@@ -6,6 +6,7 @@ import ProcessSection from "@/components/ProcessSection";
 import CommunitySection from "@/components/CommunitySection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 import { useLanguage } from "@/contexts/LanguageContext";
 import howWeWorkHeading from "@/assets/how-we-work-heading.png";
 
@@ -14,6 +15,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEO path="/" />
       <Header />
       <HeroSection />
       <AboutSection />
