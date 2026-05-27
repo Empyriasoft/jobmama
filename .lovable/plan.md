@@ -1,70 +1,59 @@
-# JobMama Build Plan
+# Step 4 (revised) — Calendly-only lead conversion
 
-GA4 is the source of truth for sales. No database, no Lovable Cloud. The admin page is a 30-second form whose only job is to push a `purchase` event to the dataLayer.
+No webinar. No contact form. Calendly is the single lead conversion surface.
 
----
+## Routes
 
-## Step 1 — SEO foundations
+- **Remove** `/webinar` and `/blagodarim-uebinar` from the plan entirely. Not built.
+- **Remove** `/blagodarim-kontakt`. No form, no thank-you page needed.
+- **Add** `/contact` route in `App.tsx` → new `src/pages/Contact.tsx`.
 
-- `index.html`: add `<meta name="google-site-verification" content="%VITE_GSC_VERIFICATION%" />`, canonical, viewport (already present), and BG `<html lang="bg">`.
-- `public/robots.txt`: allow all, reference sitemap, disallow `/admin/`.
-- `scripts/generate-sitemap.ts`: emit `public/sitemap.xml` with homepage (priority 1.0) + thank-you routes excluded.
-- Install `react-helmet-async`; wrap app in `HelmetProvider`.
-- `src/components/SEO.tsx`: per-page title, description, OG, Twitter, canonical. Applied to `Index` and `NotFound`. Bulgarian copy.
+## `/contact` page
 
-## Step 2 — Consent (GDPR, Consent Mode v2)
+Bulgarian-first, minimal, on-brand with existing sections (same `Header` + `Footer`, same container padding scale `px-5 sm:px-6 md:px-12 lg:px-[100px]`).
 
-- `index.html` `<head>` (before GTM): inline `gtag('consent', 'default', ...)` with everything **denied**, `wait_for_update: 500`.
-- `src/lib/consent.ts`: `ConsentState` type, `getConsent`, `setConsent` (12-month expiry in `localStorage`), `pushConsentUpdate()` calling `gtag('consent','update',...)`.
-- `src/components/CookieConsent.tsx`: bottom banner (BG copy), "Приемам всички" / "Отказвам" / "Настройки" → modal with per-category toggles (necessary locked on, analytics, marketing, preferences).
-- `Footer.tsx`: "Бисквитки" link reopens the banner.
+Contents:
+- `<SEO />` with BG title/description, canonical `/contact`.
+- H1: **„Имаш въпрос? Резервирай безплатна 15-минутна среща."**
+- Short supporting paragraph (1–2 sentences, BG): what to expect from the call.
+- Embedded Calendly inline widget pointing at `https://calendly.com/hellojobmama/30min` (the link already in project memory).
+- Fallback line below the widget: **„Или ми пиши директно: "** followed by `hello@jobmama.com` as a `mailto:` link.
+- EN mirror strings added to `src/translations/en.ts` and `src/translations/bg.ts` under a new `contact` namespace, consumed via the existing `LanguageContext`.
 
-## Step 3 — GTM
+Calendly embed: use the official inline embed snippet loaded as a `<script src="https://assets.calendly.com/assets/external/widget.js">` injected on mount, with a `<div class="calendly-inline-widget" data-url="...">`. Script is loaded only after the page mounts so it does not affect home-page performance.
 
-- `index.html` `<head>` (after consent default): GTM `<script>` with `%VITE_GTM_ID%`.
-- `index.html` `<body>` top: `<noscript>` iframe fallback.
-- **No `fbq()` / `gtag()` calls in components.** All tracking goes through GTM via `window.dataLayer.push(...)`.
+## DataLayer events (revised)
 
-## Step 4 — DataLayer events + minimal forms
+Only one event ships in Step 4:
 
-Since neither form exists, scaffold them locally:
-
-- `src/types/dataLayer.d.ts`: window typing.
-- `/webinar` → minimal BG form → on submit navigate to `/blagodarim-uebinar`, which on mount pushes:
-  `{ event: 'generate_lead', form_name: 'webinar_registration' }`
-- `/contact` → minimal BG form → on submit navigate to `/blagodarim-kontakt`, which pushes:
-  `{ event: 'generate_lead', form_name: 'contact_form' }`
-- `src/hooks/useCalendlyTracking.ts`: listens for `message` events, filters strictly on `event.data.event === 'calendly.event_scheduled'`, pushes `{ event: 'calendly_booking_completed' }`. Mounted once at app root.
-- Routes added to `App.tsx`.
-
-## Step 5 — `/admin/log-sale` (no database)
-
-The page exists **only** to fire the GA4 purchase event.
-
-- Password gate against `VITE_ADMIN_PASSWORD`; `sessionStorage.admin_authed` flag (cleared on tab close). No persistence, no roles.
-- Form fields (BG labels): transaction ID (auto-generated UUID, editable), value (BGN), currency (default `BGN`), package name (dropdown matching the 4 service tiers), customer email (optional, hashed before push).
-- On submit, push exactly one event:
+- **Calendly booking completed** — `src/hooks/useCalendlyTracking.ts` mounted once at app root (in `App.tsx`). Listens for `window` `message` events, filters strictly on `event.data?.event === 'calendly.event_scheduled'`, then pushes:
   ```
-  {
-    event: 'purchase',
-    transaction_id,
-    value,
-    currency: 'BGN',
-    items: [{ item_name: package_name, price: value, quantity: 1 }]
-  }
+  window.dataLayer.push({ event: 'calendly_booking_completed' })
   ```
-- Toast: "Продажбата е изпратена към GA4". Form resets. No DB write, no localStorage queue, no Supabase code at all.
-- Route excluded from sitemap; `robots.txt` disallows `/admin/`.
+- `src/types/dataLayer.d.ts` — minimal `Window` typing for `dataLayer`.
 
----
+No `generate_lead` events. No form submission events. No purchase event here (that stays in Step 5).
 
-## Technical notes
+## Verification checklist (simplified)
 
-- Env vars to add in `.env` (placeholders, user fills in): `VITE_GSC_VERIFICATION`, `VITE_GTM_ID`, `VITE_ADMIN_PASSWORD`.
-- All founder/visitor copy in Bulgarian; English mirror only where the existing i18n context already covers a string.
-- Consent banner blocks GTM tags from firing (Consent Mode default-denied) until the user accepts — GTM tags must be configured with consent checks on the GTM side.
-- After each step I'll list files touched + run the verification checklist, then stop for approval before moving on.
+1. Visit `/contact` → Calendly widget renders, mailto fallback visible.
+2. Book a test slot in Calendly → DevTools console shows `dataLayer` entry with `event: 'calendly_booking_completed'` exactly once.
+3. Reject cookies first → booking still pushes the event to `dataLayer` (GTM-side consent gating decides whether the GA4 tag fires; that's correct behavior).
+4. No `gtag()` / `fbq()` calls anywhere in component code — only `dataLayer.push` inside `useCalendlyTracking`.
+5. `/contact` rendered in BG by default, EN when language toggled.
 
-## Open question
+## Files touched in Step 4
 
-Step 5 will sit behind a simple password check only. This is **not secure** — anyone with the password and URL can fire `purchase` events into your GA4. That's acceptable for a private founder tool but worth naming explicitly.
+- `src/App.tsx` (add `/contact` route, mount `useCalendlyTracking`)
+- `src/pages/Contact.tsx` (new)
+- `src/hooks/useCalendlyTracking.ts` (new)
+- `src/types/dataLayer.d.ts` (new)
+- `src/translations/bg.ts` + `src/translations/en.ts` (add `contact` namespace)
+- `public/sitemap.xml` (add `/contact`)
+- `.lovable/plan.md` (update to reflect revised Step 4)
+
+## Out of scope for Step 4
+
+- Webinar route, webinar thank-you, webinar event.
+- Contact form, contact thank-you, contact form event.
+- Any backend / email-sending. Calendly handles the booking and confirmation email natively.
