@@ -5,6 +5,7 @@ import ServicesSection from "@/components/ServicesSection";
 import ProcessSection from "@/components/ProcessSection";
 import CommunitySection from "@/components/CommunitySection";
 import TestimonialsSection from "@/components/TestimonialsSection";
+import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -38,6 +39,7 @@ const Index = () => {
       <ProcessSection />
       <CommunitySection />
       <TestimonialsSection />
+      <ContactSection />
       <Footer />
     </div>
   );

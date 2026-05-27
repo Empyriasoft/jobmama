@@ -7,6 +7,7 @@ export const bg: Translations = {
       { label: "Кои сме ние", href: "#about" },
       { label: "Нашите услуги", href: "#services" },
       { label: "Как работим", href: "#our-approach" },
+      { label: "Контакти", href: "#contact" },
     ],
   },
   hero: {
@@ -124,6 +125,7 @@ export const bg: Translations = {
       { label: "Начало", href: "#" },
       { label: "Нашите услуги", href: "#services" },
       { label: "Как работим", href: "#our-approach" },
+      { label: "Контакти", href: "#contact" },
     ],
     socialLinks: [
       { label: "Instagram", href: "https://www.instagram.com/jobmama_bg/" },
