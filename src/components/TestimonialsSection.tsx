@@ -159,7 +159,7 @@ const TestimonialsSection = () => {
   }
 
   return (
-    <section className="w-full px-5 md:px-8 lg:px-[100px] pt-[130px] md:pt-[230px] lg:pt-[330px] pb-16 md:pb-24 lg:pb-32">
+    <section className="w-full px-5 sm:px-6 md:px-12 lg:px-[100px] pt-[160px] md:pt-[180px] lg:pt-[200px] pb-16 md:pb-24 lg:pb-32">
       <h2
         style={{ fontFamily: "'Google Sans', sans-serif", color: '#0D141C' }}
         className="text-[36px] lg:text-[48px] font-medium text-center mb-10 lg:mb-16 mx-auto max-w-4xl px-4"

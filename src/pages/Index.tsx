@@ -23,7 +23,7 @@ const Index = () => {
       <ServicesSection />
       
       {/* Our Process Heading */}
-      <div className="w-full px-5 md:px-8 lg:px-[100px] mt-[100px] md:mt-[180px] lg:mt-[250px] mb-[40px] md:mb-[60px] lg:mb-[80px] relative z-10 flex justify-center">
+      <div className="w-full px-5 sm:px-6 md:px-12 lg:px-[100px] mt-[100px] md:mt-[140px] lg:mt-[160px] mb-[40px] md:mb-[60px] lg:mb-[80px] relative z-10 flex justify-center">
         {language === "bg" ? (
           <img src={howWeWorkHeading} alt={t.process.sectionTitle} className="h-[40px] md:h-[72px] lg:h-[100px] xl:h-[130px] w-auto" />
         ) : (

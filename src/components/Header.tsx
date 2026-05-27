@@ -66,7 +66,7 @@ const Header = () => {
   );
 
   return (
-    <header className="w-full px-5 py-6 md:px-8 lg:px-[100px]">
+    <header className="w-full px-5 py-6 sm:px-6 md:px-12 lg:px-[100px]">
       <div className="flex w-full items-center justify-between">
         {/* Logo */}
         <a href="/">

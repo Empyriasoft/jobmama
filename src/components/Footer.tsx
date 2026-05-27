@@ -83,8 +83,8 @@ const Footer = () => {
   }
 
   return (
-    <footer className="relative w-full bg-background mt-[500px]">
-      <div className="px-8 lg:px-[100px] pt-20 lg:pt-24 pb-12 lg:pb-16 relative z-10">
+    <footer className="relative w-full bg-background mt-[120px] lg:mt-[160px]">
+      <div className="px-5 sm:px-6 md:px-12 lg:px-[100px] pt-20 lg:pt-24 pb-12 lg:pb-16 relative z-10">
         <div className="flex justify-between items-start">
           <div>
             <img src={logo} alt="JobMama" className="h-10 lg:h-[42px] w-auto mb-3" />
@@ -145,7 +145,7 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="w-full mt-[450px]">
+      <div className="w-full mt-[120px]">
         <img src={footerLogo} alt="" className="w-full h-auto object-cover" />
       </div>
     </footer>

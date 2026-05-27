@@ -1,59 +1,56 @@
-# Step 4 (revised) — Calendly-only lead conversion
+## Findings — whitespace + margin inconsistencies
 
-No webinar. No contact form. Calendly is the single lead conversion surface.
+### 1. Horizontal padding doesn't match the project standard
+Memory rule: `px-5 → sm:px-6 → md:px-12 → lg:px-[100px]`.
+Offenders using `md:px-8` (or skipping `sm`):
+- `Header.tsx` — `px-5 md:px-8 lg:px-[100px]`
+- `ServicesSection.tsx` — `px-5 md:px-8 lg:px-[100px]`
+- `TestimonialsSection.tsx` — `px-5 md:px-8 lg:px-[100px]`
+- `Index.tsx` (process heading wrapper) — `px-5 md:px-8 lg:px-[100px]`
+- `Footer.tsx` desktop — `px-8 lg:px-[100px]` (no mobile/sm/md scale)
+- `CommunitySection.tsx` — uses `md:px-12` ✓ but worth re-verifying
+- `ContactSection.tsx` — already correct ✓
 
-## Routes
+### 2. Vertical rhythm between sections is all over the place (desktop `lg:`)
+| From → To | Current gap |
+|---|---|
+| Hero → About | About `pt-[251px]` |
+| About → Services | Services `pt-[150px]` |
+| Services → Process heading | heading wrapper `mt-[250px]` |
+| Process heading → ProcessSection | wrapper `mb-[80px]` + section `py-32` |
+| Process → Community | Community `py-24` |
+| Community → Testimonials | Testimonials `pt-[330px]` ← huge |
+| Testimonials → Contact | Contact `mt-[200px]` |
+| Contact → Footer | Footer `mt-[500px]` ← massive dead space |
+| Footer content → decorative logo | `mt-[450px]` ← another huge gap |
 
-- **Remove** `/webinar` and `/blagodarim-uebinar` from the plan entirely. Not built.
-- **Remove** `/blagodarim-kontakt`. No form, no thank-you page needed.
-- **Add** `/contact` route in `App.tsx` → new `src/pages/Contact.tsx`.
+The Contact + Footer stack alone produces ~200 + 500 + footer padding + 450 px of mostly empty space below the Calendly embed.
 
-## `/contact` page
+### 3. Specific oversized gaps to fix
+- `Footer.tsx` line 86: `mt-[500px]` → reduce to `mt-[120px]` (or `mt-24 lg:mt-32`).
+- `Footer.tsx` line 148: `mt-[450px]` → reduce to `mt-[120px]`.
+- `TestimonialsSection.tsx` line 162: `pt-[330px]` → `pt-[160px] md:pt-[180px] lg:pt-[200px]`.
+- `AboutSection.tsx` line 188: `lg:pt-[251px]` → `lg:pt-[160px]` (align with new rhythm).
+- `Index.tsx` line 26 process heading wrapper: `lg:mt-[250px]` → `lg:mt-[160px]`.
+- `ContactSection.tsx` line 36: keep `mt-[100px] md:mt-[150px] lg:mt-[200px]` but the trailing space disappears once Footer mt is shrunk.
 
-Bulgarian-first, minimal, on-brand with existing sections (same `Header` + `Footer`, same container padding scale `px-5 sm:px-6 md:px-12 lg:px-[100px]`).
+### 4. Target spacing rhythm (proposed standard)
+Adopt three vertical-gap tokens, applied as top padding/margin on the *next* section:
+- Tight: `mt-[80px] md:mt-[120px] lg:mt-[160px]`
+- Default: `mt-[100px] md:mt-[140px] lg:mt-[180px]`
+- Hero-after: `mt-[120px] md:mt-[160px] lg:mt-[200px]`
 
-Contents:
-- `<SEO />` with BG title/description, canonical `/contact`.
-- H1: **„Имаш въпрос? Резервирай безплатна 15-минутна среща."**
-- Short supporting paragraph (1–2 sentences, BG): what to expect from the call.
-- Embedded Calendly inline widget pointing at `https://calendly.com/hellojobmama/30min` (the link already in project memory).
-- Fallback line below the widget: **„Или ми пиши директно: "** followed by `hello@jobmama.com` as a `mailto:` link.
-- EN mirror strings added to `src/translations/en.ts` and `src/translations/bg.ts` under a new `contact` namespace, consumed via the existing `LanguageContext`.
+## Plan
 
-Calendly embed: use the official inline embed snippet loaded as a `<script src="https://assets.calendly.com/assets/external/widget.js">` injected on mount, with a `<div class="calendly-inline-widget" data-url="...">`. Script is loaded only after the page mounts so it does not affect home-page performance.
+1. **Standardize horizontal padding** across Header, ServicesSection, TestimonialsSection, Footer, and the Process heading wrapper to `px-5 sm:px-6 md:px-12 lg:px-[100px]`.
+2. **Cut Footer's giant top margins**: `mt-[500px]` → `mt-[120px] lg:mt-[160px]`, and the decorative-image `mt-[450px]` → `mt-[120px]`.
+3. **Tighten Testimonials top padding** from `pt-[330px]` to the new "default" rhythm.
+4. **Tighten About `lg:pt-[251px]`** and the Process-heading `lg:mt-[250px]` to `lg:160px` so all desktop section gaps land near 160–200 px.
+5. **Verify** at 1456 px viewport and at mobile (375 px) that gaps look even and no section feels cramped or floating.
 
-## DataLayer events (revised)
+Out of scope: copy changes, color/typography, mobile-only Footer block (already reasonable), and any inner-component spacing other than what's listed.
 
-Only one event ships in Step 4:
-
-- **Calendly booking completed** — `src/hooks/useCalendlyTracking.ts` mounted once at app root (in `App.tsx`). Listens for `window` `message` events, filters strictly on `event.data?.event === 'calendly.event_scheduled'`, then pushes:
-  ```
-  window.dataLayer.push({ event: 'calendly_booking_completed' })
-  ```
-- `src/types/dataLayer.d.ts` — minimal `Window` typing for `dataLayer`.
-
-No `generate_lead` events. No form submission events. No purchase event here (that stays in Step 5).
-
-## Verification checklist (simplified)
-
-1. Visit `/contact` → Calendly widget renders, mailto fallback visible.
-2. Book a test slot in Calendly → DevTools console shows `dataLayer` entry with `event: 'calendly_booking_completed'` exactly once.
-3. Reject cookies first → booking still pushes the event to `dataLayer` (GTM-side consent gating decides whether the GA4 tag fires; that's correct behavior).
-4. No `gtag()` / `fbq()` calls anywhere in component code — only `dataLayer.push` inside `useCalendlyTracking`.
-5. `/contact` rendered in BG by default, EN when language toggled.
-
-## Files touched in Step 4
-
-- `src/App.tsx` (add `/contact` route, mount `useCalendlyTracking`)
-- `src/pages/Contact.tsx` (new)
-- `src/hooks/useCalendlyTracking.ts` (new)
-- `src/types/dataLayer.d.ts` (new)
-- `src/translations/bg.ts` + `src/translations/en.ts` (add `contact` namespace)
-- `public/sitemap.xml` (add `/contact`)
-- `.lovable/plan.md` (update to reflect revised Step 4)
-
-## Out of scope for Step 4
-
-- Webinar route, webinar thank-you, webinar event.
-- Contact form, contact thank-you, contact form event.
-- Any backend / email-sending. Calendly handles the booking and confirmation email natively.
+## Technical notes
+- All edits are Tailwind class swaps in: `Header.tsx`, `ServicesSection.tsx`, `TestimonialsSection.tsx`, `Footer.tsx`, `AboutSection.tsx`, `src/pages/Index.tsx`.
+- No design tokens to add; existing arbitrary values remain literals to match the project's current pattern.
+- After edits, screenshot the homepage at desktop + mobile to confirm rhythm.
