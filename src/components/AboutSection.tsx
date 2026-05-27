@@ -185,7 +185,7 @@ const AboutSection = () => {
 
   // Desktop
   return (
-    <section id="about" className="w-full px-5 pt-20 pb-16 md:px-8 md:pt-[150px] md:pb-20 lg:px-[100px] lg:pt-[251px] lg:pb-[100px]">
+    <section id="about" className="w-full px-5 sm:px-6 pt-20 pb-16 md:px-12 md:pt-[120px] md:pb-20 lg:px-[100px] lg:pt-[160px] lg:pb-[100px]">
       <h2
         style={{ fontFamily: "'Google Sans', sans-serif", color: '#0D141C' }}
         className="text-[40px] md:text-[72px] lg:text-[100px] xl:text-[128.7px] mb-12 md:mb-[100px] lg:mb-[196px] font-medium text-center break-words"
