@@ -50,9 +50,10 @@ const ContactSection = () => {
         </p>
 
         <div
-          className="calendly-inline-widget rounded-xl overflow-hidden"
-          data-url={CALENDLY_URL}
-          style={{ minWidth: "320px", height: "700px" }}
+          className="calendly-inline-widget rounded-xl"
+          data-url={`${CALENDLY_URL}?hide_gdpr_banner=1&hide_event_type_details=1`}
+          data-resize="true"
+          style={{ minWidth: "320px", width: "100%", height: "1100px" }}
         />
 
         <p
