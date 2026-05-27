@@ -10,7 +10,7 @@ const ServicesSection = () => {
   const { t } = useLanguage();
 
   return (
-    <section id="services" className="w-full px-5 pt-16 pb-16 md:px-8 md:pt-24 md:pb-20 lg:px-[100px] lg:pt-[150px] lg:pb-[100px]">
+    <section id="services" className="w-full px-5 sm:px-6 pt-16 pb-16 md:px-12 md:pt-24 md:pb-20 lg:px-[100px] lg:pt-[150px] lg:pb-[100px]">
       <h2
         style={{ fontFamily: "'Google Sans', sans-serif", color: '#0D141C' }}
         className="text-[40px] md:text-[72px] lg:text-[100px] xl:text-[128.7px] mb-10 md:mb-16 lg:mb-24 font-medium text-center break-words"
