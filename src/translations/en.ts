@@ -5,6 +5,7 @@ export const en = {
       { label: "About Us", href: "#about" },
       { label: "Our Services", href: "#services" },
       { label: "Our Approach", href: "#our-approach" },
+      { label: "Contact", href: "#contact" },
     ],
   },
   hero: {
@@ -122,6 +123,7 @@ export const en = {
       { label: "Home", href: "#" },
       { label: "Our Services", href: "#services" },
       { label: "Our Approach", href: "#our-approach" },
+      { label: "Contact", href: "#contact" },
     ],
     socialLinks: [
       { label: "Instagram", href: "https://www.instagram.com/jobmama_bg/" },
