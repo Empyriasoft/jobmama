@@ -79,7 +79,7 @@ const Header = () => {
           
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="sm" className="p-2 min-w-[44px] min-h-[44px] md:min-w-[52px] md:min-h-[52px]">
+              <Button variant="ghost" size="sm" aria-label={language === "bg" ? "Отвори менюто" : "Open menu"} className="p-2 min-w-[44px] min-h-[44px] md:min-w-[52px] md:min-h-[52px]">
                 <Menu className="h-6 w-6 md:h-7 md:w-7 lg:h-8 lg:w-8" />
               </Button>
             </SheetTrigger>
