@@ -89,7 +89,7 @@ const Header = () => {
                 <div className="flex items-center justify-between p-5 border-b border-border">
                   <img src={logo} alt="JobMama" className="h-8" />
                   <SheetClose asChild>
-                    <Button variant="ghost" size="sm" className="p-2 min-w-[44px] min-h-[44px]">
+                    <Button variant="ghost" size="sm" aria-label={language === "bg" ? "Затвори менюто" : "Close menu"} className="p-2 min-w-[44px] min-h-[44px]">
                       <X className="h-6 w-6" />
                     </Button>
                   </SheetClose>
