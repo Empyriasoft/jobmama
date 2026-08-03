@@ -7,6 +7,7 @@ export const en = {
       { label: "Our Approach", href: "#our-approach" },
       { label: "Contact", href: "#contact" },
     ],
+    cta: "Book a call",
   },
   hero: {
     title: "Back to Work, Bold & Confident",
@@ -117,13 +118,60 @@ export const en = {
   community: {
     heading: "Our Community",
   },
+  workshop: {
+    eyebrow: "Next workshop",
+    description:
+      "A free live session to rebuild your confidence, refresh your job-search toolkit, and meet other mothers returning to work.",
+    cta: "Save your spot",
+  },
+  leadMagnet: {
+    title: "Free checklist: your CV after maternity leave",
+    description:
+      "The exact points recruiters look for — and the gaps most CVs miss. Get it straight to your inbox.",
+    emailPlaceholder: "Your email",
+    consent:
+      "I agree to receive the checklist and occasional emails from JobMama. I can unsubscribe anytime.",
+    cta: "Send me the checklist",
+    success: "Done! Check your inbox for the checklist.",
+    error: "Something went wrong. Please try again, or email hello@jobmama.com.",
+  },
+  faq: {
+    title: "Frequently asked questions",
+    items: [
+      {
+        question: "How much do the services cost?",
+        answer:
+          "It depends on the package you choose. The first 15-minute call is free and no-obligation — together we work out what fits your situation and budget best.",
+      },
+      {
+        question: "Are the sessions online or in person?",
+        answer:
+          "One-on-one sessions are online, so they fit around your day and your child. Workshops are held in person in Sofia.",
+      },
+      {
+        question: "My career break is longer than two years. Is that a problem?",
+        answer:
+          "No. That's exactly what JobMama is for. We help you frame your maternity period as an asset — resilience, organization, perspective — rather than a gap to explain away.",
+      },
+      {
+        question: "What actually happens on the free call?",
+        answer:
+          "We get to know each other, I listen to your situation and goals, and together we decide the best next step. No commitment, no pressure.",
+      },
+      {
+        question: "Do you work with companies?",
+        answer:
+          "Yes. We offer corporate solutions for a smooth reintegration of returning employees — workshops, transition coaching, and mom-friendly job placement. See the Corporate Solutions section above or get in touch.",
+      },
+    ],
+  },
   footer: {
     tagline: "Europe based.",
     navLinks: [
       { label: "Home", href: "#" },
       { label: "Our Services", href: "#services" },
       { label: "Our Approach", href: "#our-approach" },
-      { label: "Contact", href: "#contact" },
+      { label: "Contact", href: "/contact" },
     ],
     socialLinks: [
       { label: "Instagram", href: "https://www.instagram.com/jobmama_bg/" },
@@ -132,6 +180,7 @@ export const en = {
     ],
     email: "hello@jobmama.com",
     copyright: "©2026",
+    cookies: "Cookies",
   },
 };
 

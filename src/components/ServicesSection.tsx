@@ -24,7 +24,6 @@ const ServicesSection = () => {
             key={tier.title}
             title={tier.title}
             features={tier.features}
-            bookingUrl="https://calendly.com/hellojobmama/30min"
           />
         ))}
       </div>

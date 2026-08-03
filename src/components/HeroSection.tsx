@@ -2,9 +2,16 @@ import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import heroImage from "@/assets/hero-mother-child.jpg";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { scrollToHash } from "@/lib/scroll";
+import { pushEvent } from "@/lib/analytics";
 
 const HeroSection = () => {
   const { t } = useLanguage();
+
+  const handleBookClick = () => {
+    pushEvent("book_call_click", { placement: "hero" });
+    scrollToHash("#contact");
+  };
 
   useEffect(() => {
     const googleSansLink = document.createElement("link");
@@ -73,7 +80,7 @@ const HeroSection = () => {
               variant="hero" 
               size="hero" 
               className="text-sm px-4 py-2 sm:text-base sm:px-6 sm:py-3 md:text-lg md:px-8 md:py-4"
-              onClick={() => window.open('https://calendly.com/hellojobmama/30min', '_blank', 'noopener,noreferrer')}
+              onClick={handleBookClick}
             >
               {t.hero.cta}
             </Button>

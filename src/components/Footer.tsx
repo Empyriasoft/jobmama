@@ -3,6 +3,7 @@ import footerLogo from "@/assets/footer-logo.png";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { openConsentBanner } from "@/lib/consent";
+import { pushEvent } from "@/lib/analytics";
 
 const Footer = () => {
   const isMobile = useIsMobile();
@@ -42,6 +43,7 @@ const Footer = () => {
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => pushEvent("outbound_social_click", { network: link.label })}
                   style={{ fontFamily: "'Inter', sans-serif" }}
                   className="text-foreground text-base tracking-[-0.6px] hover:opacity-70 transition-opacity"
                 >
@@ -69,7 +71,7 @@ const Footer = () => {
                 style={{ fontFamily: "'Inter', sans-serif" }}
                 className="text-foreground text-base tracking-[-0.6px] hover:opacity-70 transition-opacity text-left"
               >
-                Бисквитки
+                {t.footer.cookies}
               </button>
             </div>
           </div>
@@ -111,6 +113,7 @@ const Footer = () => {
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => pushEvent("outbound_social_click", { network: link.label })}
                   style={{ fontFamily: "'Inter', sans-serif" }}
                   className="text-foreground text-lg lg:text-xl tracking-[-0.6px] hover:opacity-70 transition-opacity"
                 >
@@ -138,7 +141,7 @@ const Footer = () => {
                 style={{ fontFamily: "'Inter', sans-serif" }}
                 className="text-foreground text-lg lg:text-xl tracking-[-0.6px] hover:opacity-70 transition-opacity text-left"
               >
-                Бисквитки
+                {t.footer.cookies}
               </button>
             </div>
           </div>

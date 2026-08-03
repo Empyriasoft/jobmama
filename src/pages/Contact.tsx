@@ -3,8 +3,9 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { getCalendlyEmbedUrl } from "@/lib/calendly";
+import DirectContact from "@/components/DirectContact";
 
-const CALENDLY_URL = "https://calendly.com/hellojobmama/30min";
 const CALENDLY_SCRIPT_SRC = "https://assets.calendly.com/assets/external/widget.js";
 
 const Contact = () => {
@@ -63,7 +64,7 @@ const Contact = () => {
 
           <div
             className="calendly-inline-widget rounded-xl overflow-hidden"
-            data-url={CALENDLY_URL}
+            data-url={getCalendlyEmbedUrl()}
             style={{ minWidth: "320px", height: "700px" }}
           />
 
@@ -76,6 +77,8 @@ const Contact = () => {
               hello@jobmama.com
             </a>
           </p>
+
+          <DirectContact />
         </div>
       </main>
       <Footer />

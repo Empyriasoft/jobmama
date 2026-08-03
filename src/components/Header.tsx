@@ -1,56 +1,42 @@
 import { useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 import { X, Menu } from "lucide-react";
 import logo from "@/assets/logo.svg";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { scrollToHash } from "@/lib/scroll";
+import { pushEvent } from "@/lib/analytics";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { language, toggleLanguage, t } = useLanguage();
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  const smoothScrollTo = (targetY: number, duration = 800) => {
-    const startY = window.scrollY;
-    const diff = targetY - startY;
-    let startTime: number | null = null;
-
-    const easeInOutCubic = (t: number) =>
-      t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-
-    const step = (timestamp: number) => {
-      if (!startTime) startTime = timestamp;
-      const elapsed = timestamp - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      window.scrollTo(0, startY + diff * easeInOutCubic(progress));
-      if (progress < 1) {
-        requestAnimationFrame(step);
-      }
-    };
-
-    requestAnimationFrame(step);
-  };
-
-  const scrollToTarget = (href: string) => {
-    if (href === "#home") {
-      smoothScrollTo(0);
+  // On the homepage, smooth-scroll to the section. Off it (e.g. /contact),
+  // route back home carrying the hash — Index scrolls to it on mount.
+  const goToHash = (href: string) => {
+    if (location.pathname === "/") {
+      scrollToHash(href);
     } else {
-      const element = document.querySelector(href);
-      if (element) {
-        const top = element.getBoundingClientRect().top + window.scrollY;
-        smoothScrollTo(top);
-      }
+      navigate("/" + href);
     }
   };
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
-    
     if (isOpen) {
       setIsOpen(false);
-      setTimeout(() => scrollToTarget(href), 350);
+      setTimeout(() => goToHash(href), 350);
     } else {
-      scrollToTarget(href);
+      goToHash(href);
     }
+  };
+
+  const handleBookClick = () => {
+    pushEvent("book_call_click", { placement: "sticky_header" });
+    goToHash("#contact");
   };
 
   const LanguageToggle = ({ className = "" }: { className?: string }) => (
@@ -66,17 +52,28 @@ const Header = () => {
   );
 
   return (
-    <header className="w-full px-5 py-6 sm:px-6 md:px-12 lg:px-[100px]">
+    <header className="sticky top-0 z-50 w-full border-b border-border/60 bg-background/80 backdrop-blur-md px-5 py-4 sm:px-6 md:px-12 md:py-5 lg:px-[100px]">
       <div className="flex w-full items-center justify-between">
         {/* Logo */}
-        <a href="/">
+        <a href="/" aria-label="JobMama">
           <img src={logo} alt="JobMama" className="h-8" />
         </a>
 
-        {/* Right side: Language toggle + Hamburger */}
+        {/* Right side: Language toggle (hidden on mobile) + CTA + Hamburger */}
         <div className="flex items-center gap-3 md:gap-4">
-          <LanguageToggle className="text-sm md:text-base lg:text-lg" />
-          
+          <span className="hidden sm:flex">
+            <LanguageToggle className="text-sm md:text-base lg:text-lg" />
+          </span>
+
+          <Button
+            variant="cta"
+            onClick={handleBookClick}
+            className="h-9 px-4 text-sm md:h-11 md:px-6 md:text-base bg-foreground text-background hover:bg-foreground/90"
+            style={{ fontFamily: "'Inter', sans-serif" }}
+          >
+            {t.header.cta}
+          </Button>
+
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild>
               <Button variant="ghost" size="sm" aria-label={language === "bg" ? "Отвори менюто" : "Open menu"} className="p-2 min-w-[44px] min-h-[44px] md:min-w-[52px] md:min-h-[52px]">

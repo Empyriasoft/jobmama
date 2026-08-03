@@ -15,4 +15,10 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  optimizeDeps: {
+    // Pre-bundle Radix primitives that are only imported by lazily-reached
+    // components, so Vite doesn't re-optimize mid-session and briefly load a
+    // second React copy (causes an "Invalid hook call" flash on first paint).
+    include: ["@radix-ui/react-accordion"],
+  },
 }));

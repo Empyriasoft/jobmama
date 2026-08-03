@@ -8,12 +8,13 @@ import {
 } from "@/components/ui/hover-card";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { scrollToHash } from "@/lib/scroll";
+import { pushEvent } from "@/lib/analytics";
 import type { ServiceFeature } from "@/components/ServicesSection";
 
 interface ServiceCardProps {
   title: string;
   features: ServiceFeature[];
-  bookingUrl?: string;
 }
 
 interface FeatureItemProps {
@@ -94,7 +95,7 @@ const FeatureItem = ({ feature, isExpanded = false, onToggle }: FeatureItemProps
   );
 };
 
-const ServiceCard = ({ title, features, bookingUrl }: ServiceCardProps) => {
+const ServiceCard = ({ title, features }: ServiceCardProps) => {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
   const { t } = useLanguage();
 
@@ -103,9 +104,8 @@ const ServiceCard = ({ title, features, bookingUrl }: ServiceCardProps) => {
   };
 
   const handleBookClick = () => {
-    if (bookingUrl) {
-      window.open(bookingUrl, '_blank', 'noopener,noreferrer');
-    }
+    pushEvent("book_call_click", { placement: "services" });
+    scrollToHash("#contact");
   };
 
   return (

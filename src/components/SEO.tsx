@@ -10,7 +10,7 @@ interface SEOProps {
 const DEFAULT_TITLE = "JobMama — Кариерна подкрепа за майки в България";
 const DEFAULT_DESCRIPTION =
   "JobMama помага на майките в България да изградят кариерата си с увереност. Персонализирана подкрепа, обучения и общност.";
-const SITE_URL = "https://jobmama.lovable.app";
+const SITE_URL = "https://www.jobmama.bg";
 
 export const SEO = ({
   title = DEFAULT_TITLE,

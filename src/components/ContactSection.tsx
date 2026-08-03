@@ -1,7 +1,8 @@
 import { useEffect } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { getCalendlyEmbedUrl } from "@/lib/calendly";
+import DirectContact from "@/components/DirectContact";
 
-const CALENDLY_URL = "https://calendly.com/hellojobmama/30min";
 const CALENDLY_SCRIPT_SRC = "https://assets.calendly.com/assets/external/widget.js";
 
 const ContactSection = () => {
@@ -51,7 +52,7 @@ const ContactSection = () => {
 
         <div
           className="calendly-inline-widget rounded-xl"
-          data-url={`${CALENDLY_URL}?hide_gdpr_banner=1&hide_event_type_details=1`}
+          data-url={getCalendlyEmbedUrl()}
           data-resize="true"
           style={{ minWidth: "320px", width: "100%", height: "1100px" }}
         />
@@ -68,6 +69,8 @@ const ContactSection = () => {
             hello@jobmama.com
           </a>
         </p>
+
+        <DirectContact />
       </div>
     </section>
   );
