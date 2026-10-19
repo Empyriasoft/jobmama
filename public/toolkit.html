@@ -14,7 +14,7 @@
   --cyan:#29CFF6; --cyan-ink:#0A7C9E; --cyan-soft:#D8F4FC; --mint:#95DCB0; --mint-soft:#EFFAF3; --mint-line:#CFEEDB;
   --return:#29CFF6; --on-return:#0F151B; --reconnect:#95DCB0; --on-reconnect:#0F151B; --thrive:#23282E; --on-thrive:#FFFFFF; --any:#D3DCE1; --on-any:#111820;
   --btn-bg:#111820; --btn-fg:#FFFFFF; --focus:#0A7C9E; --flag:#FFF1C9; --flag-ink:#6B4E00;
-  --footer:#0F151B; --footer-ink:#8B97A3; --footer-tag:#7FD9A4; --footer-line:#25303A;
+  --footer:#FFFFFF; --footer-ink:#5F6B77; --footer-tag:#111820; --footer-line:#E1E8EC;
   --font:"Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 }
 @media (prefers-color-scheme: dark){
@@ -225,7 +225,7 @@ td{height:46px}
 .btn{display:inline-flex; align-items:center; gap:8px; text-decoration:none; background:var(--btn-bg); color:var(--btn-fg); font-weight:700; border-radius:999px; padding:12px 22px; margin-top:18px}
 
 /* Footer */
-.footer{background:var(--footer); color:var(--footer-ink); margin-top:56px; padding-block:44px; text-align:center}
+.footer{background:var(--footer); color:var(--footer-ink); border-top:1px solid var(--footer-line); margin-top:56px; padding-block:44px; text-align:center}
 .footer .tagline{color:var(--footer-tag); max-width:52ch; margin-inline:auto}
 .footer hr{border:0; border-top:1px solid var(--footer-line); width:200px; margin:22px auto}
 .footer p{font-size:.86rem}
