@@ -1,3 +1,8 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>JobMama Return-to-Work Toolkit</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -53,7 +58,7 @@ button{font:inherit}
 .topbar{border-bottom:1px solid var(--line); background:var(--bg)}
 .topbar .wrap{display:flex; align-items:center; justify-content:space-between; gap:12px; padding-block:16px}
 .brand{display:flex; align-items:center; gap:12px; text-decoration:none; color:var(--ink); min-width:0}
-.brand svg{width:42px; height:42px; flex:none; display:block}
+.brand svg,.brand img{width:42px; height:42px; flex:none; display:block}
 .wordmark{display:flex; flex-direction:column; line-height:1.05; min-width:0}
 .wordmark b{font-size:1.5rem; font-weight:800; letter-spacing:-.035em}
 .wordmark small{font-size:.66rem; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); margin-top:4px; white-space:nowrap}
@@ -227,6 +232,8 @@ td{height:46px}
 .footer p + p{margin-top:6px}
 @media (prefers-reduced-motion: reduce){ *{transition:none!important} }
 </style>
+</head>
+<body>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="i-parent" viewBox="0 0 24 24"><circle cx="9" cy="6.5" r="3"/><path d="M3.5 21v-2.5a5.5 5.5 0 0 1 11 0V21"/><circle cx="18" cy="11.5" r="2"/><path d="M15 21v-1.5a3 3 0 0 1 6 0V21"/></symbol>
@@ -241,7 +248,7 @@ td{height:46px}
 <header class="topbar">
   <div class="wrap">
     <a class="brand" href="#" id="home-link" aria-label="JobMama Return-to-Work Toolkit, back to the start">
-      <svg viewBox="0 0 44 44" aria-hidden="true"><rect x="0" y="0" width="44" height="44" rx="13" fill="var(--cyan)"/><path d="M11.5 31.5 C12 25 12.6 18.5 13.6 12.8 C16.2 17.8 18.4 22.2 21 26.3 C23.6 21.2 26.3 16.3 29.4 12.2 C30.4 18.8 31 25.2 31.6 31.6" fill="none" stroke="#FFFFFF" stroke-width="3.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <img src="/favicon.png" width="42" height="42" alt="" />
       <span class="wordmark"><b>JobMama</b><small>Return-to-work toolkit</small></span>
     </a>
     <div class="top-right">
@@ -933,3 +940,5 @@ Thank you,
   applyRole();
 })();
 </script>
+</body>
+</html>
