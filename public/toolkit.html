@@ -1,0 +1,935 @@
+<title>JobMama Return-to-Work Toolkit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<style>
+/* Layout: entry screen = tinted hero band with three role cards; each role path = one 760px column of phase blocks with bordered step cards on a timeline rail (JobMama reintegration guide style) */
+:root{
+  --bg:#FFFFFF; --band:#EEF9FD; --surface:#FFFFFF; --surface-2:#F4F7F9; --ink:#111820; --muted:#5F6B77; --line:#E1E8EC; --line-strong:#A3AFB8;
+  --cyan:#29CFF6; --cyan-ink:#0A7C9E; --cyan-soft:#D8F4FC; --mint:#95DCB0; --mint-soft:#EFFAF3; --mint-line:#CFEEDB;
+  --return:#29CFF6; --on-return:#0F151B; --reconnect:#95DCB0; --on-reconnect:#0F151B; --thrive:#23282E; --on-thrive:#FFFFFF; --any:#D3DCE1; --on-any:#111820;
+  --btn-bg:#111820; --btn-fg:#FFFFFF; --focus:#0A7C9E; --flag:#FFF1C9; --flag-ink:#6B4E00;
+  --footer:#0F151B; --footer-ink:#8B97A3; --footer-tag:#7FD9A4; --footer-line:#25303A;
+  --font:"Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F151B; --band:#11222B; --surface:#151D24; --surface-2:#1B252D; --ink:#EDF2F5; --muted:#9BA8B3; --line:#25313A; --line-strong:#56646F;
+    --cyan:#3AD3F7; --cyan-ink:#6EDCF9; --cyan-soft:#143440; --mint:#8FD6AA; --mint-soft:#11261C; --mint-line:#1E3F2D;
+    --return:#3AD3F7; --on-return:#0F151B; --reconnect:#8FD6AA; --on-reconnect:#0F151B; --thrive:#E4EBEF; --on-thrive:#0F151B; --any:#3A4752; --on-any:#EDF2F5;
+    --btn-bg:#3AD3F7; --btn-fg:#0F151B; --focus:#6EDCF9; --flag:#3A3014; --flag-ink:#F4D27A;
+    --footer:#0A0F13; --footer-ink:#7F8C98; --footer-tag:#7FD9A4; --footer-line:#1E2830;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F151B; --band:#11222B; --surface:#151D24; --surface-2:#1B252D; --ink:#EDF2F5; --muted:#9BA8B3; --line:#25313A; --line-strong:#56646F;
+  --cyan:#3AD3F7; --cyan-ink:#6EDCF9; --cyan-soft:#143440; --mint:#8FD6AA; --mint-soft:#11261C; --mint-line:#1E3F2D;
+  --return:#3AD3F7; --on-return:#0F151B; --reconnect:#8FD6AA; --on-reconnect:#0F151B; --thrive:#E4EBEF; --on-thrive:#0F151B; --any:#3A4752; --on-any:#EDF2F5;
+  --btn-bg:#3AD3F7; --btn-fg:#0F151B; --focus:#6EDCF9; --flag:#3A3014; --flag-ink:#F4D27A;
+  --footer:#0A0F13; --footer-ink:#7F8C98; --footer-tag:#7FD9A4; --footer-line:#1E2830;
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+body{background:var(--bg); color:var(--ink); font-family:var(--font); font-size:16px; line-height:1.6; -webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{margin:0; line-height:1.2; text-wrap:balance; letter-spacing:-.015em}
+p{margin:0}
+a{color:var(--cyan-ink); text-underline-offset:3px}
+:focus-visible{outline:3px solid var(--focus); outline-offset:2px; border-radius:6px}
+button{font:inherit}
+.wrap{max-width:1060px; margin-inline:auto; padding-inline:20px}
+.col{max-width:760px; margin-inline:auto; padding-inline:20px}
+.eyebrow{display:inline-block; background:var(--cyan-soft); color:var(--ink); font-size:.74rem; font-weight:800; letter-spacing:.14em; text-transform:uppercase; border-radius:8px; padding:6px 12px}
+.ph-return{--ph:var(--return); --on-ph:var(--on-return)}
+.ph-reconnect{--ph:var(--reconnect); --on-ph:var(--on-reconnect)}
+.ph-thrive{--ph:var(--thrive); --on-ph:var(--on-thrive)}
+.ph-any{--ph:var(--any); --on-ph:var(--on-any)}
+.pill{display:inline-flex; align-items:center; background:var(--ph); color:var(--on-ph); font-weight:700; font-size:.8rem; line-height:1; padding:6px 11px; border-radius:999px; white-space:nowrap}
+.icon{width:22px; height:22px; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; flex:none}
+.tile{width:46px; height:46px; border-radius:13px; background:var(--cyan-soft); color:var(--ink); display:grid; place-items:center; flex:none}
+
+/* Top bar */
+.topbar{border-bottom:1px solid var(--line); background:var(--bg)}
+.topbar .wrap{display:flex; align-items:center; justify-content:space-between; gap:12px; padding-block:16px}
+.brand{display:flex; align-items:center; gap:12px; text-decoration:none; color:var(--ink); min-width:0}
+.brand svg{width:42px; height:42px; flex:none; display:block}
+.wordmark{display:flex; flex-direction:column; line-height:1.05; min-width:0}
+.wordmark b{font-size:1.5rem; font-weight:800; letter-spacing:-.035em}
+.wordmark small{font-size:.66rem; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); margin-top:4px; white-space:nowrap}
+.top-right{display:flex; align-items:center; gap:10px; flex:none}
+.tag{font-size:.78rem; font-weight:700; letter-spacing:.04em; border:1.5px solid var(--cyan); border-radius:999px; padding:6px 14px; white-space:nowrap}
+.btn-line{font-weight:700; font-size:.88rem; cursor:pointer; background:var(--surface); color:var(--ink); border:1.5px solid var(--line); border-radius:999px; padding:7px 14px; white-space:nowrap}
+.btn-line:hover{border-color:var(--ink)}
+@media (max-width:520px){ .wordmark small{display:none} .tag{display:none} }
+
+/* Hero bands */
+.band{background:var(--band); border-bottom:1px solid var(--line); padding-block:44px}
+.band h1{font-size:clamp(2rem, 6vw, 2.9rem); font-weight:800; margin-top:18px}
+.lead{color:var(--muted); font-size:1.1rem; margin-top:12px; max-width:62ch}
+
+/* Entry */
+.roles{display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:14px; margin-top:30px}
+@media (max-width:820px){ .roles{grid-template-columns:1fr} }
+.role-card{display:flex; flex-direction:column; gap:14px; text-align:left; cursor:pointer; background:var(--surface); color:var(--ink); border:1.5px solid var(--line); border-radius:18px; padding:20px; transition:border-color .15s, transform .15s}
+.role-card:hover{border-color:var(--cyan); transform:translateY(-2px)}
+.role-card b{font-size:1.2rem; font-weight:800; letter-spacing:-.01em}
+.role-card small{display:block; color:var(--muted); font-size:.93rem; margin-top:2px}
+.role-go{margin-top:auto; font-size:.88rem; font-weight:700; color:var(--cyan-ink)}
+@media (max-width:820px){ .role-card{flex-direction:row; align-items:center} .role-go{display:none} }
+.privacy{margin-top:18px; font-size:.9rem; color:var(--muted)}
+.phases-strip{padding-block:40px 56px}
+.phases-strip h2{font-size:1.35rem; font-weight:800}
+.strip{display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:14px; margin-top:18px}
+@media (max-width:760px){ .strip{grid-template-columns:1fr} }
+.strip > div{border:1.5px solid var(--line); border-radius:16px; padding:18px; display:flex; flex-direction:column; gap:8px; align-items:flex-start}
+.strip .when{color:var(--muted); font-size:.85rem; font-weight:600}
+
+/* Path header cards */
+.path-cards{display:grid; grid-template-columns:minmax(0,1.15fr) minmax(0,1fr); gap:14px; margin-top:26px}
+@media (max-width:700px){ .path-cards{grid-template-columns:1fr} }
+.box{background:var(--surface); border:1.5px solid var(--line); border-radius:18px; padding:20px; display:flex; flex-direction:column; gap:10px; min-width:0}
+.box-label{font-weight:800; font-size:1.05rem}
+.help{color:var(--muted); font-size:.92rem}
+.date-row{display:flex; flex-wrap:wrap; gap:10px; align-items:center}
+input[type="date"]{font:inherit; color:var(--ink); background:var(--surface); border:1.5px solid var(--line-strong); border-radius:12px; padding:9px 12px; min-width:0}
+.status{font-size:.92rem; font-weight:600}
+.status .muted{color:var(--muted); font-weight:500}
+.big{font-size:2rem; font-weight:800; letter-spacing:-.03em; line-height:1; font-variant-numeric:tabular-nums}
+.big span{font-size:1rem; font-weight:600; color:var(--muted); letter-spacing:0}
+.meter{height:8px; background:var(--surface-2); border-radius:999px; overflow:hidden}
+.meter > span{display:block; height:100%; width:0; background:var(--cyan); border-radius:999px; transition:width .25s}
+.phase-counts{display:flex; flex-wrap:wrap; gap:8px}
+.phase-counts .pill{font-variant-numeric:tabular-nums}
+
+/* Path nav */
+.pathnav{position:sticky; top:env(safe-area-inset-top, 0px); z-index:10; background:var(--bg); border-bottom:1px solid var(--line)}
+.pathnav .col{display:flex; align-items:center; gap:10px; padding-block:10px}
+.chips{display:flex; gap:4px; overflow-x:auto; scrollbar-width:none; min-width:0}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none; cursor:pointer; background:none; border:0; color:var(--muted); font-weight:700; font-size:.88rem; padding:7px 12px; border-radius:999px}
+.chip:hover{color:var(--ink); background:var(--surface-2)}
+.chip[aria-current="true"]{background:var(--btn-bg); color:var(--btn-fg)}
+
+/* Path sections */
+.pathsec{padding-block:44px 8px; scroll-margin-top:calc(64px + env(safe-area-inset-top, 0px))}
+.sec-h{display:flex; flex-direction:column; gap:6px; margin-bottom:20px}
+.sec-h h2{font-size:clamp(1.5rem, 4.4vw, 1.9rem); font-weight:800}
+.sec-h p{color:var(--muted)}
+
+/* Phases and steps */
+.phase + .phase{margin-top:34px}
+.phase-head{display:flex; flex-wrap:wrap; align-items:center; gap:8px 14px; margin-bottom:16px}
+.ph-bar{width:5px; height:30px; border-radius:4px; background:var(--ph); flex:none}
+.phase[data-ph="thrive"] .ph-bar{background:var(--ph)}
+.phase-head h3{font-size:1.35rem; font-weight:800}
+.ph-when{color:var(--muted); font-size:.9rem; font-weight:600}
+.ph-count{margin-left:auto; font-size:.85rem; font-weight:700; color:var(--muted); font-variant-numeric:tabular-nums}
+.moments{position:relative; padding-left:30px}
+.moments::before{content:""; position:absolute; left:7px; top:8px; bottom:12px; width:2px; background:var(--line)}
+.moment{position:relative; padding-bottom:22px}
+.moment:last-child{padding-bottom:0}
+.m-dot{position:absolute; left:-30px; top:4px; width:16px; height:16px; border-radius:50%; background:var(--ph); box-shadow:0 0 0 4px var(--bg)}
+.m-head{display:flex; flex-wrap:wrap; align-items:center; gap:6px 10px; margin-bottom:10px}
+.m-when{font-size:.76rem; font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:var(--muted)}
+.m-head h4{width:100%; font-size:1.08rem; font-weight:700}
+.date{display:inline-block; font-size:.76rem; font-weight:700; background:var(--cyan-soft); color:var(--ink); border-radius:999px; padding:2px 9px; font-variant-numeric:tabular-nums; white-space:nowrap}
+.now{display:inline-block; font-size:.72rem; font-weight:800; letter-spacing:.08em; text-transform:uppercase; background:var(--btn-bg); color:var(--btn-fg); border-radius:999px; padding:3px 9px}
+.acts{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px}
+.act{display:grid; grid-template-columns:24px minmax(0,1fr); column-gap:14px; row-gap:6px; background:var(--surface); border:1.5px solid var(--line); border-radius:14px; padding:14px 16px; transition:background .15s}
+.act input{appearance:none; -webkit-appearance:none; grid-row:1 / span 2; width:22px; height:22px; margin:1px 0 0; border:2px solid var(--line-strong); border-radius:7px; background:var(--surface); cursor:pointer}
+.act input:checked{border-color:var(--cyan); background:var(--cyan) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230F151B' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center / 16px no-repeat}
+.act label{cursor:pointer; font-weight:500}
+.act:has(input:checked){background:var(--surface-2)}
+.act input:checked + label{color:var(--muted); text-decoration:line-through; text-decoration-thickness:1.5px}
+.meta{grid-column:2; display:flex; flex-wrap:wrap; align-items:center; gap:6px 10px; font-size:.84rem}
+.when{font-weight:700; color:var(--muted)}
+.ref{font-weight:700; font-size:.8rem; text-decoration:none; color:var(--ink); border:1.5px solid var(--line); border-radius:999px; padding:1px 10px}
+.ref:hover{border-color:var(--ink)}
+.notes{display:flex; flex-direction:column; gap:10px; margin-top:26px}
+.note{background:var(--mint-soft); border:1.5px solid var(--mint-line); border-radius:14px; padding:14px 18px}
+.linklike{background:none; border:0; padding:0; color:var(--cyan-ink); font-weight:700; text-decoration:underline; text-underline-offset:3px; cursor:pointer}
+.steps-foot{display:flex; justify-content:flex-end; margin-top:14px}
+.btn-small{cursor:pointer; background:none; border:0; color:var(--muted); font-size:.84rem; font-weight:600; text-decoration:underline; text-underline-offset:3px; padding:4px}
+.btn-small.armed{color:var(--ink); font-weight:800}
+
+/* Cards */
+.cards{display:grid; grid-template-columns:repeat(auto-fill, minmax(min(100%, 330px), 1fr)); gap:12px; align-items:start}
+.card{background:var(--surface); border:1.5px solid var(--line); border-radius:16px; min-width:0}
+.card summary{list-style:none; cursor:pointer; padding:16px 18px; display:flex; flex-direction:column; gap:6px}
+.card summary::-webkit-details-marker{display:none}
+.card-top{display:flex; align-items:center; justify-content:space-between; gap:8px}
+.card-num{font-size:.72rem; font-weight:800; letter-spacing:.12em; text-transform:uppercase; color:var(--muted)}
+.card h3{font-size:1.15rem; font-weight:800}
+.card-when{font-size:.9rem; color:var(--muted)}
+.card-open{font-size:.84rem; font-weight:700; color:var(--cyan-ink)}
+.card[open] .card-open{display:none}
+.card-body{border-top:1px dashed var(--line); padding:14px 18px 18px; display:flex; flex-direction:column; gap:12px}
+.lbl{font-size:.72rem; font-weight:800; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin-bottom:4px}
+.card-body ul{margin:0; padding-left:18px; display:grid; gap:6px}
+.avoid{background:var(--surface-2); border-radius:10px; padding:10px 12px}
+
+/* Templates */
+.tpls{display:flex; flex-direction:column; gap:14px}
+.tpl{background:var(--surface); border:1.5px solid var(--line); border-radius:16px; padding:18px; display:flex; flex-direction:column; gap:12px; min-width:0}
+.tpl-head{display:flex; align-items:flex-start; justify-content:space-between; gap:12px}
+.tpl h3{font-size:1.15rem; font-weight:800}
+.from{font-size:.9rem; color:var(--muted); margin-top:2px}
+.copy-btn{cursor:pointer; background:var(--btn-bg); color:var(--btn-fg); border:0; border-radius:999px; padding:8px 16px; font-weight:700; font-size:.86rem; flex:none}
+.tpl-body{white-space:pre-wrap; background:var(--surface-2); border-radius:12px; padding:14px 16px; font-size:.95rem; overflow-wrap:anywhere}
+mark.ph{background:var(--cyan-soft); color:inherit; border-radius:4px; padding:0 3px}
+.tbl-wrap{overflow-x:auto; border:1.5px solid var(--line); border-radius:12px}
+table{border-collapse:collapse; width:100%; min-width:540px; font-size:.92rem}
+th,td{border-bottom:1px solid var(--line); border-right:1px solid var(--line); padding:10px 12px; text-align:left; vertical-align:top}
+th:last-child,td:last-child{border-right:0}
+tbody tr:last-child th, tbody tr:last-child td{border-bottom:0}
+thead th{background:var(--surface-2); font-weight:800}
+tbody th{font-weight:700; width:30%}
+td{height:46px}
+
+/* Rights */
+.rgroup + .rgroup{margin-top:26px}
+.rgroup h3{font-size:1.1rem; font-weight:800; margin-bottom:4px}
+.rrow{display:grid; grid-template-columns:minmax(140px, 200px) minmax(0,1fr) auto; gap:6px 18px; padding:14px 0; border-top:1px solid var(--line); align-items:start}
+@media (max-width:640px){ .rrow{grid-template-columns:minmax(0,1fr) auto} .rrow .rule{grid-column:1 / -1; grid-row:2} }
+.topic{font-weight:700}
+.rule p + p{margin-top:4px}
+.src{font-size:.82rem; color:var(--muted)}
+.who{font-size:.76rem; font-weight:700; white-space:nowrap; border:1.5px solid var(--line); border-radius:999px; padding:2px 9px}
+.flag{font-size:.74rem; font-weight:700; background:var(--flag); color:var(--flag-ink); border-radius:999px; padding:2px 8px}
+.disclaimer{margin-top:16px; font-size:.88rem; color:var(--muted)}
+
+/* Golden rules (good practices box) */
+.good{background:var(--mint-soft); border:1.5px solid var(--mint-line); border-radius:22px; padding:24px}
+.good .sec-h{margin-bottom:16px}
+.rules{display:flex; flex-direction:column; gap:12px}
+.rule-tile{background:var(--surface); border:1.5px solid var(--mint-line); border-radius:16px; padding:18px; display:grid; grid-template-columns:46px minmax(0,1fr); gap:16px; align-items:start}
+.rule-tile .tile{background:var(--mint-soft)}
+.rule-tile h3{font-size:1.1rem; font-weight:800}
+.rule-tile p{color:var(--muted); margin-top:4px}
+
+/* Support */
+.support{background:var(--band); border:1.5px solid var(--line); border-radius:22px; padding:24px; display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:24px}
+@media (max-width:700px){ .support{grid-template-columns:1fr} }
+.support h2{font-size:1.6rem; font-weight:800}
+.support p{color:var(--muted); margin-top:8px}
+.services{list-style:none; margin:0; padding:0; display:grid; gap:10px}
+.services li{border-top:1px solid var(--line); padding-top:10px}
+.services b{display:block}
+.services span{color:var(--muted); font-size:.93rem}
+.btn{display:inline-flex; align-items:center; gap:8px; text-decoration:none; background:var(--btn-bg); color:var(--btn-fg); font-weight:700; border-radius:999px; padding:12px 22px; margin-top:18px}
+
+/* Footer */
+.footer{background:var(--footer); color:var(--footer-ink); margin-top:56px; padding-block:44px; text-align:center}
+.footer .tagline{color:var(--footer-tag); max-width:52ch; margin-inline:auto}
+.footer hr{border:0; border-top:1px solid var(--footer-line); width:200px; margin:22px auto}
+.footer p{font-size:.86rem}
+.footer p + p{margin-top:6px}
+@media (prefers-reduced-motion: reduce){ *{transition:none!important} }
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-parent" viewBox="0 0 24 24"><circle cx="9" cy="6.5" r="3"/><path d="M3.5 21v-2.5a5.5 5.5 0 0 1 11 0V21"/><circle cx="18" cy="11.5" r="2"/><path d="M15 21v-1.5a3 3 0 0 1 6 0V21"/></symbol>
+  <symbol id="i-hr" viewBox="0 0 24 24"><rect x="8" y="2.5" width="8" height="4" rx="1"/><path d="M16 4.5h2a2 2 0 0 1 2 2V20a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6.5a2 2 0 0 1 2-2h2"/><path d="M12 11.5h4M12 16.5h4M8 11.5h.01M8 16.5h.01"/></symbol>
+  <symbol id="i-manager" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></symbol>
+</svg>
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="#" id="home-link" aria-label="JobMama Return-to-Work Toolkit, back to the start">
+      <svg viewBox="0 0 44 44" aria-hidden="true"><rect x="0" y="0" width="44" height="44" rx="13" fill="var(--cyan)"/><path d="M11.5 31.5 C12 25 12.6 18.5 13.6 12.8 C16.2 17.8 18.4 22.2 21 26.3 C23.6 21.2 26.3 16.3 29.4 12.2 C30.4 18.8 31 25.2 31.6 31.6" fill="none" stroke="#FFFFFF" stroke-width="3.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="wordmark"><b>JobMama</b><small>Return-to-work toolkit</small></span>
+    </a>
+    <div class="top-right">
+      <span class="tag" id="top-tag">Toolkit • EN</span>
+      <button type="button" class="btn-line" id="change-role" hidden>Change role</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- Entry: role selection -->
+  <div id="entry">
+    <section class="band">
+      <div class="wrap">
+        <span class="eyebrow">Return · Reconnect · Thrive</span>
+        <h1>The Return-to-Work Toolkit</h1>
+        <p class="lead">Practical steps for a smooth return after parental leave. Choose who you are, and you will see only the steps that are yours.</p>
+        <div class="roles" role="group" aria-label="Choose your role">
+          <button type="button" class="role-card" data-role="parent">
+            <span class="tile"><svg class="icon"><use href="#i-parent"/></svg></span>
+            <span><b>I am a parent</b><small>You are on leave, or getting ready to come back.</small></span>
+            <span class="role-go">Open my path →</span>
+          </button>
+          <button type="button" class="role-card" data-role="hr">
+            <span class="tile"><svg class="icon"><use href="#i-hr"/></svg></span>
+            <span><b>I work in HR</b><small>You run the return process for your company.</small></span>
+            <span class="role-go">Open my path →</span>
+          </button>
+          <button type="button" class="role-card" data-role="manager">
+            <span class="tile"><svg class="icon"><use href="#i-manager"/></svg></span>
+            <span><b>I am a manager</b><small>Someone on your team is coming back.</small></span>
+            <span class="role-go">Open my path →</span>
+          </button>
+        </div>
+        <p class="privacy">No sign-up. Your ticks and dates are saved only in this browser.</p>
+      </div>
+    </section>
+    <section class="wrap phases-strip">
+      <h2>Every path follows three phases</h2>
+      <div class="strip">
+        <div class="ph-return"><span class="pill">Return</span><span class="when">Before the return and Day 1</span><p>Stay in touch, get ready, and make the first day a warm one.</p></div>
+        <div class="ph-reconnect"><span class="pill">Reconnect</span><span class="when">Weeks 1–4</span><p>Catch up on what changed and build up step by step.</p></div>
+        <div class="ph-thrive"><span class="pill">Thrive</span><span class="when">Month 2 and beyond</span><p>Full ownership again, and room to grow.</p></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Role path -->
+  <div id="path" hidden>
+    <section class="band">
+      <div class="col">
+        <span class="eyebrow" id="path-eyebrow">Your path</span>
+        <h1 id="path-title">Your path</h1>
+        <p class="lead" id="path-lead"></p>
+        <div class="path-cards">
+          <div class="box">
+            <label class="box-label" for="day-of-return">Day of Return</label>
+            <p class="help" id="day-help"></p>
+            <div class="date-row">
+              <input type="date" id="day-of-return">
+              <button type="button" class="btn-line" id="clear-date">Clear</button>
+            </div>
+            <p class="status" id="date-status" aria-live="polite"></p>
+          </div>
+          <div class="box">
+            <span class="box-label">Your progress</span>
+            <p class="big" id="prog-big">0 <span>of 0 steps done</span></p>
+            <div class="meter" aria-hidden="true"><span id="prog-bar"></span></div>
+            <div class="phase-counts" id="prog-phases"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <nav class="pathnav" aria-label="Sections of your path">
+      <div class="col"><div class="chips" id="chips"></div></div>
+    </nav>
+
+    <section class="pathsec col" id="steps" data-label="Steps">
+      <div class="sec-h">
+        <h2>Your steps</h2>
+        <p>Tick each step when it is done. Add your Day of Return above and every step shows its date.</p>
+      </div>
+      <div id="steps-list"></div>
+      <div class="notes" id="notes"></div>
+      <div class="steps-foot"><button type="button" class="btn-small" id="clear-ticks">Clear my ticks</button></div>
+    </section>
+
+    <section class="pathsec col" id="cards" data-label="Conversations" data-for="manager hr">
+      <div class="sec-h">
+        <h2>Conversation cards</h2>
+        <p data-for="manager">The hardest part of a return is the conversations, not the laptop. These cards give you the words for the moments that matter most.</p>
+        <p data-for="hr">Two conversations HR often leads. The other cards are on the manager path.</p>
+      </div>
+      <div class="cards">
+        <details class="card ph-return" id="card-1" data-for="manager hr">
+          <summary>
+            <span class="card-top"><span class="card-num">Card 1</span><span class="pill">Return</span></span>
+            <h3>The “How are you?” call</h3>
+            <span class="card-when">1–2 months before the return</span>
+            <span class="card-open">Open card</span>
+          </summary>
+          <div class="card-body">
+            <div><p class="lbl">Why</p><p>To reconnect without pressure and hear the parent’s plans.</p></div>
+            <div><p class="lbl">Ask</p><ul><li>How are you and the family doing?</li><li>When are you thinking of coming back, and what would make it easier?</li><li>How much would you like to hear from us until then?</li></ul></div>
+            <div class="avoid"><p class="lbl">Avoid</p><p>“So, when can we count on you again?”</p></div>
+          </div>
+        </details>
+        <details class="card ph-return" id="card-2" data-for="manager">
+          <summary>
+            <span class="card-top"><span class="card-num">Card 2</span><span class="pill">Return</span></span>
+            <h3>The welcome</h3>
+            <span class="card-when">Day of Return</span>
+            <span class="card-open">Open card</span>
+          </summary>
+          <div class="card-body">
+            <div><p class="lbl">Why</p><p>To set expectations for the first 30 days.</p></div>
+            <div><p class="lbl">Ask</p><ul><li>What would make this first week a good one?</li><li>What would you like to pick up first?</li><li>Is there anything in your schedule we should plan around?</li></ul></div>
+            <div class="avoid"><p class="lbl">Avoid</p><p>“You’ve missed a lot.” Say instead: “Nobody expects you to know everything today.”</p></div>
+          </div>
+        </details>
+        <details class="card ph-reconnect" id="card-3" data-for="manager">
+          <summary>
+            <span class="card-top"><span class="card-num">Card 3</span><span class="pill">Reconnect</span></span>
+            <h3>The weekly check-in</h3>
+            <span class="card-when">Every week for the first two months, 10 minutes</span>
+            <span class="card-open">Open card</span>
+          </summary>
+          <div class="card-body">
+            <div><p class="lbl">Why</p><p>To catch small problems before they grow.</p></div>
+            <div><p class="lbl">Ask</p><ul><li>What went well this week?</li><li>What was harder than expected?</li><li>What do you need from me next week?</li></ul></div>
+            <div class="avoid"><p class="lbl">Avoid</p><p>Turning it into a status report.</p></div>
+          </div>
+        </details>
+        <details class="card ph-any" id="card-4" data-for="manager hr">
+          <summary>
+            <span class="card-top"><span class="card-num">Card 4</span><span class="pill">Any time</span></span>
+            <h3>Talking about flexibility</h3>
+            <span class="card-when">Whenever it comes up</span>
+            <span class="card-open">Open card</span>
+          </summary>
+          <div class="card-body">
+            <div><p class="lbl">Why</p><p>To find hours or a setup that work for both sides.</p></div>
+            <div><p class="lbl">Ask</p><ul><li>What would help most right now?</li><li>Which parts of the role need fixed hours or being on site?</li><li>Shall we try it for a month and then review?</li></ul></div>
+            <div class="avoid"><p class="lbl">Avoid</p><p>“If I do it for you, I have to do it for everyone.”</p></div>
+          </div>
+        </details>
+        <details class="card ph-thrive" id="card-5" data-for="manager">
+          <summary>
+            <span class="card-top"><span class="card-num">Card 5</span><span class="pill">Thrive</span></span>
+            <h3>The Day 90 review</h3>
+            <span class="card-when">End of month 3</span>
+            <span class="card-open">Open card</span>
+          </summary>
+          <div class="card-body">
+            <div><p class="lbl">Why</p><p>To close the return and open the next chapter.</p></div>
+            <div><p class="lbl">Ask</p><ul><li>Looking back, what helped and what didn’t?</li><li>What do you want to own fully from now on?</li><li>Where do you want to grow in the next year?</li></ul></div>
+            <div class="avoid"><p class="lbl">Avoid</p><p>Talking only about the past. Spend half the time on what comes next.</p></div>
+          </div>
+        </details>
+        <details class="card ph-any" id="card-6" data-for="manager">
+          <summary>
+            <span class="card-top"><span class="card-num">Card 6</span><span class="pill">Any time</span></span>
+            <h3>When the child is sick</h3>
+            <span class="card-when">The morning it happens</span>
+            <span class="card-open">Open card</span>
+          </summary>
+          <div class="card-body">
+            <div><p class="lbl">Why</p><p>How you react that morning is what people remember.</p></div>
+            <div><p class="lbl">Ask</p><ul><li>Is everything OK?</li><li>Do you need anything from us today?</li><li>What can wait, and what should someone else pick up?</li></ul></div>
+            <div class="avoid"><p class="lbl">Avoid</p><p>A sigh, a pause, or “Again?”</p></div>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section class="pathsec col" id="templates" data-label="Templates">
+      <div class="sec-h">
+        <h2>Templates</h2>
+        <p>Ready-to-use texts. Copy one, fill in the highlighted [brackets] and send.</p>
+      </div>
+      <div class="tpls">
+        <article class="tpl" id="tpl-1" data-for="manager hr">
+          <div class="tpl-head">
+            <div><h3>Keep-in-touch email</h3><p class="from">To a parent on leave</p></div>
+            <button type="button" class="copy-btn" data-copy="tpl-1-body">Copy</button>
+          </div>
+<div class="tpl-body" id="tpl-1-body">Subject: Thinking of you (no reply needed)
+
+Hi <mark class="ph">[Name]</mark>,
+
+I hope you and the little one are doing well. There are no work questions in this email, just a hello from all of us.
+
+A few things you might like to know: <mark class="ph">[one or two short updates]</mark>.
+
+If you’d like a short call before you come back, I’m happy to find a time that suits you. If you’d rather hear nothing until then, that’s completely fine too.
+
+Warm wishes,
+<mark class="ph">[Your name]</mark></div>
+        </article>
+        <article class="tpl" id="tpl-2" data-for="manager">
+          <div class="tpl-head">
+            <div><h3>Welcome back message</h3><p class="from">From the team, the day before the Day of Return</p></div>
+            <button type="button" class="copy-btn" data-copy="tpl-2-body">Copy</button>
+          </div>
+<div class="tpl-body" id="tpl-2-body">Hi <mark class="ph">[Name]</mark>,
+
+We’re so glad you’re back tomorrow! Everything is ready for you. Coffee is on us at <mark class="ph">[time]</mark>, and <mark class="ph">[buddy’s name]</mark> is your go-to person for anything at all. Nobody expects you to know everything on day one. We’re just happy to have you back.
+
+See you tomorrow,
+The <mark class="ph">[team name]</mark> team</div>
+        </article>
+        <article class="tpl" id="tpl-3" data-for="parent">
+          <div class="tpl-head">
+            <div><h3>Request for flexible working</h3><p class="from">To your manager or HR</p></div>
+            <button type="button" class="copy-btn" data-copy="tpl-3-body">Copy</button>
+          </div>
+<div class="tpl-body" id="tpl-3-body">Subject: Request for flexible working arrangements
+
+Hi <mark class="ph">[Name]</mark>,
+
+As I prepare to return on <mark class="ph">[Day of Return]</mark>, I’d like to ask about adjusting my working arrangements for <mark class="ph">[period]</mark>.
+
+What I’m asking for: <mark class="ph">[for example, working from home two days a week, starting at 9:30, or part-time hours]</mark>
+Why it helps: <mark class="ph">[one sentence]</mark>
+How the work stays covered: <mark class="ph">[one or two sentences]</mark>
+
+I’d suggest we try it for <mark class="ph">[one month]</mark> and then review it together. Could we talk about it in the next week or two?
+
+Thank you,
+<mark class="ph">[Your name]</mark></div>
+        </article>
+        <article class="tpl" id="tpl-4" data-for="parent manager">
+          <div class="tpl-head">
+            <div><h3>30-60-90 day plan</h3><p class="from">Filled in together by the parent and the manager in the first week</p></div>
+            <button type="button" class="copy-btn" data-copy="tpl-4-table">Copy</button>
+          </div>
+          <div class="tbl-wrap">
+            <table id="tpl-4-table">
+              <thead><tr><th scope="col"></th><th scope="col">Days 1–30</th><th scope="col">Days 31–60</th><th scope="col">Days 61–90</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Focus</th><td></td><td></td><td></td></tr>
+                <tr><th scope="row">People to meet</th><td></td><td></td><td></td></tr>
+                <tr><th scope="row">First tasks and quick wins</th><td></td><td></td><td></td></tr>
+                <tr><th scope="row">Support needed</th><td></td><td></td><td></td></tr>
+                <tr><th scope="row">We’ll know it works when…</th><td></td><td></td><td></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="pathsec col" id="rights" data-label="Rights">
+      <div class="sec-h">
+        <h2>Rights at a glance</h2>
+        <p id="rights-lead">The main rules from the Bulgarian Labour Code, as of October 2026.</p>
+      </div>
+      <div class="rgroup">
+        <h3>Leave</h3>
+        <div class="rrow"><span class="topic">Pregnancy and birth leave</span><div class="rule"><p>410 days per child, 45 of them before the birth. Paid by the NSSI at 90% of average gross insurable income, after at least 12 months of insurance. (Art. 163)</p><p class="src"><a href="https://www.innovires.com/en/blog/maychinstvo-obezshtetenie-bremennost-razhdane.html" target="_blank" rel="noopener">Source: Innovires</a></p></div><span class="who">Mother</span></div>
+        <div class="rrow"><span class="topic">Leave until age 2</span><div class="rule"><p>After the 410 days, leave until the child turns 2, paid at a fixed monthly amount. A mother who returns to work early keeps part of this benefit. (Art. 164)</p><p class="src"><a href="https://www.innovires.com/en/blog/maychinstvo-obezshtetenie-bremennost-razhdane.html" target="_blank" rel="noopener">Source: Innovires</a> · <span class="flag">Rate to be confirmed</span></p></div><span class="who">Mother, or father with her consent</span></div>
+        <div class="rrow"><span class="topic">Leave at birth</span><div class="rule"><p>15 days when the child is born.</p><p class="src"><a href="https://www.innovires.com/en/blog/maychinstvo-obezshtetenie-bremennost-razhdane.html" target="_blank" rel="noopener">Source: Innovires</a></p></div><span class="who">Father</span></div>
+        <div class="rrow"><span class="topic">Father’s leave</span><div class="rule"><p>2 months, any time until the child turns 8, paid by the NSSI. (Art. 164c)</p><p class="src"><a href="https://trudipravo.bg/izbrani-statii/noviyat-otpusk-za-otglezhdane-na-dete-do-8-godishna-vazrast-ot-bashtata-osinovitelya-na-deteto/" target="_blank" rel="noopener">Source: Trud i Pravo</a></p></div><span class="who">Father</span></div>
+        <div class="rrow"><span class="topic">Sharing the 410 days</span><div class="rule"><p>Once the child is 6 months old, the father can take the rest of the 410 days with the mother’s consent.</p><p class="src"><a href="https://trudipravo.bg/izbrani-statii/izmeneniya-v-naredbata-za-izchislyavane-i-izplashtane-na-parichnite-obezshteteniya-i-pomoshti-ot-doo-v-sila-ot-nachaloto-na-2009-g/" target="_blank" rel="noopener">Source: Trud i Pravo</a></p></div><span class="who">Father</span></div>
+      </div>
+      <div class="rgroup">
+        <h3>Back at work</h3>
+        <div class="rrow"><span class="topic">Flexible work</span><div class="rule"><p>Parents of children up to 12 can propose in writing a temporary change: shorter or different hours, remote work or another change. The employer must accept where possible; a refusal needs written reasons within 14 days. (Art. 167b, since 3 January 2026)</p><p class="src"><a href="https://trudipravo.bg/izbrani-statii/izbrani-statii-ot-epi-trud-i-sotsialno-osiguryavane/promeni-v-razporedbata-na-chl-167b-kt-vav-vrazka-sas-savmestyavaneto-na-trudovite-i-semejnite-zadalzheniya-na-raboteshtite-roditeli/" target="_blank" rel="noopener">Source: Trud i Pravo</a></p></div><span class="who">Both parents</span></div>
+        <div class="rrow"><span class="topic">Night work and overtime</span><div class="rule"><p>Only with the mother’s written consent if the child is under 6.</p><p class="src"><a href="https://trudipravo.bg/izbrani-statii/izbrani-statii-ot-epi-trud-i-sotsialno-osiguryavane/sotzialnata-zashtita-na-mladite-maiki-po-balgarskoto-trudovo-zakonodatelstvo/" target="_blank" rel="noopener">Source: Trud i Pravo</a></p></div><span class="who">Mother</span></div>
+        <div class="rrow"><span class="topic">Business trips</span><div class="rule"><p>Only with the mother’s written consent if the child is under 3. (Art. 310)</p><p class="src"><a href="https://trudipravo.bg/izbrani-statii/izbrani-statii-ot-epi-trud-i-sotsialno-osiguryavane/sotzialnata-zashtita-na-mladite-maiki-po-balgarskoto-trudovo-zakonodatelstvo/" target="_blank" rel="noopener">Source: Trud i Pravo</a></p></div><span class="who">Mother</span></div>
+        <div class="rrow"><span class="topic">Protection from dismissal</span><div class="rule"><p>A mother of a child under 3 can be dismissed on most grounds only with prior permission from the Labour Inspectorate. (Art. 333)</p><p class="src"><a href="https://www.innovires.com/blog/specialna-zakrila-uvolnenie.html" target="_blank" rel="noopener">Source: Innovires</a> · <span class="flag">To be checked</span></p></div><span class="who">Mother</span></div>
+        <div class="rrow"><span class="topic">Breastfeeding</span><div class="rule"><p>Breastfeeding mothers have the right to paid breaks during the working day to feed their child.</p><p class="src"><span class="flag">To be checked</span></p></div><span class="who">Mother</span></div>
+        <div class="rrow"><span class="topic">Paid annual leave</span><div class="rule"><p>Leave days build up during both leaves, so parents usually return with days to use.</p><p class="src"><a href="https://www.capital.bg/biznes/moiat_kapital/2018/10/19/3329905_otpuskut_na_razdora/" target="_blank" rel="noopener">Source: Capital</a></p></div><span class="who">Both parents</span></div>
+        <div class="rrow"><span class="topic">Sick child</span><div class="rule"><p>Leave to care for a sick child is taken on a medical certificate and paid by the NSSI.</p><p class="src"><span class="flag">To be checked</span></p></div><span class="who">Both parents</span></div>
+      </div>
+      <p class="disclaimer">A summary, not legal advice. Confirm the details with HR or the National Social Security Institute (NSSI).</p>
+    </section>
+
+    <section class="pathsec col" id="rules" data-label="Golden rules" data-for="manager hr">
+      <div class="good">
+        <div class="sec-h">
+          <h2>Golden rules for parent-friendly teams</h2>
+          <p>Four rules that make the biggest difference, whatever the size of your company.</p>
+        </div>
+        <div class="rules">
+          <div class="rule-tile"><span class="tile"><svg class="icon"><use href="#i-calendar"/></svg></span><div><h3>1. Flexible by default</h3><p>Allow flexible hours or a hybrid setup in the first weeks, wherever the role allows it.</p></div></div>
+          <div class="rule-tile"><span class="tile"><svg class="icon"><use href="#i-clock"/></svg></span><div><h3>2. Protect the school run</h3><p>Avoid key meetings before 9:30 and after 16:30.</p></div></div>
+          <div class="rule-tile"><span class="tile"><svg class="icon"><use href="#i-chat"/></svg></span><div><h3>3. Ask, don’t assume</h3><p>Don’t decide for a parent that they won’t want travel, a promotion or a big project. Ask them.</p></div></div>
+          <div class="rule-tile"><span class="tile"><svg class="icon"><use href="#i-heart"/></svg></span><div><h3>4. Empathy first</h3><p>Children get sick. How you react that morning is what people remember, and it is what builds loyalty.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pathsec col" id="support" data-label="Support">
+      <div class="support" data-for="parent">
+        <div>
+          <h2>Want support with your return?</h2>
+          <p>JobMama helps parents come back to work with confidence, with a plan and people in their corner.</p>
+          <a class="btn" href="https://jobmama.bg" target="_blank" rel="noopener">Visit jobmama.bg</a>
+        </div>
+        <ul class="services">
+          <li><b>1:1 career coaching</b><span>A clear plan for your return, and your confidence back</span></li>
+          <li><b>CV and LinkedIn</b><span>Your experience, career break included, presented well</span></li>
+          <li><b>Interview preparation</b><span>Mock interviews and how to talk about the break</span></li>
+          <li><b>Workshops</b><span>Meet other parents going through the same thing</span></li>
+        </ul>
+      </div>
+      <div class="support" data-for="manager hr">
+        <div>
+          <h2>Want this for your company?</h2>
+          <p>JobMama helps companies support parents before, during and after parental leave.</p>
+          <a class="btn" href="https://jobmama.bg" target="_blank" rel="noopener">Book a call at jobmama.bg</a>
+        </div>
+        <ul class="services">
+          <li><b>Circle of Support</b><span>A group session for parents coming back to work</span></li>
+          <li><b>1:1 coaching</b><span>For mothers and for fathers</span></li>
+          <li><b>Manager training</b><span>For the team leaders who welcome parents back</span></li>
+          <li><b>Webinars</b><span>Short sessions open to every employee</span></li>
+        </ul>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <p class="tagline">We support working parents and help companies build a more inclusive workplace.</p>
+    <hr>
+    <p>© 2026 JobMama. All rights reserved.</p>
+    <p>Your ticks and dates are saved only in this browser.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+  var KEY = "jobmama-rtw-toolkit-v2";
+  var ROLES_LIST = ["parent", "hr", "manager"];
+  var state = { role: "", ticks: {}, dates: { parent: "", hr: "", manager: "" } };
+  try {
+    var saved = JSON.parse(localStorage.getItem(KEY) || "null");
+    if (saved && typeof saved === "object") {
+      if (ROLES_LIST.indexOf(saved.role) > -1) state.role = saved.role;
+      if (saved.ticks && typeof saved.ticks === "object") state.ticks = saved.ticks;
+      if (saved.dates && typeof saved.dates === "object") ROLES_LIST.forEach(function (r) { if (typeof saved.dates[r] === "string") state.dates[r] = saved.dates[r]; });
+    }
+  } catch (e) {}
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+  var reduce = false;
+  try { reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches; } catch (e) {}
+
+  var ROLE = {
+    parent: {
+      label: "Parent", eyebrow: "Your path · Parent", title: "Your return, step by step",
+      lead: "You don’t have to work this out alone. These steps help you come back on your own terms, from the last weeks of leave to your first 90 days and beyond. For mothers and fathers.",
+      help: "The date you plan to return to work.",
+      rights: "What Bulgarian law gives you as a parent, as of October 2026.",
+      notes: ["<b>Remember:</b> coming back is a transition, not a test. Nobody expects you to know everything on day one."]
+    },
+    hr: {
+      label: "HR", eyebrow: "Your path · HR", title: "Making the return predictable",
+      lead: "HR makes the return predictable: clear information, equipment that works, and one process every parent can count on.",
+      help: "The date you expect the parent to return.",
+      rights: "The rules to explain to parents and managers before the return, as of October 2026.",
+      notes: ["<b>Managers have their own path.</b> Send them this toolkit and ask them to choose “I am a manager”."]
+    },
+    manager: {
+      label: "Manager", eyebrow: "Your path · Manager", title: "Welcoming a parent back",
+      lead: "You have more influence on how the return goes than anyone else. Most of it comes down to a few conversations, held at the right time.",
+      help: "The date you expect the parent to return.",
+      rights: "What you need to know when a parent on your team comes back, as of October 2026.",
+      notes: [
+        "<b>Fathers take leave too.</b> Every step on this path applies when a father comes back from father’s leave.",
+        "<b>No HR team?</b> In a small company you cover HR’s steps too. When you finish here, open the <button type=\"button\" class=\"linklike\" data-switch=\"hr\">HR path</button>."
+      ]
+    }
+  };
+
+  var PH = {
+    "return": { name: "Return", when: "Before the return and Day 1" },
+    "reconnect": { name: "Reconnect", when: "Weeks 1–4" },
+    "thrive": { name: "Thrive", when: "Month 2 and beyond" },
+    "any": { name: "Any time", when: "Whenever it comes up" }
+  };
+
+  // m = moment (0 = any time); t = timing in days from the Day of Return (offset 0)
+  var A = [
+    { id: "p1", r: "parent", ph: "return", m: 1, x: "Decide how much contact you want during leave, and tell your manager or HR.", w: "During leave" },
+    { id: "p2", r: "parent", ph: "return", m: 1, x: "Share your Day of Return as early as you can.", w: "2–3 months before", t: { k: "by", d: -60 } },
+    { id: "p3", r: "parent", ph: "return", m: 1, x: "Write down what you want to discuss: hours, flexibility, your role, training.", w: "1 month before", t: { k: "by", d: -30 }, ref: { tpl: 3 } },
+    { id: "p4", r: "parent", ph: "return", m: 1, x: "Arrange childcare, plus a backup plan for sick days.", w: "1 month before", t: { k: "by", d: -30 } },
+    { id: "p5", r: "parent", ph: "return", m: 2, x: "Do a test run of the new morning routine.", w: "1 week before", t: { k: "by", d: -7 } },
+    { id: "p6", r: "parent", ph: "return", m: 3, x: "Ask for your 30-day plan and meet your buddy.", w: "Day of Return", t: { k: "on", d: 0 }, ref: { tpl: 4 } },
+    { id: "p7", r: "parent", ph: "reconnect", m: 4, x: "Ask what changed: people, processes, tools, targets.", w: "Week 1", t: { k: "range", a: 0, b: 6 } },
+    { id: "p8", r: "parent", ph: "reconnect", m: 4, x: "Book 15-minute catch-ups with the people you work with most.", w: "Weeks 1–2", t: { k: "range", a: 0, b: 13 } },
+    { id: "p9", r: "parent", ph: "reconnect", m: 5, x: "Start with tasks you can finish. Quick wins rebuild confidence.", w: "Weeks 3–4", t: { k: "range", a: 14, b: 27 } },
+    { id: "p10", r: "parent", ph: "reconnect", m: 5, x: "Use your weekly check-in to say what works and what doesn’t.", w: "Every week", t: { k: "from", d: 0, pre: "Weekly from" } },
+    { id: "p11", r: "parent", ph: "thrive", m: 6, x: "Take back your full responsibilities.", w: "Months 2–3", t: { k: "range", a: 30, b: 89 } },
+    { id: "p12", r: "parent", ph: "thrive", m: 6, x: "Prepare for your Day 90 review: what helped, what you need, where you want to grow.", w: "Month 3", t: { k: "by", d: 89 } },
+    { id: "p13", r: "parent", ph: "thrive", m: 7, x: "Review your flexible arrangements as your child’s needs change.", w: "Every 6 months", t: { k: "from", d: 180, pre: "First review" } },
+    { id: "p14", r: "parent", ph: "thrive", m: 7, x: "Set one development goal for the year ahead.", w: "After Day 90", t: { k: "from", d: 89, pre: "From" } },
+
+    { id: "h1", r: "hr", ph: "return", m: 1, x: "Explain rights and options: leave, working hours, flexible work.", w: "During leave", ref: { rights: true } },
+    { id: "h2", r: "hr", ph: "return", m: 1, x: "Respect the contact preferences the parent chose.", w: "During leave", ref: { tpl: 1 } },
+    { id: "h3", r: "hr", ph: "return", m: 1, x: "Offer training on new tools before the return, and cover the cost.", w: "1 month before", t: { k: "by", d: -30 } },
+    { id: "h4", r: "hr", ph: "return", m: 2, x: "Order and test equipment. Set up email, accounts and access.", w: "2 weeks before", t: { k: "by", d: -14 } },
+    { id: "h5", r: "hr", ph: "return", m: 2, x: "Prepare a welcome pack and a list of key contacts: IT, admin, HR.", w: "1 week before", t: { k: "by", d: -7 } },
+    { id: "h6", r: "hr", ph: "return", m: 2, x: "Check there is a private room for breastfeeding or pumping.", w: "1 week before", t: { k: "by", d: -7 } },
+    { id: "h7", r: "hr", ph: "reconnect", m: 4, x: "Run a short refresher if tools or systems changed.", w: "Week 1", t: { k: "range", a: 0, b: 6 } },
+    { id: "h8", r: "hr", ph: "reconnect", m: 4, x: "Set up a short meeting with leadership on where the business is heading.", w: "Weeks 1–2", t: { k: "range", a: 0, b: 13 } },
+    { id: "h9", r: "hr", ph: "reconnect", m: 5, x: "Check with the manager that the ramp-up plan is realistic.", w: "Week 3", t: { k: "range", a: 14, b: 20 } },
+    { id: "h10", r: "hr", ph: "thrive", m: 6, x: "Ask the parent for feedback on the return process.", w: "Day 90", t: { k: "on", d: 89 } },
+    { id: "h11", r: "hr", ph: "thrive", m: 7, x: "Turn what you learn into a written return process.", w: "Once a year" },
+    { id: "h12", r: "hr", ph: "thrive", m: 7, x: "Track how many parents return, and how many are still with you a year later.", w: "Once a year" },
+    { id: "h13", r: "hr", ph: "thrive", m: 7, x: "Make flexible working a policy, not a favour.", w: "Ongoing" },
+
+    { id: "m1", r: "manager", ph: "return", m: 1, x: "Call for an informal “How are you?” talk, with no work pressure.", w: "1–2 months before", t: { k: "range", a: -60, b: -30 }, ref: { card: 1 } },
+    { id: "m2", r: "manager", ph: "return", m: 1, x: "Agree how and how often you’ll stay in touch until the return.", w: "Same call", ref: { tpl: 1 } },
+    { id: "m3", r: "manager", ph: "return", m: 2, x: "Share the key changes: new people, structure, priorities.", w: "2–4 weeks before", t: { k: "range", a: -28, b: -14 } },
+    { id: "m4", r: "manager", ph: "return", m: 2, x: "Write a 30-day plan and choose a buddy from the team.", w: "2 weeks before", t: { k: "by", d: -14 }, ref: { tpl: 4 } },
+    { id: "m5", r: "manager", ph: "return", m: 3, x: "Be there in person. Plan coffee or lunch with the team.", w: "Day of Return", t: { k: "on", d: 0 }, ref: { card: 2 } },
+    { id: "m6", r: "manager", ph: "reconnect", m: 4, x: "Walk through what changed in the team: roles, processes, targets.", w: "Week 1", t: { k: "range", a: 0, b: 6 } },
+    { id: "m7", r: "manager", ph: "reconnect", m: 4, x: "Introduce the people they will work with most.", w: "Weeks 1–2", t: { k: "range", a: 0, b: 13 } },
+    { id: "m8", r: "manager", ph: "reconnect", m: 5, x: "Start with smaller tasks, then add responsibility step by step.", w: "Weeks 3–4", t: { k: "range", a: 14, b: 27 } },
+    { id: "m9", r: "manager", ph: "reconnect", m: 5, x: "Hold a 10-minute check-in.", w: "Every week", t: { k: "from", d: 0, pre: "Weekly from" }, ref: { card: 3 } },
+    { id: "m10", r: "manager", ph: "thrive", m: 6, x: "Hand back full ownership of regular responsibilities.", w: "Month 2", t: { k: "range", a: 30, b: 59 } },
+    { id: "m11", r: "manager", ph: "thrive", m: 6, x: "Step back from close supervision, but stay available.", w: "Months 2–3", t: { k: "range", a: 30, b: 89 } },
+    { id: "m12", r: "manager", ph: "thrive", m: 6, x: "Hold the Day 90 review: the return, the results, the next career step.", w: "Day 90", t: { k: "on", d: 89 }, ref: { card: 5 } },
+    { id: "m13", r: "manager", ph: "thrive", m: 7, x: "Keep talking about growth. Don’t wait to be asked.", w: "Every quarter", t: { k: "from", d: 89, pre: "Quarterly from" } },
+    { id: "m14", r: "manager", ph: "any", m: 0, x: "If flexibility comes up, talk it through openly.", w: "When asked", ref: { card: 4 } },
+    { id: "m15", r: "manager", ph: "any", m: 0, x: "When a child is sick, start with “Do you need anything?”", w: "That morning", ref: { card: 6 } }
+  ];
+
+  var MOMENTS = [
+    { n: 1, ph: "return", w: "1–2 months before", t: { k: "range", a: -60, b: -30 }, title: "Stay in touch, on the parent’s terms", titleP: "Stay in touch, on your terms" },
+    { n: 2, ph: "return", w: "1–2 weeks before", t: { k: "range", a: -14, b: -7 }, title: "Get everything ready", titleP: "Get everything ready" },
+    { n: 3, ph: "return", w: "Day of Return", t: { k: "on", d: 0 }, title: "A warm welcome", titleP: "Your first day back" },
+    { n: 4, ph: "reconnect", w: "Weeks 1–2", t: { k: "range", a: 0, b: 13 }, title: "Catch up on what changed", titleP: "Catch up on what changed" },
+    { n: 5, ph: "reconnect", w: "Weeks 3–4", t: { k: "range", a: 14, b: 27 }, title: "Build up step by step", titleP: "Build up step by step" },
+    { n: 6, ph: "thrive", w: "Months 2–3", t: { k: "range", a: 30, b: 89 }, title: "Full ownership", titleP: "Take full ownership" },
+    { n: 7, ph: "thrive", w: "After Day 90", t: { k: "from", d: 89, pre: "From" }, title: "Keep growing", titleP: "Keep growing" }
+  ];
+
+  // Dates
+  var base = null;
+  var fD = new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "short" });
+  var fW = new Intl.DateTimeFormat("en-GB", { weekday: "short", day: "numeric", month: "short" });
+  var fL = new Intl.DateTimeFormat("en-GB", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
+  function add(d) { return new Date(base.getFullYear(), base.getMonth(), base.getDate() + d); }
+  function fmt(t) {
+    if (t.k === "on") return fW.format(add(t.d));
+    if (t.k === "by") return "by " + fD.format(add(t.d));
+    if (t.k === "range") {
+      var a = add(t.a), b = add(t.b);
+      return (a.getMonth() === b.getMonth() && a.getFullYear() === b.getFullYear()) ? a.getDate() + "–" + fD.format(b) : fD.format(a) + " – " + fD.format(b);
+    }
+    if (t.k === "from") return (t.pre || "From") + " " + fD.format(add(t.d));
+    return "";
+  }
+  function span(t) {
+    if (t.k === "on") return [t.d, t.d];
+    if (t.k === "range") return [t.a, t.b];
+    if (t.k === "from") return [t.d, Infinity];
+    return [-Infinity, t.d];
+  }
+  function todayOffset() {
+    var n = new Date();
+    var today = new Date(n.getFullYear(), n.getMonth(), n.getDate());
+    return Math.round((today - base) / 864e5);
+  }
+
+  function tAttr(t) { return t ? " data-t='" + JSON.stringify(t) + "'" : ""; }
+  function refHtml(r) {
+    if (!r) return "";
+    if (r.card) return '<a class="ref" href="#card-' + r.card + '" data-go="card-' + r.card + '">Card ' + r.card + "</a>";
+    if (r.tpl) return '<a class="ref" href="#tpl-' + r.tpl + '" data-go="tpl-' + r.tpl + '">Template ' + r.tpl + "</a>";
+    if (r.rights) return '<a class="ref" href="#rights" data-go="rights">Rights at a glance</a>';
+    return "";
+  }
+  function actHtml(a) {
+    return '<li class="act"><input type="checkbox" id="chk-' + a.id + '" data-id="' + a.id + '"' + (state.ticks[a.id] ? " checked" : "") + ">" +
+      '<label for="chk-' + a.id + '">' + a.x + "</label>" +
+      '<div class="meta"><span class="when">' + a.w + "</span>" + (a.t ? '<span class="date"' + tAttr(a.t) + " hidden></span>" : "") + refHtml(a.ref) + "</div></li>";
+  }
+
+  function renderSteps(role) {
+    var phases = role === "manager" ? ["return", "reconnect", "thrive", "any"] : ["return", "reconnect", "thrive"];
+    var html = phases.map(function (ph) {
+      var inner;
+      if (ph === "any") {
+        var its = A.filter(function (a) { return a.r === role && a.ph === "any"; });
+        inner = '<div class="moments"><div class="moment"><span class="m-dot" aria-hidden="true"></span><div class="m-head"><span class="m-when">Whenever it comes up</span><h4>Two moments to handle well</h4></div><ul class="acts">' + its.map(actHtml).join("") + "</ul></div></div>";
+      } else {
+        inner = '<div class="moments">' + MOMENTS.filter(function (m) { return m.ph === ph; }).map(function (m) {
+          var its = A.filter(function (a) { return a.r === role && a.m === m.n; });
+          if (!its.length) return "";
+          return '<div class="moment" data-m="' + m.n + '"><span class="m-dot" aria-hidden="true"></span><div class="m-head"><span class="m-when">' + m.w + '</span><span class="date"' + tAttr(m.t) + ' hidden></span><span class="now" hidden></span>' +
+            "<h4>" + (role === "parent" ? m.titleP : m.title) + '</h4></div><ul class="acts">' + its.map(actHtml).join("") + "</ul></div>";
+        }).join("") + "</div>";
+      }
+      return '<div class="phase ph-' + ph + '" data-ph="' + ph + '"><div class="phase-head"><span class="ph-bar" aria-hidden="true"></span><h3>' + PH[ph].name + '</h3><span class="ph-when">' + PH[ph].when + '</span><span class="ph-count"></span></div>' + inner + "</div>";
+    }).join("");
+    document.getElementById("steps-list").innerHTML = html;
+    document.getElementById("prog-phases").innerHTML = phases.map(function (ph) {
+      return '<span class="pill ph-' + ph + '" data-count="' + ph + '"></span>';
+    }).join("");
+  }
+
+  function updateProgress() {
+    var all = document.querySelectorAll("#steps-list input[type=checkbox]");
+    var done = 0;
+    all.forEach(function (c) { if (c.checked) done++; });
+    document.getElementById("prog-big").innerHTML = done + " <span>of " + all.length + " steps done</span>";
+    document.getElementById("prog-bar").style.width = (all.length ? (done / all.length) * 100 : 0) + "%";
+    document.querySelectorAll("#steps-list .phase").forEach(function (p) {
+      var boxes = p.querySelectorAll("input[type=checkbox]"), n = 0;
+      boxes.forEach(function (c) { if (c.checked) n++; });
+      p.querySelector(".ph-count").textContent = n + " of " + boxes.length;
+      var pill = document.querySelector('#prog-phases [data-count="' + p.getAttribute("data-ph") + '"]');
+      if (pill) pill.textContent = PH[p.getAttribute("data-ph")].name + " " + n + "/" + boxes.length;
+    });
+  }
+
+  function renderDates() {
+    var v = state.role ? state.dates[state.role] : "";
+    base = null;
+    if (v) { var p = v.split("-").map(Number); if (p[0] && p[1] && p[2]) base = new Date(p[0], p[1] - 1, p[2]); }
+    document.querySelectorAll("#steps-list [data-t]").forEach(function (el) {
+      if (!base) { el.hidden = true; el.textContent = ""; return; }
+      try { el.textContent = fmt(JSON.parse(el.getAttribute("data-t"))); el.hidden = false; } catch (e) { el.hidden = true; }
+    });
+    var status = document.getElementById("date-status");
+    document.querySelectorAll("#steps-list .now").forEach(function (n) { n.hidden = true; });
+    if (!base) { status.innerHTML = '<span class="muted">No date yet. Saved only in this browser.</span>'; return; }
+    var off = todayOffset(), msg;
+    if (off < -1) msg = (-off) + " days to go.";
+    else if (off === -1) msg = "Tomorrow.";
+    else if (off === 0) msg = "Today is the Day of Return.";
+    else msg = "Day " + (off + 1) + " back at work.";
+    status.innerHTML = fL.format(base) + ' <span class="muted">· ' + msg + "</span>";
+    // Mark the current or next moment on this path
+    var shown = Array.prototype.slice.call(document.querySelectorAll("#steps-list .moment[data-m]"));
+    for (var i = 0; i < shown.length; i++) {
+      var m = MOMENTS[Number(shown[i].getAttribute("data-m")) - 1], s = span(m.t);
+      if (s[1] >= off) {
+        var tag = shown[i].querySelector(".now");
+        tag.textContent = s[0] <= off ? "Now" : "Next";
+        tag.hidden = false;
+        break;
+      }
+    }
+  }
+
+  function applyRole() {
+    var role = state.role;
+    var entry = document.getElementById("entry"), path = document.getElementById("path");
+    document.getElementById("change-role").hidden = !role;
+    document.getElementById("top-tag").textContent = role ? ROLE[role].label + " path" : "Toolkit • EN";
+    if (!role) { entry.hidden = false; path.hidden = true; return; }
+    entry.hidden = true; path.hidden = false;
+    var cfg = ROLE[role];
+    document.getElementById("path-eyebrow").textContent = cfg.eyebrow;
+    document.getElementById("path-title").textContent = cfg.title;
+    document.getElementById("path-lead").textContent = cfg.lead;
+    document.getElementById("day-help").textContent = cfg.help;
+    document.getElementById("rights-lead").textContent = cfg.rights;
+    document.getElementById("notes").innerHTML = cfg.notes.map(function (n) { return '<p class="note">' + n + "</p>"; }).join("");
+    document.querySelectorAll("#path [data-for]").forEach(function (el) {
+      el.hidden = el.getAttribute("data-for").split(" ").indexOf(role) === -1;
+    });
+    document.querySelectorAll("#path details.card").forEach(function (d) { d.open = false; });
+    renderSteps(role);
+    document.getElementById("day-of-return").value = state.dates[role] || "";
+    updateProgress();
+    renderDates();
+    buildChips();
+  }
+
+  function setRole(role) {
+    state.role = ROLES_LIST.indexOf(role) > -1 ? role : "";
+    save();
+    try { history.replaceState(null, "", state.role ? "#" + state.role : location.pathname + location.search); } catch (e) {}
+    applyRole();
+    try { window.scrollTo({ top: 0, behavior: "auto" }); } catch (e) { window.scrollTo(0, 0); }
+  }
+
+  // Section chips for the visible sections of this path
+  var io = null;
+  function buildChips() {
+    var secs = Array.prototype.slice.call(document.querySelectorAll("#path .pathsec")).filter(function (s) { return !s.hidden; });
+    var chips = document.getElementById("chips");
+    chips.innerHTML = secs.map(function (s) { return '<button type="button" class="chip" data-target="' + s.id + '">' + s.getAttribute("data-label") + "</button>"; }).join("");
+    if (io) io.disconnect();
+    if ("IntersectionObserver" in window) {
+      io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (!en.isIntersecting) return;
+          chips.querySelectorAll(".chip").forEach(function (c) {
+            if (c.getAttribute("data-target") === en.target.id) c.setAttribute("aria-current", "true"); else c.removeAttribute("aria-current");
+          });
+        });
+      }, { rootMargin: "-30% 0px -65% 0px" });
+      secs.forEach(function (s) { io.observe(s); });
+    }
+  }
+  function goTo(id) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    if (el.tagName === "DETAILS") el.open = true;
+    el.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+  }
+
+  // Events
+  document.querySelectorAll(".role-card").forEach(function (b) {
+    b.addEventListener("click", function () { setRole(b.getAttribute("data-role")); });
+  });
+  document.getElementById("change-role").addEventListener("click", function () { setRole(""); });
+  document.getElementById("home-link").addEventListener("click", function (e) { e.preventDefault(); setRole(""); });
+
+  var dateInput = document.getElementById("day-of-return");
+  dateInput.addEventListener("change", function () {
+    if (!state.role) return;
+    state.dates[state.role] = dateInput.value || "";
+    save(); renderDates();
+  });
+  document.getElementById("clear-date").addEventListener("click", function () {
+    if (!state.role) return;
+    dateInput.value = ""; state.dates[state.role] = ""; save(); renderDates();
+  });
+
+  document.addEventListener("change", function (e) {
+    var c = e.target;
+    if (c.matches && c.matches("input[type=checkbox][data-id]")) {
+      if (c.checked) state.ticks[c.getAttribute("data-id")] = true; else delete state.ticks[c.getAttribute("data-id")];
+      save(); updateProgress();
+    }
+  });
+
+  document.addEventListener("click", function (e) {
+    var go = e.target.closest("[data-go]");
+    if (go) { e.preventDefault(); goTo(go.getAttribute("data-go")); return; }
+    var chip = e.target.closest(".chip");
+    if (chip) { goTo(chip.getAttribute("data-target")); return; }
+    var sw = e.target.closest("[data-switch]");
+    if (sw) { setRole(sw.getAttribute("data-switch")); }
+  });
+
+  var clearBtn = document.getElementById("clear-ticks"), clearTimer = null;
+  clearBtn.addEventListener("click", function () {
+    if (!clearBtn.classList.contains("armed")) {
+      clearBtn.classList.add("armed"); clearBtn.textContent = "Tap again to clear";
+      clearTimer = setTimeout(function () { clearBtn.classList.remove("armed"); clearBtn.textContent = "Clear my ticks"; }, 3000);
+      return;
+    }
+    clearTimeout(clearTimer);
+    A.forEach(function (a) { if (a.r === state.role) delete state.ticks[a.id]; });
+    document.querySelectorAll("#steps-list input[type=checkbox]").forEach(function (c) { c.checked = false; });
+    save(); updateProgress();
+    clearBtn.classList.remove("armed"); clearBtn.textContent = "Ticks cleared";
+    setTimeout(function () { clearBtn.textContent = "Clear my ticks"; }, 2000);
+  });
+
+  function tableText(tbl) {
+    return Array.prototype.map.call(tbl.rows, function (row) {
+      return Array.prototype.map.call(row.cells, function (c) { return c.textContent.trim(); }).join("\t");
+    }).join("\n");
+  }
+  function selectEl(el) {
+    try { var range = document.createRange(); range.selectNodeContents(el); var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(range); } catch (e) {}
+  }
+  document.querySelectorAll(".copy-btn").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var el = document.getElementById(btn.getAttribute("data-copy"));
+      if (!el) return;
+      var text = el.tagName === "TABLE" ? tableText(el) : el.textContent;
+      function done(msg) { btn.textContent = msg; setTimeout(function () { btn.textContent = "Copy"; }, 2200); }
+      function fallback() { selectEl(el); done("Selected: press Ctrl+C"); }
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(function () { done("Copied"); }, fallback);
+        else fallback();
+      } catch (e) { fallback(); }
+    });
+  });
+
+  // Start: a role in the link (#parent, #hr, #manager) wins over the saved one
+  var fromHash = (location.hash || "").slice(1);
+  if (ROLES_LIST.indexOf(fromHash) > -1) { state.role = fromHash; save(); }
+  applyRole();
+})();
+</script>
